@@ -1,4 +1,5 @@
 import 'package:etloob/src/core/presentation/dialogs/custom_info_dialog.dart';
+import 'package:etloob/src/core/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:store_redirect/store_redirect.dart';
 
@@ -11,7 +12,7 @@ class ForceUpdateDialog extends StatelessWidget {
       title: 'Application Update !',
       content: 'This Version Is Not Supported Anymore , Please Update To The Last Version',
       mainActionText: 'Update',
-      onMainActionPressed: ()=>StoreRedirect.redirect(androidAppId: 'com.etloob',iOSAppId: '1483218907'),
+      onMainActionPressed: ()=>StoreRedirect.redirect(androidAppId: 'com.$applicationPackageName',iOSAppId: iosAppId),
     );
   }
 }

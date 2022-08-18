@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/Data/Errors/core_errors.dart';
 import 'package:etloob/src/Data/Errors/custom_error.dart';
 import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
@@ -48,7 +49,7 @@ class SubmittingPhoneNumberBloc extends Cubit< SubmittingPhoneNumberState> {
     }
     on CustomError catch(e){
       emit(SubmittingPhoneNumberState(phoneNumber:state.phoneNumber,));
-      BottomSnackBar.show(e.errorMessage, ToastType.error,
+      getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
           onRetry: e is InternetConnectionError? ()=>submitting(context):null
       );
     }

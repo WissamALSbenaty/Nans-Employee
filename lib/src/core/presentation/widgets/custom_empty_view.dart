@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:etloob/src/Data/Errors/core_errors.dart';
 import 'package:etloob/src/Data/Errors/custom_error.dart';
 import 'package:etloob/src/core/presentation/auto_router.gr.dart';
-import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
 import 'package:etloob/src/core/util/size_config.dart';
@@ -32,7 +31,7 @@ class CustomEmptyView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.w(16)),
             child: Text(error.errorMessage.tr(),
               textAlign: TextAlign.center,
-              style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600)
+              style: Theme.of(context).textTheme.bodyText2
             ),
           ),
           const CustomSizedBox(height: 16,),

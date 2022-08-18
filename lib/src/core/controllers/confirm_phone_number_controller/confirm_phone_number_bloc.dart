@@ -1,4 +1,5 @@
 
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/Data/Errors/core_errors.dart';
 import 'package:etloob/src/Data/Errors/custom_error.dart';
 import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 
 part 'confirm_phone_number_bloc.freezed.dart';
 part 'confirm_phone_number_state.dart';
@@ -32,7 +32,7 @@ class ConfirmPhoneNumberBloc extends Cubit< ConfirmPhoneNumberState> {
         }
     }
     on CustomError catch (e){
-      BottomSnackBar.show(e.errorMessage, ToastType.error);
+      getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error);
     }
     emit(Submitting(code:state.code ));
     }
@@ -60,7 +60,7 @@ class ConfirmPhoneNumberBloc extends Cubit< ConfirmPhoneNumberState> {
         }
         on CustomError catch(e){
           emit(ConfirmPhoneNumberState.submitting(code: state.code));
-          BottomSnackBar.show(e.errorMessage, ToastType.error,
+          getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
               onRetry: e is InternetConnectionError? ()=>verifying(context):null
           );
         }

@@ -5,7 +5,7 @@ import 'package:etloob/src/core/presentation/assets.dart';
 
 
 class NotFoundError extends CustomError{
-  NotFoundError({ required String message}):super(errorMessage: message,imagePath: Assets.searchNotFound);
+  NotFoundError({ required String message}):super(errorMessage: message,imagePath: Assets.notFound);
 }
 
 class BadRequestError extends CustomError{
@@ -13,7 +13,7 @@ class BadRequestError extends CustomError{
 }
 
 class NotAuthorizedError extends CustomError{
-  NotAuthorizedError():super(errorMessage: 'You need to sign up first',imagePath: Assets.searchNotFound);
+  NotAuthorizedError():super(errorMessage: 'You need to sign up first',imagePath: Assets.notFound);
 }
 
 class ForbiddenError extends CustomError{

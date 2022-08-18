@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/controllers/app_localization_controller/app_localization_bloc.dart';
+import 'package:etloob/src/core/controllers/app_appearance_controller/app_appearance_bloc.dart';
 import 'package:etloob/src/core/presentation/auto_router.gr.dart';
 import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
 import 'package:etloob/src/core/presentation/style.dart';
@@ -22,8 +22,8 @@ class App extends StatelessWidget {
     ],
     child:Builder(
         builder: (ctx) {
-        return     BlocProvider<AppLocalizationBloc>.value(value:  getIt<AppLocalizationBloc>(param1: ctx),
-          child :BlocBuilder<AppLocalizationBloc,AppLocalizationState>(
+        return     BlocProvider<AppAppearanceBloc>.value(value:  getIt<AppAppearanceBloc>(param1: ctx),
+          child :BlocBuilder<AppAppearanceBloc,AppAppearanceState>(
             builder: (ctx, state) => const AppChild()));
       }
     ));
@@ -69,11 +69,7 @@ class AppChildState extends State<AppChild> {
         ),
         routeInformationParser: appRouter.defaultRouteParser(),
 
-        theme: ThemeData(
-          fontFamily: "Manrope",
-          colorScheme: AppColors.colorSchema,
-
-        ),
+        theme:getIt<ThemeManager>().getTheme(),
 
 
         localizationsDelegates: context.localizationDelegates,

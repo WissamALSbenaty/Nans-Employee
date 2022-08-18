@@ -10,9 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 
+import 'constants.dart';
+
 @singleton
 class NotificationsManager {
-  final String applicationPackageName='merit';
   FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
 
   initFirebaseMessaging(BuildContext context) async {
@@ -98,7 +99,7 @@ class NotificationsManager {
     onReceiveNotification(payload,context);
 
     AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails('$applicationPackageName.com', applicationPackageName, channelDescription: '$applicationPackageName channel',
+    const AndroidNotificationDetails('$applicationPackageName.com', applicationPackageName, channelDescription: '$applicationPackageName channel',
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker');

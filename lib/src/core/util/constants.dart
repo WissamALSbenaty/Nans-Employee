@@ -1,4 +1,6 @@
 
 
-const String apiBaseUrl = 'https://etloob.com:7086/Client/api';
-const String projectDynamicLinks='https://etloobcompany.page.link';
+const String apiBaseUrl = '';
+const String projectDynamicLinks='';
+const String applicationPackageName='merit';
+const String iosAppId='';

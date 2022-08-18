@@ -1,3 +1,4 @@
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/presentation/sheets/sheet_header.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/util/size_config.dart';
@@ -9,19 +10,21 @@ Future showCustomBottomSheet(BuildContext context,Widget sheetWidget ,List<doubl
   // snapping Heights is percent value of the screen that the sheet stops on
 
   return showSlidingBottomSheet( context,
-       builder:(ctx)=>SlidingSheetDialog(
+       builder:(ctx) {
+    ThemeManager themeManager=getIt<ThemeManager>();
+         return SlidingSheetDialog(
 
          duration: const Duration(milliseconds: 300),
          cornerRadius: 16,
          padding: EdgeInsets.only(top: SizeConfig.h(8)),
          isDismissable: isDismissable,
-         backdropColor:AppColors.blackColor.withOpacity(0.6),
+         backdropColor:themeManager.black.withOpacity(0.6),
          avoidStatusBar: true,
          isBackdropInteractable: true,
          //extendBody: true,
-         color: AppColors.blackColor.shade100,
+         color: themeManager.black.shade100,
 
-          
+
          snapSpec: SnapSpec(
            snappings: snappingHeights,
          ),
@@ -29,10 +32,11 @@ Future showCustomBottomSheet(BuildContext context,Widget sheetWidget ,List<doubl
            return const SheetHeader();
        },
        builder: (_,__)=>Material(
-           color:AppColors.whiteColor ,
+           color:themeManager.white ,
            child: sheetWidget,
        ),
 
 
-   ));
+   );
+       });
 }

@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -17,6 +16,7 @@ class OnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData=Theme.of(context);
     return Column(
       children: [
         Lottie.asset(
@@ -28,15 +28,13 @@ class OnBoarding extends StatelessWidget {
             children: [
               Text(title.tr(),
                   textAlign: TextAlign.center,
-                  style: AppStyle.textTheme.headline2!.copyWith(fontWeight: FontWeight.bold)),
+                  style: themeData.textTheme.headline2!.copyWith(fontWeight: FontWeight.bold)),
               SizedBox(
                 height: SizeConfig.h(16),
               ),
               Text(
                 description.tr(),
-                style: AppStyle.textTheme.bodyText2!.copyWith(
-                  color: AppColors.blackColor.shade500,
-                ),
+                style: themeData.textTheme.bodyText2,
                 textAlign: TextAlign.center,
               )
             ],

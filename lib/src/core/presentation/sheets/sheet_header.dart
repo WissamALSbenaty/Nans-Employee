@@ -1,3 +1,4 @@
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -8,16 +9,17 @@ class SheetHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeManager themeManager =getIt<ThemeManager>();
     return Container(
       height: SizeConfig.h(40),
-      color: AppColors.whiteColor,
+      color: themeManager.white,
       child: Center(
         child: Container(
           height: SizeConfig.h(4),
           width: SizeConfig.w(60),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(55),
-            color: AppColors.blackColor.shade100,
+            color: themeManager.black.shade100,
           ),
         ),
       ),

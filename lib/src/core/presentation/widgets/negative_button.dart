@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ class NegativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme =Theme.of(context);
+    ThemeManager themeManager=getIt<ThemeManager>();
     return GestureDetector(
       onTap: onPressed,
       child: Container(
@@ -20,7 +23,7 @@ class NegativeButton extends StatelessWidget {
         height: SizeConfig.h(66),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            color: AppColors.whiteColor,
+            color: themeManager.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.3),
@@ -29,12 +32,12 @@ class NegativeButton extends StatelessWidget {
                 offset: const Offset(0, 3), // changes position of shadow
               ),
             ],
-            border: Border.all(color: AppColors.darkPink)),
+            border: Border.all(color: theme.errorColor)),
         child: Center(
           child: Text(
             title.tr(),
-            style: AppStyle.textTheme.bodyText2!.copyWith(
-                color: AppColors.darkPink, fontWeight: FontWeight.bold),
+            style: theme.textTheme.bodyText2!.copyWith(
+                color: theme.errorColor, fontWeight: FontWeight.bold),
           ),
         ),
       ),

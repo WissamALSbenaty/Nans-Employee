@@ -4,7 +4,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/util/localization_manager.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class CustomAppBar extends AppBar{
   ),
 
   title: Text(
-    barTitle.tr(),style: AppStyle.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
+    barTitle.tr(),style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
   ),
     actions: [
       for(int i=0;i<barActions.length;i++)

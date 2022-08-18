@@ -1,5 +1,6 @@
 
 import 'package:auto_route/auto_route.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/Data/Errors/core_errors.dart';
 import 'package:etloob/src/Data/Errors/custom_error.dart';
 import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
@@ -42,7 +43,7 @@ class SubmittingNewPasswordBloc extends Cubit< SubmittingNewPasswordState> {
 
           await authRepository.login(LoginModel(phoneNumber: phoneNumber, password: state.password,));
 
-          BottomSnackBar.show(SnackBarMessages.successChangingPassword, ToastType.success);
+          getIt<BottomSnackBar>().show(SnackBarMessages.successChangingPassword, ToastType.success);
 
           context.clearData();
           emit(SubmittingNewPassword( password:state.password,));
@@ -52,7 +53,7 @@ class SubmittingNewPasswordBloc extends Cubit< SubmittingNewPasswordState> {
         on CustomError catch(e){
           emit(SubmittingNewPassword( password:state.password,));
 
-          BottomSnackBar.show(e.errorMessage, ToastType.error,
+          getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
               onRetry: e is InternetConnectionError? ()=>submitting(context):null
           );
         }

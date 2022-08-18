@@ -1,5 +1,6 @@
 
 import 'package:auto_route/auto_route.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/Data/Errors/core_errors.dart';
 import 'package:etloob/src/Data/Errors/custom_error.dart';
 import 'package:etloob/src/Data/models/login_model.dart';
@@ -79,7 +80,7 @@ class RegisterBloc extends Cubit< RegisterState> {
           firstName: state.firstName,lastName: state.lastName,
           password:state.password,));
 
-        BottomSnackBar.show(e.errorMessage, ToastType.error,
+        getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
             onRetry: e is InternetConnectionError? ()=>registering(context):null
         );
       }

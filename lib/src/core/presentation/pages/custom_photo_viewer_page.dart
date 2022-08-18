@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/presentation/assets.dart';
 import 'package:etloob/src/core/presentation/page_arguments/custom_photo_viewer_page_arguments.dart';
 import 'package:etloob/src/core/presentation/style.dart';
@@ -15,11 +16,12 @@ class CustomPhotoViewerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeManager themeManager =getIt<ThemeManager>();
     return Stack(
       fit:  StackFit.expand,
       children: [
         Container(
-          color: AppColors.blackColor,
+          color: themeManager.black,
             ///heroAttributes:PhotoViewHeroAttributes(tag: args.imageTag.toString()),
           child: Center(child: Image.network(args.imagePath,
           errorBuilder: (_,__,___)=>SvgPicture.asset(Assets.logo),
@@ -32,8 +34,8 @@ class CustomPhotoViewerPage extends StatelessWidget {
 
           child: GestureDetector(
                 onTap: ()=>AutoRouter.of(context).pop(),
-                child: const CloseWidget(
-                  color: AppColors.whiteColor,
+                child:  CloseWidget(
+                  color: themeManager.white,
                   height: 36
                 ),
               )

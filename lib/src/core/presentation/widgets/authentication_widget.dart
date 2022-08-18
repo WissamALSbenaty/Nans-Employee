@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../assets.dart';
-import '../style.dart';
 import 'custom_sized_box.dart';
 
 class AuthenticationWidget extends StatefulWidget {
@@ -43,7 +42,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
           children: [
             const CustomSizedBox(width: 8,),
             Text(widget.title.tr(),
-              style:AppStyle.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold) ,),
+              style:Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold) ,),
           ],
         ),
         const CustomSizedBox(height: 8,),

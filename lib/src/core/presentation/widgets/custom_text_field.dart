@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/util/enums.dart';
 import 'package:etloob/src/core/util/size_config.dart';
@@ -25,13 +26,16 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme= Theme.of(context);
+    ThemeManager themeManager=getIt<ThemeManager>();
+
     return Container(
       height: SizeConfig.h(48),
       padding: EdgeInsets.symmetric(horizontal: SizeConfig.w(16)),
       decoration: BoxDecoration(
 
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: AppColors.blackColor.shade200)
+        border: Border.all(color: themeManager.black.shade200)
       ),
       child: TextFormField(
         enabled: isEnabled,
@@ -39,7 +43,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: isObscureText,
         onChanged: onChangedFunction,
         keyboardType: textInputType,
-        cursorColor: AppColors.blackColor.shade600,
+        cursorColor: themeManager.black,
         inputFormatters: [
           if(inputFormatter!=null)
             inputFormatter!,
@@ -47,7 +51,7 @@ class CustomTextField extends StatelessWidget {
         decoration:   InputDecoration(
 
           hintText: hint?.tr(),
-          hintStyle: AppStyle.textTheme.subtitle1,
+          hintStyle: theme.textTheme.subtitle1,
           suffixIcon: suffixIcon,
 
           prefixIcon: prefixIcon,
@@ -73,11 +77,11 @@ class CustomTextField extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
                 text: title.tr(),
-                style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600),
+                style: theme.textTheme.bodyText2,
                 children: [
                   TextSpan(
                     text:fieldPriority!=TextFieldPriority.none? ' (${fieldPriority.name.tr()})':'',
-                    style: AppStyle.textTheme.subtitle1!.copyWith(color: AppColors.red60),
+                    style: theme.textTheme.subtitle1!.copyWith(color: theme.errorColor),
 
                   )
                 ]

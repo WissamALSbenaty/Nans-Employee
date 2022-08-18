@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,16 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeManager themeManager=getIt<ThemeManager>();
+    ThemeData theme=Theme.of(context);
+
     return GestureDetector(
       onTap:enabled?  onPressed:null,
       child: Container(
         width: SizeConfig.w(width),
         height: SizeConfig.h(66),
         decoration: BoxDecoration(
-          color: enabled? AppColors.yellow:AppColors.blackColor.shade300,
+          color: enabled? themeManager.primaryColor:themeManager.black.shade300,
             boxShadow: [
         BoxShadow(
         color: Colors.grey.withOpacity(0.3),
@@ -36,7 +40,7 @@ class MainButton extends StatelessWidget {
 
         child: Center(
           child: Text(title.tr(),
-            style:  AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.whiteColor,fontWeight: FontWeight.bold),),
+            style:  theme.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),),
         ),
       ),
     );
