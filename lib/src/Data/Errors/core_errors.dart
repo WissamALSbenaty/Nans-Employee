@@ -28,12 +28,6 @@ class InternetConnectionError extends CustomError{
   InternetConnectionError():super(errorMessage: "Please Check Your Internet Connection",imagePath: Assets.noInternet,
   );
 }
-
-class ServerError extends CustomError{
-  ServerError():super(errorMessage: "The Application is Under Maintenance Right Now...Please Try Again Later",imagePath: Assets.applicationError,
-  );
-}
-
 class SomethingWentWrongError extends CustomError{
   SomethingWentWrongError():super(errorMessage: "Something Went Wrong...Please Try Again Later", imagePath: '',
   );
@@ -71,6 +65,6 @@ class NotNumberError extends CustomError{
 
 class EmptyFieldError extends CustomError{
   EmptyFieldError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"should not be empty".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"Should Not Be Empty".tr()}", imagePath: '',
       );
 }

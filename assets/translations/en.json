@@ -1,0 +1,23 @@
+{
+  "Password Has Changed Successfully !":"Password Has Changed Successfully !",
+  "Phone Number":"Phone Number",
+  "First name":"First name",
+  "Last name":"Last name",
+  "Login/Register":"Login/Register",
+  "Retry":"Retry",
+  "required":"required",
+  "optional":"optional",
+  "You need to sign up first":"You need to sign up first",
+  "Please Check Your Internet Connection":"Please Check Your Internet Connection",
+  "Should Be Bigger Than":"Should Be Bigger Than",
+  "Something Went Wrong...Please Try Again Later":"Something Went Wrong...Please Try Again Later",
+  "Should Be Smaller Than":"Should Be Smaller Than",
+  "is Not a Valid Phone Number":"is Not a Valid Phone Number",
+  "is Not a Valid Name":"is Not a Valid Name",
+  "is Not a Valid Number":"is Not a Valid Number",
+  "Should Not Be Empty":"Should Not Be Empty",
+  "Application Update !":"Application Update !",
+  "Update":"Update",
+  "This Version Is Not Supported Anymore ,Please Update To The Last Version":"This Version Is Not Supported Anymore ,Please Update To The Last Version"
+
+}
