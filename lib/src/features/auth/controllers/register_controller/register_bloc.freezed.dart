@@ -16,38 +16,37 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RegisterState {
-  String get firstName => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  String get referralCode => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get landlineNumber => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)
         $default, {
-    required TResult Function(String firstName, String phoneNumber,
-            String lastName, String password, String referralCode)
+    required TResult Function(String username, String phoneNumber,
+            String? email, String? landlineNumber)
         registering,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         $default, {
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         registering,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         $default, {
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         registering,
     required TResult orElse(),
   }) =>
@@ -83,11 +82,10 @@ abstract class $RegisterStateCopyWith<$Res> {
           RegisterState value, $Res Function(RegisterState) then) =
       _$RegisterStateCopyWithImpl<$Res>;
   $Res call(
-      {String firstName,
+      {String username,
       String phoneNumber,
-      String lastName,
-      String password,
-      String referralCode});
+      String? email,
+      String? landlineNumber});
 }
 
 /// @nodoc
@@ -101,33 +99,28 @@ class _$RegisterStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? firstName = freezed,
+    Object? username = freezed,
     Object? phoneNumber = freezed,
-    Object? lastName = freezed,
-    Object? password = freezed,
-    Object? referralCode = freezed,
+    Object? email = freezed,
+    Object? landlineNumber = freezed,
   }) {
     return _then(_value.copyWith(
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      referralCode: referralCode == freezed
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      landlineNumber: landlineNumber == freezed
+          ? _value.landlineNumber
+          : landlineNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -140,11 +133,10 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       __$$_RegisterStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String firstName,
+      {String username,
       String phoneNumber,
-      String lastName,
-      String password,
-      String referralCode});
+      String? email,
+      String? landlineNumber});
 }
 
 /// @nodoc
@@ -160,33 +152,28 @@ class __$$_RegisterStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? firstName = freezed,
+    Object? username = freezed,
     Object? phoneNumber = freezed,
-    Object? lastName = freezed,
-    Object? password = freezed,
-    Object? referralCode = freezed,
+    Object? email = freezed,
+    Object? landlineNumber = freezed,
   }) {
     return _then(_$_RegisterState(
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      referralCode: referralCode == freezed
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      landlineNumber: landlineNumber == freezed
+          ? _value.landlineNumber
+          : landlineNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -195,26 +182,23 @@ class __$$_RegisterStateCopyWithImpl<$Res>
 
 class _$_RegisterState implements _RegisterState {
   _$_RegisterState(
-      {required this.firstName,
+      {required this.username,
       required this.phoneNumber,
-      required this.lastName,
-      required this.password,
-      required this.referralCode});
+      this.email,
+      this.landlineNumber});
 
   @override
-  final String firstName;
+  final String username;
   @override
   final String phoneNumber;
   @override
-  final String lastName;
+  final String? email;
   @override
-  final String password;
-  @override
-  final String referralCode;
+  final String? landlineNumber;
 
   @override
   String toString() {
-    return 'RegisterState(firstName: $firstName, phoneNumber: $phoneNumber, lastName: $lastName, password: $password, referralCode: $referralCode)';
+    return 'RegisterState(username: $username, phoneNumber: $phoneNumber, email: $email, landlineNumber: $landlineNumber)';
   }
 
   @override
@@ -222,23 +206,21 @@ class _$_RegisterState implements _RegisterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterState &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.referralCode, referralCode));
+                .equals(other.landlineNumber, landlineNumber));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(referralCode));
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(landlineNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -248,43 +230,42 @@ class _$_RegisterState implements _RegisterState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)
         $default, {
-    required TResult Function(String firstName, String phoneNumber,
-            String lastName, String password, String referralCode)
+    required TResult Function(String username, String phoneNumber,
+            String? email, String? landlineNumber)
         registering,
   }) {
-    return $default(firstName, phoneNumber, lastName, password, referralCode);
+    return $default(username, phoneNumber, email, landlineNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         $default, {
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         registering,
   }) {
-    return $default?.call(
-        firstName, phoneNumber, lastName, password, referralCode);
+    return $default?.call(username, phoneNumber, email, landlineNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         $default, {
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         registering,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(firstName, phoneNumber, lastName, password, referralCode);
+      return $default(username, phoneNumber, email, landlineNumber);
     }
     return orElse();
   }
@@ -323,22 +304,19 @@ class _$_RegisterState implements _RegisterState {
 
 abstract class _RegisterState implements RegisterState {
   factory _RegisterState(
-      {required final String firstName,
+      {required final String username,
       required final String phoneNumber,
-      required final String lastName,
-      required final String password,
-      required final String referralCode}) = _$_RegisterState;
+      final String? email,
+      final String? landlineNumber}) = _$_RegisterState;
 
   @override
-  String get firstName;
+  String get username;
   @override
   String get phoneNumber;
   @override
-  String get lastName;
+  String? get email;
   @override
-  String get password;
-  @override
-  String get referralCode;
+  String? get landlineNumber;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>
@@ -353,11 +331,10 @@ abstract class _$$RegisteringCopyWith<$Res>
       __$$RegisteringCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String firstName,
+      {String username,
       String phoneNumber,
-      String lastName,
-      String password,
-      String referralCode});
+      String? email,
+      String? landlineNumber});
 }
 
 /// @nodoc
@@ -373,33 +350,28 @@ class __$$RegisteringCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? firstName = freezed,
+    Object? username = freezed,
     Object? phoneNumber = freezed,
-    Object? lastName = freezed,
-    Object? password = freezed,
-    Object? referralCode = freezed,
+    Object? email = freezed,
+    Object? landlineNumber = freezed,
   }) {
     return _then(_$Registering(
-      firstName: firstName == freezed
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: lastName == freezed
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: password == freezed
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      referralCode: referralCode == freezed
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
-              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      landlineNumber: landlineNumber == freezed
+          ? _value.landlineNumber
+          : landlineNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -408,26 +380,23 @@ class __$$RegisteringCopyWithImpl<$Res>
 
 class _$Registering implements Registering {
   _$Registering(
-      {required this.firstName,
+      {required this.username,
       required this.phoneNumber,
-      required this.lastName,
-      required this.password,
-      required this.referralCode});
+      this.email,
+      this.landlineNumber});
 
   @override
-  final String firstName;
+  final String username;
   @override
   final String phoneNumber;
   @override
-  final String lastName;
+  final String? email;
   @override
-  final String password;
-  @override
-  final String referralCode;
+  final String? landlineNumber;
 
   @override
   String toString() {
-    return 'RegisterState.registering(firstName: $firstName, phoneNumber: $phoneNumber, lastName: $lastName, password: $password, referralCode: $referralCode)';
+    return 'RegisterState.registering(username: $username, phoneNumber: $phoneNumber, email: $email, landlineNumber: $landlineNumber)';
   }
 
   @override
@@ -435,23 +404,21 @@ class _$Registering implements Registering {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Registering &&
-            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
-            const DeepCollectionEquality().equals(other.lastName, lastName) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality()
-                .equals(other.referralCode, referralCode));
+                .equals(other.landlineNumber, landlineNumber));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(phoneNumber),
-      const DeepCollectionEquality().hash(lastName),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(referralCode));
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(landlineNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -461,45 +428,42 @@ class _$Registering implements Registering {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)
         $default, {
-    required TResult Function(String firstName, String phoneNumber,
-            String lastName, String password, String referralCode)
+    required TResult Function(String username, String phoneNumber,
+            String? email, String? landlineNumber)
         registering,
   }) {
-    return registering(
-        firstName, phoneNumber, lastName, password, referralCode);
+    return registering(username, phoneNumber, email, landlineNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         $default, {
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         registering,
   }) {
-    return registering?.call(
-        firstName, phoneNumber, lastName, password, referralCode);
+    return registering?.call(username, phoneNumber, email, landlineNumber);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         $default, {
-    TResult Function(String firstName, String phoneNumber, String lastName,
-            String password, String referralCode)?
+    TResult Function(String username, String phoneNumber, String? email,
+            String? landlineNumber)?
         registering,
     required TResult orElse(),
   }) {
     if (registering != null) {
-      return registering(
-          firstName, phoneNumber, lastName, password, referralCode);
+      return registering(username, phoneNumber, email, landlineNumber);
     }
     return orElse();
   }
@@ -538,22 +502,19 @@ class _$Registering implements Registering {
 
 abstract class Registering implements RegisterState {
   factory Registering(
-      {required final String firstName,
+      {required final String username,
       required final String phoneNumber,
-      required final String lastName,
-      required final String password,
-      required final String referralCode}) = _$Registering;
+      final String? email,
+      final String? landlineNumber}) = _$Registering;
 
   @override
-  String get firstName;
+  String get username;
   @override
   String get phoneNumber;
   @override
-  String get lastName;
+  String? get email;
   @override
-  String get password;
-  @override
-  String get referralCode;
+  String? get landlineNumber;
   @override
   @JsonKey(ignore: true)
   _$$RegisteringCopyWith<_$Registering> get copyWith =>

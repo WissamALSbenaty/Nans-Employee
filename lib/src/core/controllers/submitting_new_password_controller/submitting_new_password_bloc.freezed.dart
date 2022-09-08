@@ -17,22 +17,27 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SubmittingNewPasswordState {
   String get password => throw _privateConstructorUsedError;
+  String get confirmPassword => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String password) submittingNewPassword,
-    required TResult Function(String password) submitting,
+    required TResult Function(String password, String confirmPassword)
+        submittingNewPassword,
+    required TResult Function(String password, String confirmPassword)
+        submitting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String password)? submittingNewPassword,
-    TResult Function(String password)? submitting,
+    TResult Function(String password, String confirmPassword)?
+        submittingNewPassword,
+    TResult Function(String password, String confirmPassword)? submitting,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String password)? submittingNewPassword,
-    TResult Function(String password)? submitting,
+    TResult Function(String password, String confirmPassword)?
+        submittingNewPassword,
+    TResult Function(String password, String confirmPassword)? submitting,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +72,7 @@ abstract class $SubmittingNewPasswordStateCopyWith<$Res> {
   factory $SubmittingNewPasswordStateCopyWith(SubmittingNewPasswordState value,
           $Res Function(SubmittingNewPasswordState) then) =
       _$SubmittingNewPasswordStateCopyWithImpl<$Res>;
-  $Res call({String password});
+  $Res call({String password, String confirmPassword});
 }
 
 /// @nodoc
@@ -82,11 +87,16 @@ class _$SubmittingNewPasswordStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? password = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_value.copyWith(
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -99,7 +109,7 @@ abstract class _$$SubmittingNewPasswordCopyWith<$Res>
           $Res Function(_$SubmittingNewPassword) then) =
       __$$SubmittingNewPasswordCopyWithImpl<$Res>;
   @override
-  $Res call({String password});
+  $Res call({String password, String confirmPassword});
 }
 
 /// @nodoc
@@ -116,11 +126,16 @@ class __$$SubmittingNewPasswordCopyWithImpl<$Res>
   @override
   $Res call({
     Object? password = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_$SubmittingNewPassword(
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -129,14 +144,17 @@ class __$$SubmittingNewPasswordCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SubmittingNewPassword implements SubmittingNewPassword {
-  _$SubmittingNewPassword({required this.password});
+  _$SubmittingNewPassword(
+      {required this.password, required this.confirmPassword});
 
   @override
   final String password;
+  @override
+  final String confirmPassword;
 
   @override
   String toString() {
-    return 'SubmittingNewPasswordState.submittingNewPassword(password: $password)';
+    return 'SubmittingNewPasswordState.submittingNewPassword(password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -144,12 +162,16 @@ class _$SubmittingNewPassword implements SubmittingNewPassword {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SubmittingNewPassword &&
-            const DeepCollectionEquality().equals(other.password, password));
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.confirmPassword, confirmPassword));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(password));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(confirmPassword));
 
   @JsonKey(ignore: true)
   @override
@@ -160,30 +182,34 @@ class _$SubmittingNewPassword implements SubmittingNewPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String password) submittingNewPassword,
-    required TResult Function(String password) submitting,
+    required TResult Function(String password, String confirmPassword)
+        submittingNewPassword,
+    required TResult Function(String password, String confirmPassword)
+        submitting,
   }) {
-    return submittingNewPassword(password);
+    return submittingNewPassword(password, confirmPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String password)? submittingNewPassword,
-    TResult Function(String password)? submitting,
+    TResult Function(String password, String confirmPassword)?
+        submittingNewPassword,
+    TResult Function(String password, String confirmPassword)? submitting,
   }) {
-    return submittingNewPassword?.call(password);
+    return submittingNewPassword?.call(password, confirmPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String password)? submittingNewPassword,
-    TResult Function(String password)? submitting,
+    TResult Function(String password, String confirmPassword)?
+        submittingNewPassword,
+    TResult Function(String password, String confirmPassword)? submitting,
     required TResult orElse(),
   }) {
     if (submittingNewPassword != null) {
-      return submittingNewPassword(password);
+      return submittingNewPassword(password, confirmPassword);
     }
     return orElse();
   }
@@ -222,11 +248,14 @@ class _$SubmittingNewPassword implements SubmittingNewPassword {
 }
 
 abstract class SubmittingNewPassword implements SubmittingNewPasswordState {
-  factory SubmittingNewPassword({required final String password}) =
-      _$SubmittingNewPassword;
+  factory SubmittingNewPassword(
+      {required final String password,
+      required final String confirmPassword}) = _$SubmittingNewPassword;
 
   @override
   String get password;
+  @override
+  String get confirmPassword;
   @override
   @JsonKey(ignore: true)
   _$$SubmittingNewPasswordCopyWith<_$SubmittingNewPassword> get copyWith =>
@@ -240,7 +269,7 @@ abstract class _$$SubmittingCopyWith<$Res>
           _$Submitting value, $Res Function(_$Submitting) then) =
       __$$SubmittingCopyWithImpl<$Res>;
   @override
-  $Res call({String password});
+  $Res call({String password, String confirmPassword});
 }
 
 /// @nodoc
@@ -257,11 +286,16 @@ class __$$SubmittingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? password = freezed,
+    Object? confirmPassword = freezed,
   }) {
     return _then(_$Submitting(
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      confirmPassword: confirmPassword == freezed
+          ? _value.confirmPassword
+          : confirmPassword // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -270,14 +304,16 @@ class __$$SubmittingCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Submitting implements Submitting {
-  _$Submitting({required this.password});
+  _$Submitting({required this.password, required this.confirmPassword});
 
   @override
   final String password;
+  @override
+  final String confirmPassword;
 
   @override
   String toString() {
-    return 'SubmittingNewPasswordState.submitting(password: $password)';
+    return 'SubmittingNewPasswordState.submitting(password: $password, confirmPassword: $confirmPassword)';
   }
 
   @override
@@ -285,12 +321,16 @@ class _$Submitting implements Submitting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Submitting &&
-            const DeepCollectionEquality().equals(other.password, password));
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.confirmPassword, confirmPassword));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(password));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(confirmPassword));
 
   @JsonKey(ignore: true)
   @override
@@ -300,30 +340,34 @@ class _$Submitting implements Submitting {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String password) submittingNewPassword,
-    required TResult Function(String password) submitting,
+    required TResult Function(String password, String confirmPassword)
+        submittingNewPassword,
+    required TResult Function(String password, String confirmPassword)
+        submitting,
   }) {
-    return submitting(password);
+    return submitting(password, confirmPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String password)? submittingNewPassword,
-    TResult Function(String password)? submitting,
+    TResult Function(String password, String confirmPassword)?
+        submittingNewPassword,
+    TResult Function(String password, String confirmPassword)? submitting,
   }) {
-    return submitting?.call(password);
+    return submitting?.call(password, confirmPassword);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String password)? submittingNewPassword,
-    TResult Function(String password)? submitting,
+    TResult Function(String password, String confirmPassword)?
+        submittingNewPassword,
+    TResult Function(String password, String confirmPassword)? submitting,
     required TResult orElse(),
   }) {
     if (submitting != null) {
-      return submitting(password);
+      return submitting(password, confirmPassword);
     }
     return orElse();
   }
@@ -362,10 +406,14 @@ class _$Submitting implements Submitting {
 }
 
 abstract class Submitting implements SubmittingNewPasswordState {
-  factory Submitting({required final String password}) = _$Submitting;
+  factory Submitting(
+      {required final String password,
+      required final String confirmPassword}) = _$Submitting;
 
   @override
   String get password;
+  @override
+  String get confirmPassword;
   @override
   @JsonKey(ignore: true)
   _$$SubmittingCopyWith<_$Submitting> get copyWith =>

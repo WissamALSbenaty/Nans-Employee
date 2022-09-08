@@ -15,7 +15,7 @@ class CustomEmptyView extends StatelessWidget {
   final void Function()? onHelperButtonPressed;
 
 
-  const CustomEmptyView(this.error,{this.onHelperButtonPressed,Key? key, }) : super(key: key);
+  const CustomEmptyView(this.error,{required this.onHelperButtonPressed,Key? key, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class CustomEmptyView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SvgPicture.asset(error.imagePath),
+          SvgPicture.asset(error.imagePath!),
           const CustomSizedBox(height: 16,),
           Container(
             padding: EdgeInsets.symmetric(horizontal: SizeConfig.w(16)),

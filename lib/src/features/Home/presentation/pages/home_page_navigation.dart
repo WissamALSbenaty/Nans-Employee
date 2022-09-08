@@ -1,12 +1,10 @@
 
-import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
 import 'package:flutter/material.dart';
 
 
 class HomePageNavigation extends StatefulWidget {
-  final HomePageNavigationArguments args;
 
-  const HomePageNavigation({required this.args,Key? key}) : super(key: key);
+  const HomePageNavigation({Key? key}) : super(key: key);
 
 
   @override

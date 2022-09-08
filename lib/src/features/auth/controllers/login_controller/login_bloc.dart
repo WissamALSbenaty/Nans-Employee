@@ -1,12 +1,9 @@
 
 import 'package:auto_route/auto_route.dart';
-import 'package:merit_driver/dependencies.dart';
-import 'package:merit_driver/src/Data/Errors/core_errors.dart';
 import 'package:merit_driver/src/Data/Errors/custom_error.dart';
 import 'package:merit_driver/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:merit_driver/src/Data/models/login_model.dart';
 import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
-import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
 import 'package:merit_driver/src/core/presentation/page_arguments/phone_number_submitting_arguments.dart';
 import 'package:merit_driver/src/core/presentation/page_arguments/submit_new_password_arguments.dart';
 import 'package:merit_driver/src/core/presentation/snakebars/bottom_snack_bar.dart';
@@ -34,10 +31,6 @@ class LoginBloc extends Cubit< LoginState> {
     emit( LoginState.initial());
   }
 
-  void phoneNumberChanged (String phoneNumber)async{
-    emit( state.copyWith(phoneNumber:phoneNumber.replaceAll('+963', '0')));
-  }
-
   void logging (BuildContext context)async{
 
     if(state is Logging) {
@@ -50,51 +43,47 @@ class LoginBloc extends Cubit< LoginState> {
     IsPhoneNumberValidator().check(fieldName: 'Phone Number', toCheckString: state.phoneNumber);
     NotEmptyValidator().check(fieldName: 'Password', toCheckString: state.password);
 
-
-
-
       await authRepository.login(LoginModel(phoneNumber: state.phoneNumber, password: state.password));
 
 
       context.clearData();
       emit(LoginState.login(phoneNumber:state.phoneNumber, password:state.password,));
 
-      AutoRouter.of(context).popUntilRoot();
-      AutoRouter.of(context).replace(HomePageRoute(args: HomePageNavigationArguments()));
+      AutoRouter.of(context).push(WelcomePageRoute(args: WelcomePageArguments(title: 'Welcome !')));
     }
     on CustomError catch(e){
       emit(LoginState.login(phoneNumber:state.phoneNumber, password:state.password,));
-      getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
-          onRetry: e is InternetConnectionError? ()=>logging(context):null
-      );
+      BottomSnackBar.show(e.errorMessage, ToastType.error,);
     }
 
-  }
-
-  void passwordChanged (String password)async{
-    emit( state.copyWith(password:password));
   }
 
   void restorePassword(BuildContext context)async{
     AutoRouter.of(context).push(  SubmitPhoneNumberPageRoute(
         args: PhoneNumberSubmittingArguments(
+          totalPages: 3,currentPage: 1,
           pageTitle: "Please enter your phone number to confirm your phone number",
-          otpPageTitle: "You will receive a code via sms... please use it to verify your phone number",
 
-          afterSubmittingPhoneNumber: ({required String phoneNumber})async{
-
-          },
+          afterSubmittingPhoneNumber: ({required String phoneNumber})async{},
 
             afterSuccessVerification: ({required String phoneNumber,required String otpCode })async {
 
                 AutoRouter.of(context).push(
                     SubmitNewPasswordPageRoute(args: SubmitNewPasswordArguments(
-                        phoneNumber: phoneNumber
-                    )));
+                      currentPage: 3,totalPages: 3,
+                        phoneNumber: phoneNumber,afterSubmittingNewPassword: (newPassword) async{
+                        authRepository.resetPassword(phoneNumber: phoneNumber, newPassword: newPassword);
+                           AutoRouter.of(context).push( WelcomePageRoute(
+                        args: WelcomePageArguments(title: 'Welcome Again') )  );
+                        })
+                    ));
               }
             )
     ));
 
   }
+
+  void passwordChanged (String password)async => emit( state.copyWith(password:password));
+  void phoneNumberChanged (String phoneNumber)async => emit( state.copyWith(phoneNumber:phoneNumber.replaceAll('+963', '0')));
 
 }

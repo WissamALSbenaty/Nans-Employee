@@ -1,19 +1,12 @@
 
-import 'package:auto_route/auto_route.dart';
-import 'package:merit_driver/dependencies.dart';
-import 'package:merit_driver/src/Data/Errors/core_errors.dart';
 import 'package:merit_driver/src/Data/Errors/custom_error.dart';
-import 'package:merit_driver/src/Data/models/login_model.dart';
-import 'package:merit_driver/src/Data/models/register_model.dart';
+import 'package:merit_driver/src/Data/models/sign_up_model.dart';
 import 'package:merit_driver/src/Data/repositories/abstract/i_auth_repository.dart';
-import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
-import 'package:merit_driver/src/core/presentation/page_arguments/confirm_phone_number_page_arguments.dart';
-import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
+import 'package:merit_driver/src/core/presentation/page_arguments/sign_up_page_arguments.dart';
 import 'package:merit_driver/src/core/presentation/snakebars/bottom_snack_bar.dart';
 import 'package:merit_driver/src/core/presentation/validators/is_phone_number_validator.dart';
 import 'package:merit_driver/src/core/presentation/validators/not_empty_validator.dart';
 import 'package:merit_driver/src/core/util/enums.dart';
-import 'package:merit_driver/src/core/util/extentions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -26,86 +19,53 @@ part 'register_state.dart';
 class RegisterBloc extends Cubit< RegisterState> {
 
   final IAuthRepository authRepository;
-  RegisterBloc(this.authRepository) : super( RegisterState.initial());
-
-    void initialized  (){
-        emit( RegisterState.initial());
-    }
+  final SignUpPageArguments args;
+  RegisterBloc(@factoryParam this.args, this.authRepository) : super( RegisterState.initial());
 
     void registering(BuildContext context)async{
       if(state is Registering) {
         return ;
       }
 
-      emit(Registering(phoneNumber:state.phoneNumber,referralCode: state.referralCode,
-        firstName: state.firstName,lastName: state.lastName,
-        password:state.password,));
+      emit(Registering(phoneNumber:state.phoneNumber,email: state.email,
+        username: state.username,landlineNumber: state.landlineNumber,));
       try {
 
-        NotEmptyValidator().check(fieldName: 'First name', toCheckString: state.firstName);
-        NotEmptyValidator().check(fieldName: 'Last name', toCheckString: state.lastName);
-        NotEmptyValidator().check(fieldName: 'Password', toCheckString: state.password);
+        NotEmptyValidator().check(fieldName: 'User name', toCheckString: state.username);
         IsPhoneNumberValidator().check(fieldName: 'Phone Number', toCheckString: state.phoneNumber);
 
 
+        emit(RegisterState(phoneNumber:state.phoneNumber,email: state.email,
+          username: state.username,landlineNumber: state.landlineNumber,));
 
-        RegisterModel registerModel = RegisterModel(referralCode: state.referralCode,
-            password: state.password,
-            phoneNumber: state.phoneNumber,
-            lastName: state.lastName,
-            firstName: state.firstName
-        );
-        await authRepository.register(registerModel);
-        emit(RegisterState(phoneNumber:state.phoneNumber,referralCode: state.referralCode,
-          firstName: state.firstName,lastName: state.lastName,
-          password:state.password,));
-
-        AutoRouter.of(context).push(ConfirmPhoneNumberPageRoute(args: ConfirmPhoneNumberPageArguments(
-          pageTitle: "You will receive a code via sms... please use it to verify your phone number",
-
-            phoneNumber:state.phoneNumber,
-            afterSuccessSubmitting: ({required String otpCode,required String phoneNumber}) async{
-              await authRepository.login(LoginModel(phoneNumber: registerModel.phoneNumber, password: registerModel.password));
-
-
-              context.clearData();
-              AutoRouter.of(context).popUntilRoot();
-              AutoRouter.of(context).replace(HomePageRoute(args: HomePageNavigationArguments()));
-            },
-
-        )));
+       args.afterSignUp(SignUpModel(phoneNumber:state.phoneNumber , username:state.username ,
+             email:state.email ,landlineNumber:state.landlineNumber ));
       }
       on CustomError catch(e){
-        emit(RegisterState(phoneNumber:state.phoneNumber,referralCode: state.referralCode,
-          firstName: state.firstName,lastName: state.lastName,
-          password:state.password,));
+        emit(RegisterState(phoneNumber:state.phoneNumber,email: state.email,
+          username: state.username,landlineNumber: state.landlineNumber,));
 
-        getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
-            onRetry: e is InternetConnectionError? ()=>registering(context):null
-        );
+        BottomSnackBar.show(e.errorMessage, ToastType.error,);
       }
 
       }
 
 
-    void passwordChanged (String password) {
-        emit( state.copyWith(password: password));
+    void changeLandlineNumber (String landlineNumber) {
+        emit( state.copyWith(landlineNumber: landlineNumber));
       }
 
-    void firstNameChanged  (String firstName){
-        emit( state.copyWith(firstName: firstName));
+    void changeUsername  (String username){
+        emit( state.copyWith(username: username));
       }
 
-    void lastNameChanged (String lastName) {
-        emit( state.copyWith(lastName: lastName));
-      }
 
-    void phoneNumberChanged (String phoneNumber){
+    void changePhoneNumber (String phoneNumber){
         emit( state.copyWith(phoneNumber: phoneNumber.replaceAll('+963', '0')));
       }
 
-    void referralCodeChanged (String referralCode){
-        emit( state.copyWith(referralCode: referralCode));
+    void changeEmail (String email){
+        emit( state.copyWith(email: email));
       }
 
 }

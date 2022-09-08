@@ -1,6 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:merit_driver/dependencies.dart';
-import 'package:merit_driver/src/Data/Errors/core_errors.dart';
 import 'package:merit_driver/src/Data/Errors/custom_error.dart';
 import 'package:merit_driver/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
@@ -34,24 +32,23 @@ class SubmittingPhoneNumberBloc extends Cubit< SubmittingPhoneNumberState> {
       return ;
     }
     try {
-    IsPhoneNumberValidator().check(fieldName: 'Phone Number', toCheckString: state.phoneNumber);
+      IsPhoneNumberValidator().check(fieldName: 'Phone Number', toCheckString: state.phoneNumber);
 
-    emit(Submitting(phoneNumber:state.phoneNumber,));
+      emit(Submitting(phoneNumber:state.phoneNumber,));
+
 
       emit(SubmittingPhoneNumberState(phoneNumber:state.phoneNumber,));
       await args.afterSubmittingPhoneNumber(phoneNumber: state.phoneNumber);
 
       AutoRouter.of(context).push(ConfirmPhoneNumberPageRoute(
           args: ConfirmPhoneNumberPageArguments(phoneNumber:  state.phoneNumber,
-              isOtpFromBackend: args.isOtpFromBackend,resendOtpCodeCallback: args.resendOtpCodeCallback,
-
-          afterSuccessSubmitting:args.afterSuccessVerification, pageTitle: args.otpPageTitle)));
+            afterSuccessSubmitting:args.afterSuccessVerification, currentPage: args.currentPage+1,
+            totalPages: args.totalPages,)));
     }
     on CustomError catch(e){
       emit(SubmittingPhoneNumberState(phoneNumber:state.phoneNumber,));
-      getIt<BottomSnackBar>().show(e.errorMessage, ToastType.error,
-          onRetry: e is InternetConnectionError? ()=>submitting(context):null
-      );
+      BottomSnackBar.show(e.errorMessage, ToastType.error);
+
     }
   }
 

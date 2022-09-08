@@ -3,7 +3,6 @@ import 'package:merit_driver/dependencies.dart';
 import 'package:merit_driver/src/Data/api_helper.dart';
 import 'package:merit_driver/src/Data/local_database_tables/app_database.dart';
 import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
-import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 3));
 
     if(currentUser.isLoggedInBefore) {
-      AutoRouter.of(context).replace(   HomePageRoute(args: HomePageNavigationArguments()));
+      AutoRouter.of(context).replace(   HomePageRoute());
     } else {
       AutoRouter.of(context).replace( const OnBoardingPageRoute());
     }

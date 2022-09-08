@@ -2,15 +2,17 @@ part of 'register_bloc.dart';
 
 @freezed
  class RegisterState with _$RegisterState {
-   factory RegisterState({required String firstName,required String phoneNumber,required String lastName,
-     required String password,required String referralCode,
+   factory RegisterState({
+     required String username,required String phoneNumber,
+     String? email,String? landlineNumber,
    }) = _RegisterState;
 
-   factory RegisterState.registering({required String firstName,required String phoneNumber,required String lastName,
-     required String password,required String referralCode,
+   factory RegisterState.registering({
+     required String username,required String phoneNumber,
+     String? email,String? landlineNumber,
    }) = Registering;
 
    factory RegisterState.initial(){
-     return RegisterState(referralCode: '', password:"",firstName: "",lastName: "",phoneNumber: "");
+     return RegisterState(username:  '',phoneNumber: "");
    }
 }

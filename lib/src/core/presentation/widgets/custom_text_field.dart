@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/dependencies.dart';
-import 'package:merit_driver/src/core/presentation/style.dart';
+import 'package:merit_driver/src/core/presentation/theme_manager.dart';
 import 'package:merit_driver/src/core/util/enums.dart';
 import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
@@ -26,24 +25,25 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme= Theme.of(context);
-    ThemeManager themeManager=getIt<ThemeManager>();
+    TextTheme theme= ThemeManager.textTheme;
+    bool isDarkMode =ThemeManager.isDarkMode;
+    Color textFieldColor=isDarkMode? ThemeManager.darkModeColor.shade200:ThemeManager.black.shade200;
 
     return Container(
-      height: SizeConfig.h(48),
+      height: SizeConfig.h(54),
       padding: EdgeInsets.symmetric(horizontal: SizeConfig.w(16)),
       decoration: BoxDecoration(
 
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: themeManager.black.shade200)
+        border: Border.all(color: textFieldColor)
       ),
       child: TextFormField(
+        style: theme.bodyText2!.copyWith(color: isDarkMode? null:ThemeManager.primaryColor),
         enabled: isEnabled,
         initialValue: initialValue,
         obscureText: isObscureText,
         onChanged: onChangedFunction,
         keyboardType: textInputType,
-        cursorColor: themeManager.black,
         inputFormatters: [
           if(inputFormatter!=null)
             inputFormatter!,
@@ -51,13 +51,11 @@ class CustomTextField extends StatelessWidget {
         decoration:   InputDecoration(
 
           hintText: hint?.tr(),
-          hintStyle: theme.textTheme.subtitle1,
-          suffixIcon: suffixIcon,
+          hintStyle:theme.subtitle1,
+          suffixIcon: suffixIcon??Container(),
 
           prefixIcon: prefixIcon,
           isDense: true,
-          isCollapsed: false,
-          contentPadding: EdgeInsets.zero,
           border:InputBorder.none,
 
           focusedBorder:InputBorder.none,
@@ -77,11 +75,11 @@ class CustomTextField extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
                 text: title.tr(),
-                style: theme.textTheme.bodyText2,
+                style:theme.subtitle1!.copyWith(color: textFieldColor),
                 children: [
                   TextSpan(
                     text:fieldPriority!=TextFieldPriority.none? ' (${fieldPriority.name.tr()})':'',
-                    style: theme.textTheme.subtitle1!.copyWith(color: theme.errorColor),
+                    style:theme.headline6!.copyWith(color: textFieldColor),
 
                   )
                 ]

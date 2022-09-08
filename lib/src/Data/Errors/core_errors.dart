@@ -9,7 +9,7 @@ class NotFoundError extends CustomError{
 }
 
 class BadRequestError extends CustomError{
-  BadRequestError({ required String message}):super(errorMessage: message,imagePath: '');
+  BadRequestError({ required String message}):super(errorMessage: message,);
 }
 
 class NotAuthorizedError extends CustomError{
@@ -17,11 +17,11 @@ class NotAuthorizedError extends CustomError{
 }
 
 class ForbiddenError extends CustomError{
-  ForbiddenError({ required String message}):super(errorMessage: message,imagePath: '');
+  ForbiddenError({ required String message}):super(errorMessage: message,);
 }
 
 class UnprocessableEntityError extends CustomError{
-  UnprocessableEntityError({ required String message}):super(errorMessage: message,imagePath: '');
+  UnprocessableEntityError({ required String message}):super(errorMessage: message,);
 }
 
 class InternetConnectionError extends CustomError{
@@ -29,42 +29,46 @@ class InternetConnectionError extends CustomError{
   );
 }
 class SomethingWentWrongError extends CustomError{
-  SomethingWentWrongError():super(errorMessage: "Something Went Wrong...Please Try Again Later", imagePath: '',
+  SomethingWentWrongError():super(errorMessage: "Something Went Wrong...Please Try Again Later",
   );
 }
 
 class IsNotBiggerError extends CustomError{
   IsNotBiggerError({required String  fieldName,required int number}):
-        super(errorMessage: "${fieldName.tr()} ${"Should Be Bigger Than".tr()} $number", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"Should Be Bigger Than".tr()} $number",
       );
 }
 
 class IsNotSmallerError extends CustomError{
   IsNotSmallerError({required String  fieldName,required int number}):
-        super(errorMessage: "${fieldName.tr()} ${"Should Be Smaller Than".tr()} $number", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"Should Be Smaller Than".tr()} $number",
       );
 }
 
 class NotPhoneNumberError extends CustomError{
   NotPhoneNumberError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Phone Number".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Phone Number".tr()}",
       );
 }
 
 class NotNameError extends CustomError{
   NotNameError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Name".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Name".tr()}",
       );
 }
 
 class NotNumberError extends CustomError{
   NotNumberError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Number".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Number".tr()}",
       );
 }
 
 class EmptyFieldError extends CustomError{
   EmptyFieldError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"Should Not Be Empty".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.tr()} ${"Should Not Be Empty".tr()}",
       );
+}
+
+class EmptyNotificationError extends CustomError {
+  EmptyNotificationError() :super(errorMessage:'No Notifications to show' );
 }

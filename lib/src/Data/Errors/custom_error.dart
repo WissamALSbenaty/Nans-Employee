@@ -2,7 +2,8 @@
 
 
  class CustomError implements Exception{
-  String errorMessage,imagePath;
+  String errorMessage;
+  String? imagePath;
 
-  CustomError({required this.errorMessage,required this.imagePath});
+  CustomError({required this.errorMessage, this.imagePath});
 }

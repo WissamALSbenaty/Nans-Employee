@@ -2,6 +2,8 @@
 
 
 
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/util/json_converter.dart';
 import 'package:flutter/cupertino.dart';
 
 extension PrintDay on DateTime{
@@ -34,9 +36,12 @@ extension PrintString on String{
       } else {
         ret+=allLetters[i][0];
       }
-
     }
     return ret;
-
   }
+
+  String localized(){
+    return getIt<CustomJsonConverter>().getFromTranslation(this);
+  }
+
 }

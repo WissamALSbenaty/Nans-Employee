@@ -115,7 +115,7 @@ class NotificationsManager {
    Future.delayed(const Duration(seconds:4)).then((value) {
       // final String eventType = message.data['EventType'].toString();
 
-AutoRouter.of(context).push(HomePageRoute(args: HomePageNavigationArguments()));
+AutoRouter.of(context).push(HomePageRoute());
  });
    }
 
