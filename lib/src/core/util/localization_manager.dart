@@ -1,8 +1,8 @@
 
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/src/core/presentation/assets.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:injectable/injectable.dart';

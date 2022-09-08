@@ -1,4 +1,4 @@
-import 'package:etloob/src/Data/models/response_model.dart';
+import 'package:merit_driver/src/Data/models/response_model.dart';
 
 class PaginationResponseModel extends ResponseModel{
 

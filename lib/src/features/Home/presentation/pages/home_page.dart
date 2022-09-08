@@ -1,8 +1,8 @@
 
 
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
-import 'package:etloob/src/core/util/deep_linker_manager.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
+import 'package:merit_driver/src/core/util/deep_linker_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

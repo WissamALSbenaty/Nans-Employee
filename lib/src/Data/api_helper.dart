@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/errors_factory.dart';
-import 'package:etloob/src/Data/models/pagination_response_model.dart';
-import 'package:etloob/src/core/util/constants.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/Data/Errors/core_errors.dart';
+import 'package:merit_driver/src/Data/Errors/errors_factory.dart';
+import 'package:merit_driver/src/Data/models/pagination_response_model.dart';
+import 'package:merit_driver/src/core/util/constants.dart';
+import 'package:merit_driver/src/core/util/localization_manager.dart';
 import 'package:injectable/injectable.dart';
 
 import 'repositories/abstract/i_auth_repository.dart';

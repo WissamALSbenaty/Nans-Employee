@@ -1,7 +1,7 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/sheets/sheet_header.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/presentation/sheets/sheet_header.dart';
+import 'package:merit_driver/src/core/presentation/style.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 

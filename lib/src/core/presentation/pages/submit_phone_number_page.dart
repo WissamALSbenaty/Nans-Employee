@@ -1,5 +1,5 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/controllers/submitting_phone_number_controller/submitting_phone_number_bloc.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/controllers/submitting_phone_number_controller/submitting_phone_number_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

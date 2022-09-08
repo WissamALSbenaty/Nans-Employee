@@ -1,6 +1,6 @@
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/util/size_config.dart';
-import 'package:etloob/src/features/intro/presentation/widgets/on_boarding.dart';
+import 'package:merit_driver/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
+import 'package:merit_driver/src/features/intro/presentation/widgets/on_boarding.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingPage extends StatefulWidget {

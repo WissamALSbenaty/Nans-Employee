@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_text_field.dart';
-import 'package:etloob/src/core/util/enums.dart';
-import 'package:etloob/src/core/util/masked_formatter.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/src/core/presentation/widgets/custom_text_field.dart';
+import 'package:merit_driver/src/core/util/enums.dart';
+import 'package:merit_driver/src/core/util/masked_formatter.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

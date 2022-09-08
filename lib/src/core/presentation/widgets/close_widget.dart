@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/src/core/presentation/assets.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

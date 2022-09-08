@@ -1,4 +1,4 @@
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CustomSizedBox extends StatelessWidget {

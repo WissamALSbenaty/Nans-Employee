@@ -1,7 +1,7 @@
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/enums.dart';
+import 'package:merit_driver/src/core/presentation/style.dart';
+import 'package:merit_driver/src/core/util/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 

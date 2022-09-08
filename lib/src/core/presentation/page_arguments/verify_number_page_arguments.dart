@@ -1,7 +1,7 @@
 
 
 
-import 'package:etloob/src/Data/models/register_model.dart';
+import 'package:merit_driver/src/Data/models/register_model.dart';
 
 class VerifyRegisterNumberPageArguments{
   RegisterModel registerModel;

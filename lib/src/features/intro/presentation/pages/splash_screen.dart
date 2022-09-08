@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/Data/api_helper.dart';
-import 'package:etloob/src/Data/local_database_tables/app_database.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
-import 'package:etloob/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/Data/api_helper.dart';
+import 'package:merit_driver/src/Data/local_database_tables/app_database.dart';
+import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
+import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/presentation/widgets/main_button.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/src/Data/Errors/core_errors.dart';
+import 'package:merit_driver/src/Data/Errors/custom_error.dart';
+import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
+import 'package:merit_driver/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:merit_driver/src/core/presentation/widgets/main_button.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

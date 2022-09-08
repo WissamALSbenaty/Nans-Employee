@@ -1,17 +1,17 @@
 
 // eRi_DhIA1EYKiM2e9Coqi8:APA91bHaVKUQm0796UXCzW07AiqwmzvCuasXZIcGVqlsQNKRVVLtnCSc7IcPxOL747FgZbbe8x4pbh1QCZSGzWozbRLfn0u3h9kOS3XVnFLCjSiBfWiiIwWEe1SBhWXI0V8GEb3sf-we
 
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/Data/Errors/errors_factory.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
-import 'package:etloob/src/Data/api_helper.dart';
-import 'package:etloob/src/Data/local_database_tables/app_database.dart';
-import 'package:etloob/src/Data/models/login_model.dart';
-import 'package:etloob/src/Data/models/register_model.dart';
-import 'package:etloob/src/Data/models/response_model.dart';
-import 'package:etloob/src/core/util/analytics_manager.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/Data/Errors/core_errors.dart';
+import 'package:merit_driver/src/Data/Errors/custom_error.dart';
+import 'package:merit_driver/src/Data/Errors/errors_factory.dart';
+import 'package:merit_driver/src/Data/repositories/abstract/i_auth_repository.dart';
+import 'package:merit_driver/src/Data/api_helper.dart';
+import 'package:merit_driver/src/Data/local_database_tables/app_database.dart';
+import 'package:merit_driver/src/Data/models/login_model.dart';
+import 'package:merit_driver/src/Data/models/register_model.dart';
+import 'package:merit_driver/src/Data/models/response_model.dart';
+import 'package:merit_driver/src/core/util/analytics_manager.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';

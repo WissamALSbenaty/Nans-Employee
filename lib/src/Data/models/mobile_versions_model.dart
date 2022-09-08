@@ -1,7 +1,7 @@
 
 import 'dart:io';
 
-import 'package:etloob/src/core/util/enums.dart';
+import 'package:merit_driver/src/core/util/enums.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 

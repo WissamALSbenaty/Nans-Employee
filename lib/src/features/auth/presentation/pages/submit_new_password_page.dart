@@ -1,6 +1,6 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/page_arguments/submit_new_password_arguments.dart';
-import 'package:etloob/src/features/auth/controllers/submitting_new_password_controller/submitting_new_password_bloc.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/presentation/page_arguments/submit_new_password_arguments.dart';
+import 'package:merit_driver/src/features/auth/controllers/submitting_new_password_controller/submitting_new_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

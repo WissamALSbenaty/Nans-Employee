@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/controllers/app_appearance_controller/app_appearance_bloc.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
-import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/analytics_manager.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
-import 'package:etloob/src/core/util/notification_manager.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/controllers/app_appearance_controller/app_appearance_bloc.dart';
+import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
+import 'package:merit_driver/src/core/presentation/snakebars/bottom_snack_bar.dart';
+import 'package:merit_driver/src/core/presentation/style.dart';
+import 'package:merit_driver/src/core/util/analytics_manager.dart';
+import 'package:merit_driver/src/core/util/localization_manager.dart';
+import 'package:merit_driver/src/core/util/notification_manager.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

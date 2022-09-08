@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
+import 'package:merit_driver/src/Data/Errors/custom_error.dart';
+import 'package:merit_driver/src/core/presentation/assets.dart';
 
 
 

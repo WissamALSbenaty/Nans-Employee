@@ -1,5 +1,5 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/features/auth/controllers/register_controller/register_bloc.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/features/auth/controllers/register_controller/register_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

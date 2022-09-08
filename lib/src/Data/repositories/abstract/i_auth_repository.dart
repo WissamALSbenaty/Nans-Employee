@@ -1,10 +1,10 @@
 
 
 
-import 'package:etloob/src/Data/repositories/abstract/repository.dart';
-import 'package:etloob/src/Data/api_helper.dart';
-import 'package:etloob/src/Data/models/login_model.dart';
-import 'package:etloob/src/Data/models/register_model.dart';
+import 'package:merit_driver/src/Data/repositories/abstract/repository.dart';
+import 'package:merit_driver/src/Data/api_helper.dart';
+import 'package:merit_driver/src/Data/models/login_model.dart';
+import 'package:merit_driver/src/Data/models/register_model.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 

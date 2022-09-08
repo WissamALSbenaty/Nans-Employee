@@ -1,16 +1,16 @@
 
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
-import 'package:etloob/src/Data/models/login_model.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
-import 'package:etloob/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
-import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:etloob/src/core/presentation/snakebars/snack_bar_messages.dart';
-import 'package:etloob/src/core/util/enums.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/Data/Errors/core_errors.dart';
+import 'package:merit_driver/src/Data/Errors/custom_error.dart';
+import 'package:merit_driver/src/Data/repositories/abstract/i_auth_repository.dart';
+import 'package:merit_driver/src/Data/models/login_model.dart';
+import 'package:merit_driver/src/core/presentation/auto_router.gr.dart';
+import 'package:merit_driver/src/core/presentation/page_arguments/home_page_navigation_arguments.dart';
+import 'package:merit_driver/src/core/presentation/snakebars/bottom_snack_bar.dart';
+import 'package:merit_driver/src/core/presentation/snakebars/snack_bar_messages.dart';
+import 'package:merit_driver/src/core/util/enums.dart';
+import 'package:merit_driver/src/core/util/extentions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

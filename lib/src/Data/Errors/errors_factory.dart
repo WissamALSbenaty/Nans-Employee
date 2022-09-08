@@ -1,9 +1,9 @@
 
 
 
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/Data/models/response_model.dart';
+import 'package:merit_driver/src/Data/Errors/core_errors.dart';
+import 'package:merit_driver/src/Data/Errors/custom_error.dart';
+import 'package:merit_driver/src/Data/models/response_model.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton

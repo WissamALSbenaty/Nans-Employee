@@ -1,5 +1,5 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/util/size_config.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/util/size_config.dart';
 import 'package:flutter/material.dart';
 
 import '../style.dart';

@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/presentation/dialogs/custom_info_dialog.dart';
+import 'package:merit_driver/src/core/presentation/dialogs/custom_info_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:store_redirect/store_redirect.dart';
 

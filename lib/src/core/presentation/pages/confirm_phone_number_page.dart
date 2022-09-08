@@ -1,6 +1,6 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/controllers/confirm_phone_number_controller/confirm_phone_number_bloc.dart';
-import 'package:etloob/src/core/presentation/page_arguments/confirm_phone_number_page_arguments.dart';
+import 'package:merit_driver/dependencies.dart';
+import 'package:merit_driver/src/core/controllers/confirm_phone_number_controller/confirm_phone_number_bloc.dart';
+import 'package:merit_driver/src/core/presentation/page_arguments/confirm_phone_number_page_arguments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

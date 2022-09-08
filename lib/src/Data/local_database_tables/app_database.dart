@@ -1,6 +1,6 @@
 
 
-import 'package:etloob/src/Data/local_database_tables/users.dart';
+import 'package:merit_driver/src/Data/local_database_tables/users.dart';
 import 'package:injectable/injectable.dart';
 import 'package:moor_flutter/moor_flutter.dart';
 

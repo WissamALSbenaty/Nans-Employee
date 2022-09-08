@@ -1,5 +1,5 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
+import 'package:merit_driver/src/core/presentation/style.dart';
+import 'package:merit_driver/src/core/util/localization_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
