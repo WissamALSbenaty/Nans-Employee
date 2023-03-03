@@ -1,8 +1,8 @@
 
 
 
-import 'package:merit_driver/src/Data/Errors/core_errors.dart';
-import 'package:merit_driver/src/core/presentation/validators/custom_validator.dart';
+import 'package:etloob/src/core/Data/Errors/core_errors.dart';
+import 'package:etloob/src/core/presentation/validators/custom_validator.dart';
 
 class IsSmallerThanValidator extends CustomValidator{
   final int toCompare;
@@ -10,11 +10,11 @@ class IsSmallerThanValidator extends CustomValidator{
   IsSmallerThanValidator({required this.toCompare, super.nextValidator});
 
   @override
-  void validate({required String fieldName,required String? toCheckString}) {
-
+  String? validate({required String fieldName,required String? toCheckString}) {
     if(toCheckString==null|| int.parse(toCheckString)>=toCompare) {
-      throw IsNotSmallerError(fieldName:fieldName,number:toCompare);
+      return IsNotSmallerError(fieldName:fieldName,number:toCompare).errorMessage;
     }
+    return null;
   }
 
 }

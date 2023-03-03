@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/core/presentation/theme_manager.dart';
-import 'package:merit_driver/src/core/util/size_config.dart';
+import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NegativeButton extends StatelessWidget {
 
@@ -9,28 +9,25 @@ class NegativeButton extends StatelessWidget {
   final void Function() onPressed;
   final double width;
 
-  const NegativeButton({Key? key, required this.title, required this.onPressed, this.width=343}) : super(key: key);
+  const NegativeButton({Key? key, required this.title, required this.onPressed, this.width=291}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextTheme theme=ThemeManager.textTheme;
-    bool isDarkMode=ThemeManager.isDarkMode;
-
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: SizeConfig.w(width),
-        height: SizeConfig.h(54),
+        width: width.w,
+        height: 66.h,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: ThemeManager.errorColor,
-        ),
+            borderRadius: BorderRadius.circular(18),
+            color: AppColors.whiteColor,
+            boxShadow: AppStyle.basicBoxShadow,
+            border: Border.all(color: AppColors.darkPink)),
         child: Center(
           child: Text(
-            title.tr(),
-            style:theme.bodyText2!.copyWith(
-                color: isDarkMode?null:ThemeManager.white,
-                fontWeight: FontWeight.bold),
+            title.translateWord,
+            style: AppStyle.textTheme.bodyText2!.copyWith(
+                color: AppColors.darkPink, fontWeight: FontWeight.bold),
           ),
         ),
       ),

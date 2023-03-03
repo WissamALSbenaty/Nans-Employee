@@ -1,24 +1,25 @@
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/core/presentation/theme_manager.dart';
-import 'package:merit_driver/src/core/util/enums.dart';
+import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/util/enums.dart';
 import 'package:flutter/material.dart';
 
 final GlobalKey<ScaffoldMessengerState> snackbarKey = GlobalKey<ScaffoldMessengerState>();
 
+
 class BottomSnackBar{
 
-   static void show(String message,ToastType type, ) {
+    static void show(String message,ToastType type,{void Function()? onRetry } ) {
       Color backgroundColor;
       switch (type) {
         case ToastType.success:
-          backgroundColor = ThemeManager.black;
+          backgroundColor = AppColors.blackColor;
           break;
         case ToastType.error:
-          backgroundColor = ThemeManager.getTheme().errorColor;
+          backgroundColor = AppColors.red60;
           break;
         default:
-          backgroundColor = ThemeManager.getTheme().primaryColor;
+          backgroundColor = AppColors.blackColor;
       }
 
       snackbarKey.currentState?.clearSnackBars();
@@ -27,8 +28,13 @@ class BottomSnackBar{
       snackbarKey.currentState?.showSnackBar(SnackBar(
           backgroundColor: backgroundColor,
           duration: const Duration(seconds: 1,milliseconds: 500),
-          content: Text(message.tr(),style: ThemeManager.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),),
-
+          content: Text(message.tr(),style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.whiteColor,
+              fontWeight: FontWeight.bold),),
+          action:onRetry!=null? SnackBarAction(
+            label: 'Retry'.tr(),
+            textColor: AppColors.whiteColor,
+            onPressed: onRetry,
+          ):null,
       ));
 
     }

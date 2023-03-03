@@ -1,68 +1,98 @@
-
-import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/core/presentation/theme_manager.dart';
-import 'package:merit_driver/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:merit_driver/src/core/presentation/widgets/main_button.dart';
-import 'package:merit_driver/src/core/presentation/widgets/secondary_button.dart';
-import 'package:merit_driver/src/core/util/size_config.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:etloob/src/core/presentation/widgets/main_button.dart';
+import 'package:etloob/src/core/presentation/widgets/secondary_button.dart';
+import 'package:etloob/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 class CustomImageDialog extends StatelessWidget {
   final String imagePath,mainActionTitle, content;
   final String? secondActionTitle,subtitle;
 
   final void Function() onMainActionPressed;
-  final void Function()? onSecondActionPressed;
+  final void Function()? onSecondActionPressed,onCloseButtonPressed;
 
 
   const CustomImageDialog({Key? key, required this.imagePath,required this.mainActionTitle,
     required this.content, required this.onMainActionPressed,
-    this.onSecondActionPressed,this.secondActionTitle,this.subtitle,
-  }):super(key: key);
+    this.onSecondActionPressed,this.secondActionTitle,this.subtitle, this.onCloseButtonPressed,
+  }): assert(
+    !((onSecondActionPressed==null && secondActionTitle!=null) || (onSecondActionPressed!=null && secondActionTitle==null))
+  ),super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    TextTheme theme=ThemeManager.textTheme;
-    bool isDarkMode = ThemeManager.isDarkMode;
+   return  AlertDialog(
+     titlePadding: EdgeInsets.symmetric(vertical: 16.r),
+     contentPadding: EdgeInsets.all( 16.r),
+     actionsPadding: EdgeInsets.all( 16.r),
 
-    return  AlertDialog(
-     backgroundColor: isDarkMode? ThemeManager.darkModeColor.shade600:ThemeManager.white,
-     actionsPadding: EdgeInsets.all(SizeConfig.h(16)),
-     contentPadding: EdgeInsets.all(SizeConfig.h(32)),
      shape: RoundedRectangleBorder(
-         borderRadius: BorderRadius.circular(16)),
-
-     title: SvgPicture.asset(imagePath,height: SizeConfig.h(132),width: SizeConfig.h(132)),
-     content: Column(
-       mainAxisSize: MainAxisSize.min,
-       children: [
-         Text(content.tr(),textAlign: TextAlign.center,style:theme.bodyText1!.copyWith(
-             color: isDarkMode?null:ThemeManager.primaryColor,
-             fontWeight: FontWeight.bold) ,),
-         if(subtitle!=null)
-         ...[
-           const CustomSizedBox(height: 8,),
-           Text(subtitle!.tr(),textAlign: TextAlign.center,style:theme.subtitle1!.copyWith(
-             color: isDarkMode?null:ThemeManager.primaryColor.shade700,
-           )),
-         ]
-       ],
+       borderRadius: BorderRadius.circular(15),
      ),
+      backgroundColor: AppColors.whiteColor,
+
+      title: Column(
+
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+
+          Row(
+            children:  [
+              const Spacer(),
+              IconButton(icon: Icon( Icons.close),onPressed: AutoRouter.of(context).pop),
+              const CustomSizedBox(width: 16,),
+            ],
+          ),
+          const CustomSizedBox(height: 8,),
+          SvgPicture.asset(imagePath),
+        ],
+      ),
+      content:  Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            content.translateWord,style: AppStyle.textTheme.headline4,textAlign: TextAlign.center,
+          ),
+          if(subtitle!=null)
+            ...[
+          const CustomSizedBox(height: 8,),
+              Text(
+                subtitle!.translateWord,style: AppStyle.textTheme.subtitle1,textAlign: TextAlign.center,
+              ),
+          ]
+        ],
+      ),
+
 
      actions: [
-       MainButton(title: mainActionTitle, onPressed:onMainActionPressed,height: 64),
+       Column(
+         mainAxisSize: MainAxisSize.min,
+         children: [
+           MainButton(
+             isLoading: false,
+               title: mainActionTitle,
+               onPressed: onMainActionPressed
+           ),
+           if(secondActionTitle!=null)
+             ...[
+               const CustomSizedBox(height: 8,),
+               SecondaryButton(title: secondActionTitle!,
+                 onPress: onSecondActionPressed!,
+               )]
+         ],
+       ),
 
-       if(secondActionTitle!=null)
-        ... [
-           const CustomSizedBox(height: 16  ,),
-           SecondaryButton(title: mainActionTitle, onPressed:onMainActionPressed,height: 64),
 
-        ]
-     ],
 
-   );
+      ],
+
+    );
 
   }
 }

@@ -1,5 +1,6 @@
-import 'package:merit_driver/src/core/util/size_config.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSizedBox extends StatelessWidget {
 
@@ -11,8 +12,8 @@ class CustomSizedBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height==null?null: SizeConfig.h(height!),
-      width: width==null?null: SizeConfig.w(width!),
+      height: height==null?null: height!.h,
+      width: width==null?null: width!.w,
 
     );
   }

@@ -1,25 +1,24 @@
-import 'package:merit_driver/src/core/util/size_config.dart';
-import 'package:flutter/material.dart';
 
-import '../theme_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../style.dart';
 
 class SheetHeader extends StatelessWidget {
   const SheetHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode=ThemeManager.isDarkMode;
-    
     return Container(
-      height: SizeConfig.h(40),
-      color: isDarkMode? ThemeManager.darkModeColor.shade600:ThemeManager.white,
+      height: 40.h,
+      color: AppColors.whiteColor,
       child: Center(
         child: Container(
-          height: SizeConfig.h(4),
-          width: SizeConfig.w(60),
+          height: 4.h,
+          width: 60.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(55),
-            color: ThemeManager.black.shade200,
+            color: AppColors.blackColor.shade100,
           ),
         ),
       ),

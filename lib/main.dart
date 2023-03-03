@@ -2,20 +2,20 @@ import 'dart:async';
 import 'dart:isolate';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/features/app/presentation/pages/app.dart';
+import 'package:etloob/src/core/util/constants.dart';
+import 'package:etloob/src/features/app/presentation/pages/app.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mobx/mobx.dart';
 
 import 'dependencies.dart';
 
 void main() async{
-
   await initApp();
    runZonedGuarded(() async {
 
-       FlutterError.onError=FirebaseCrashlytics.instance.recordFlutterFatalError;
+
 
      runApp(EasyLocalization(
 
@@ -24,36 +24,33 @@ void main() async{
       Locale('ar'),
     ],
     path: 'assets/Translations',
+
+
     fallbackLocale:  const Locale('en'),
 
     child: const App(),
 
-
   ));
    },
     (object,stackTracer){
-     FirebaseCrashlytics.instance.recordError(object, stackTracer,fatal: true);
+
     });
 }
 
 Future<void> initApp()async{
   WidgetsFlutterBinding.ensureInitialized();
-
+  mainContext.config = mainContext.config.clone(
+    disableErrorBoundaries: !Constants.isTestRun,
+  );
 
    await Firebase.initializeApp();
 
-  Isolate.current.addErrorListener(RawReceivePort((pair) async {
-    final List<dynamic> errorAndStacktrace = pair;
-    await FirebaseCrashlytics.instance.recordError(
-      errorAndStacktrace.first,
-      errorAndStacktrace.last,
-    );
-  }).sendPort);
+
 
    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
 
-    statusBarColor: Colors.white,
-    systemNavigationBarColor:Colors.white,
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor:Colors.transparent,
   ));
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

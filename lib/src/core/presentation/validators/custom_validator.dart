@@ -8,10 +8,10 @@ abstract class CustomValidator{
   CustomValidator({this.nextValidator});
 
   // if not all Conditions Are Satisfied then some custom error will be thrown
-  void validate({required String fieldName,required String? toCheckString});
+  String? validate({required String fieldName,required String? toCheckString});
 
-  void check({required String fieldName,required String? toCheckString}) {
-    validate(toCheckString: toCheckString,fieldName: fieldName);
+  String? check({required String fieldName,required String? toCheckString}) {
+    return validate(toCheckString: toCheckString,fieldName: fieldName)??
     nextValidator?.check(fieldName: fieldName,toCheckString: toCheckString);
 
   }

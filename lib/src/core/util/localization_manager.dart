@@ -1,10 +1,9 @@
 
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/core/presentation/assets.dart';
-import 'package:merit_driver/src/core/presentation/theme_manager.dart';
-import 'package:merit_driver/src/core/util/size_config.dart';
+import 'package:etloob/src/core/presentation/assets.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,20 +17,19 @@ class LocalizationManager{
   }
 
   Widget getHorizontalArrowIcon({required double height,bool isLeftInEnglish=true,
-    required void Function()? onTap,required bool isDarkMode}){
+    required void Function()? onTap,Color? color}){
 
     return GestureDetector(
       onTap: onTap,
       child: Center(child: isLeftInEnglish? SvgPicture.asset(
-          isEnglishLanguage? Assets.leftArrow:Assets.rightArrow,height:SizeConfig.w(height),
-        width: SizeConfig.w(height) ,color:isDarkMode?ThemeManager.white:ThemeManager.black.shade800,
+          isEnglishLanguage? Assets.leftArrow:Assets.rightArrow,height:height.r,
+        width: height.r ,color: color,
       ): SvgPicture.asset(
-          !isEnglishLanguage? Assets.leftArrow:Assets.rightArrow,height:SizeConfig.w(height),
-          width: SizeConfig.w(height) , color:isDarkMode?ThemeManager.white:ThemeManager.black.shade800,
+          !isEnglishLanguage? Assets.leftArrow:Assets.rightArrow,height:height.r,
+          width: height.r , color: color,
       ) ),
     );
   }
-
 
 
 }

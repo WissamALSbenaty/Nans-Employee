@@ -1,36 +1,33 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/core/presentation/theme_manager.dart';
-import 'package:merit_driver/src/core/util/size_config.dart';
+import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SecondaryButton extends StatelessWidget {
 
   final String title;
-  final double width,height;
-  final void Function() onPressed;
+  final double width;
+  final void Function() onPress;
 
 
-  const SecondaryButton({Key? key,this.width=343 ,this.height=54,required this.title, required this.onPressed}) : super(key: key);
+  const SecondaryButton({Key? key,this.width=291 ,required this.title, required this.onPress}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    TextTheme theme=ThemeManager.textTheme;
-
-
     return GestureDetector(
-      onTap: onPressed,
+      onTap: onPress,
       child: Container(
-        width: SizeConfig.w(width),
-        height: SizeConfig.h(height),
+        width: width.w,
+        height: 66.h,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-        color: ThemeManager.secondaryColor.shade200,
+          color: AppColors.whiteColor,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: AppColors.yellow)
         ),
 
         child: Center(
-          child: Text(title.tr(),
-            style: theme.bodyText2!.copyWith(fontWeight: FontWeight.w500,color:ThemeManager.secondaryColor.shade800),),
+          child: Text(title.translateWord,
+            style:  AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.yellow,fontWeight: FontWeight.bold)),
         ),
       ),
     );

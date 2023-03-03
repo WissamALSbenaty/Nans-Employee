@@ -1,7 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:merit_driver/src/core/util/size_config.dart';
+import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnBoarding extends StatelessWidget {
   final int pageNumber;
@@ -16,25 +16,24 @@ class OnBoarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData=Theme.of(context);
     return Column(
       children: [
-        Lottie.asset(
-          animationPath,
-        ),
+
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: SizeConfig.w(32)),
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
           child: Column(
             children: [
-              Text(title.tr(),
+              Text(title.translateWord,
                   textAlign: TextAlign.center,
-                  style: themeData.textTheme.headline2!.copyWith(fontWeight: FontWeight.bold)),
+                  style: AppStyle.textTheme.headline2!.copyWith(fontWeight: FontWeight.bold)),
               SizedBox(
-                height: SizeConfig.h(16),
+                height: 16.h,
               ),
               Text(
-                description.tr(),
-                style: themeData.textTheme.bodyText2,
+                description.translateWord,
+                style: AppStyle.textTheme.bodyText2!.copyWith(
+                  color: AppColors.blackColor.shade500,
+                ),
                 textAlign: TextAlign.center,
               )
             ],
