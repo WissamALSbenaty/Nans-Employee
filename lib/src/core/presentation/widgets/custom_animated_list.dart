@@ -27,7 +27,7 @@ class CustomAnimatedListState extends State<CustomAnimatedList> {
     var future = Future(() {});
     for (Widget child in toAddWidgets) {
       future = future.then((_) {
-        return Future.delayed(const Duration(milliseconds: 200), () {
+        return Future.delayed(const Duration(milliseconds: 100), () {
           toRenderChildren.add(child);
           toRenderChildren.add(CustomSizedBox(height: widget.spacerHeight,));
           listKey.currentState?.insertItem(toRenderChildren.length - 2);

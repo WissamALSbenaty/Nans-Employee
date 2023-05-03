@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/presentation/widgets/close_widget.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
 import 'package:etloob/src/core/presentation/widgets/negative_button.dart';
 import 'package:etloob/src/core/util/extentions.dart';
@@ -9,13 +9,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomInfoDialog extends StatelessWidget {
   final String title,mainActionText;
   final String? content,secondActionText;
-
+  final bool isDismissible;
   final void Function() onMainActionPressed;
   final void Function()? onSecondActionPressed;
 
 
   const CustomInfoDialog({Key? key, required this.title,required this.mainActionText, this.content,
-    this.secondActionText,required this.onMainActionPressed,
+    this.secondActionText,required this.onMainActionPressed, this.isDismissible=true,
     this.onSecondActionPressed}):assert(
     !((secondActionText!=null && onSecondActionPressed==null )||(secondActionText==null && onSecondActionPressed!=null ))
   ), super(key: key);
@@ -35,20 +35,22 @@ class CustomInfoDialog extends StatelessWidget {
       title: Row(
             children: [
               Text(
-                title.translateWord,style: AppStyle.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
+                title.translateWord,style: AppStyle.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
               ),
               const Spacer(),
-              IconButton(icon: Icon( Icons.close),onPressed: AutoRouter.of(context).pop),
+              if(isDismissible)
+              const CloseWidget(),
             ],
           ),
 
       content:content!=null?  Text(
-        content!.translateWord,style: AppStyle.textTheme.subtitle1,
+        content!.translateWord,style: AppStyle.textTheme.titleMedium,
       ):null,
 
 
       actions: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             MainButton(
               isLoading: false,
@@ -58,7 +60,6 @@ class CustomInfoDialog extends StatelessWidget {
             ),
         if(secondActionText!=null)
         ...[
-          const Spacer(),
           NegativeButton(title: secondActionText!,
             width: 114,
             onPressed: onSecondActionPressed!,

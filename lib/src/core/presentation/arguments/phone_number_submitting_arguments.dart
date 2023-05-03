@@ -8,8 +8,9 @@ class PhoneNumberSubmittingArguments{
   final Future<void> Function({required String phoneNumber,required String otpCode}) afterSuccessVerification;
   final String pageTitle;
   final VerificationReason verificationReason;
+  final bool isOtpFromBackend;
 
 
   PhoneNumberSubmittingArguments({ required this.verificationReason, required this.pageTitle,required this.afterSuccessVerification,
-    required  this.afterSubmittingPhoneNumber});
+    required  this.afterSubmittingPhoneNumber,this.isOtpFromBackend=true});
 }

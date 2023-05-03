@@ -42,15 +42,15 @@ class CustomRadioTile<T> extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(titleGetter(value),style:
-                     subtitleGetter==null? AppStyle.textTheme.bodyText2!.copyWith(
+                     subtitleGetter==null? AppStyle.textTheme.bodyMedium!.copyWith(
                          fontWeight: FontWeight.bold,color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 ):
 
-                     AppStyle.textTheme.subtitle1!.copyWith(
+                     AppStyle.textTheme.titleMedium!.copyWith(
                          fontWeight: FontWeight.bold,color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 ),
                 ),
 
                 if(subtitleGetter!=null)
-                Text(subtitleGetter!(value),style: AppStyle.textTheme.subtitle2!.copyWith(color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 )
+                Text(subtitleGetter!(value),style: AppStyle.textTheme.titleSmall!.copyWith(color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 )
                 ),
               ],
             ),
@@ -58,7 +58,7 @@ class CustomRadioTile<T> extends StatelessWidget {
             const Spacer(),
 
             if(trailingGetter!=null)
-              Text(trailingGetter!(value),style: AppStyle.textTheme.bodyText2!.copyWith(
+              Text(trailingGetter!(value),style: AppStyle.textTheme.bodyMedium!.copyWith(
                   color: isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300,fontWeight: FontWeight.bold),)
           ],
         ),

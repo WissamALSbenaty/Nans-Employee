@@ -1,5 +1,4 @@
 
-import 'package:etloob/src/core/util/mixins.dart';
 import 'package:etloob/src/features/Home/presentation/pages/main_page.dart';
 import 'package:etloob/src/features/Home/presentation/widgets/home_navigation_bar.dart';
 import 'package:etloob/src/features/Profile/presentation/pages/my_profile_page.dart';

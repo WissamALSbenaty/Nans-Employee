@@ -25,7 +25,7 @@ class CustomRadioButtonsSheet<T> extends StatelessWidget {
         children: [
           const CustomSizedBox(height: 16,),
 
-          Text(title.translateWord,style: AppStyle.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),),
+          Text(title.translateWord,style: AppStyle.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),),
 
           const CustomSizedBox(height: 24,),
 
@@ -53,7 +53,7 @@ class CustomRadioButtonsSheet<T> extends StatelessWidget {
 
                       Expanded(
                           child: Text(nameGetter(item),maxLines: 2
-                            ,style: AppStyle.textTheme.bodyText2!.copyWith(color:
+                            ,style: AppStyle.textTheme.bodyMedium!.copyWith(color:
                             item==selectedItem?AppColors.secondaryYellow :AppColors.blackColor.shade600),)),
                     ]
                 ),

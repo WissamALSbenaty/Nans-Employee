@@ -22,20 +22,22 @@ class CustomTabBar extends StatelessWidget {
         controller: controller,
         isScrollable: isScrollable,
 
+
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: AppColors.yellow,
         unselectedLabelColor: AppColors.blackColor.shade500,
         labelColor: AppColors.yellow,
-        unselectedLabelStyle: AppStyle.textTheme.subtitle1,
-        labelStyle: AppStyle.textTheme.subtitle1!.copyWith(fontWeight: FontWeight.bold),
+        unselectedLabelStyle: AppStyle.textTheme.titleMedium,
+        labelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
         indicatorPadding: EdgeInsets.symmetric(horizontal:4.w ),
 
         tabs: [
 
           for(int i=0;i<titles.length;i++)
             Tab(
+              iconMargin: EdgeInsets.zero,
               text: titles[i].translateWord,
-              height: 25.h,
+              height: 30.h,
             )
         ],
       ),

@@ -40,7 +40,7 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
   }
 
   void addNewElements(){
-    int newElementsLength=widget.dataLoader.dataList.length - (animatedListKey.currentState?.toRenderChildren.length??0 /2).toInt();
+    int newElementsLength=widget.dataLoader.dataList.length - (animatedListKey.currentState?.toRenderChildren.length??0) ~/2;
     if(newElementsLength<=0) {
       return ;
     }
@@ -54,9 +54,9 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
   Widget build(BuildContext context) {
     return RefreshIndicator(
       color: AppColors.yellow,
-      onRefresh: widget.dataLoader.loadData,
+      onRefresh: widget.dataLoader.initializeLoader,
       child :  AnimatedSwitcher(
-            duration:const Duration(milliseconds: 300),
+            duration:const Duration(milliseconds: 1000),
             transitionBuilder: (child, animation) => ScaleTransition(
               scale:animation,
               child: child,
@@ -65,11 +65,11 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
             builder: (_) {
               widget.dataLoader.isLoading;
             if(widget.dataLoader.isStillLazy){
-                widget.dataLoader.loadData();
-                return Container();
+              widget.dataLoader.initializeLoader();
+              return Container();
               }
               return widget.dataLoader.isLoading?const CustomListLoadingShimmer()
-                  :widget.dataLoader.error!=null?CustomEmptyView( widget.dataLoader.error!,onHelperButtonPressed: widget.dataLoader.loadData,)
+                  :widget.dataLoader.error!=null?CustomEmptyView( widget.dataLoader.error!, onHelperButtonPressed: widget.dataLoader.initializeLoader,)
                   :Column(
 
                     children: [

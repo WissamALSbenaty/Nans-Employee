@@ -2,10 +2,10 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/Data/models/login_model.dart';
+import 'package:etloob/src/Data/models/login_model.dart';
 import 'package:etloob/src/core/controllers/app_controller.dart';
 import 'package:etloob/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
 import 'package:etloob/src/core/presentation/snakebars/snack_bar_messages.dart';
 import 'package:etloob/src/core/presentation/widgets/base_data_loader.dart';
@@ -18,6 +18,7 @@ import 'package:etloob/src/features/auth/presentation/pages/confirm_phone_number
 import 'package:etloob/src/features/intro/presentation/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class HomePage extends StatefulWidget with WidgetStoreCreatorMixin<AppController>{
 
   HomePage({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage>{
   void didChangeDependencies() {
     if(isFirstDependency){
       isFirstDependency=false;
-      getIt<NotificationsManager>().initFirebaseMessaging(context);
+      getIt<NotificationsManager>().initFirebaseMessaging();
 
     }
     super.didChangeDependencies();
@@ -62,11 +63,11 @@ class _HomePageState extends State<HomePage>{
 
                   context.clearData();
                   AutoRouter.of(context).popUntilRoot();
-                  AutoRouter.of(context).replace(HomePageRoute());
-                },
+                  AutoRouter.of(context).replace(HomeRoute());
+                }, isOtpFromBackend: true,
 
               ))
-          :HomePageNavigation()),
+          :const HomePageNavigation()),
     );
   }
   @override

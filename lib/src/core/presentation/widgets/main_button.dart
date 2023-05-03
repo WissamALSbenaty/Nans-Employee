@@ -16,29 +16,28 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap:!isLoading?  (){
-        FocusManager.instance.primaryFocus?.unfocus();
-        onPressed();
-      }:null,
-      child: Container(
-        width: width.w,
-        height: 66.h,
-        decoration: BoxDecoration(
-          color: AppColors.yellow,
-            boxShadow: AppStyle.basicBoxShadow,
-          borderRadius: BorderRadius.circular(18),
-        ),
+    return ElevatedButton(
 
-        child: Center(
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 500),
-            child: isLoading? const CircularProgressIndicator(color: AppColors.whiteColor,):
-            Text(title.translateWord,
-              style:  AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.whiteColor,fontWeight: FontWeight.bold),),
-          ),
-        ),
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(EdgeInsets.zero),
+        elevation: MaterialStateProperty.all(5),
+        backgroundColor:MaterialStateProperty.all(AppColors.yellow),
+        shape: MaterialStateProperty.all( RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),))
       ),
-    );
+        onPressed: !isLoading?  (){
+          FocusManager.instance.primaryFocus?.unfocus();
+          onPressed();
+        }:null,
+        child: SizedBox(
+            width: width.w,
+            height: 66.h,
+
+            child: Center(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                child: isLoading? const CircularProgressIndicator(color: AppColors.whiteColor,):
+                Text(title.translateWord,
+                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.whiteColor,fontWeight: FontWeight.bold),),
+              ))));
   }
 }

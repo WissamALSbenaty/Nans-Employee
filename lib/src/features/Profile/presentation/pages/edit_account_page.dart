@@ -2,18 +2,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:etloob/src/core/controllers/app_controller.dart';
 import 'package:etloob/src/core/presentation/assets.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/presentation/dialogs/custom_text_field_dialog.dart';
 import 'package:etloob/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
 import 'package:etloob/src/core/presentation/arguments/submit_new_password_arguments.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/presentation/validators/not_empty_validator.dart';
+import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
 import 'package:etloob/src/core/util/enums.dart';
 import 'package:etloob/src/core/util/mixins.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
+@RoutePage()
 class EditAccountPage extends StatefulWidget with WidgetStoreCreatorMixin<AppController> {
 
 
@@ -37,7 +38,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
     if(isFirstDependency){
       isFirstDependency=false;
       onActionsPressed=[
-            (ctx)=> AutoRouter.of(ctx).push(SubmitPhoneNumberPageRoute(args: PhoneNumberSubmittingArguments(
+            (ctx)=> AutoRouter.of(ctx).push(SubmitPhoneNumberRoute(args: PhoneNumberSubmittingArguments(
           pageTitle:'Please enter your new phone number' ,
           verificationReason: VerificationReason.ChangePhoneNumber,
           afterSubmittingPhoneNumber: ({required String phoneNumber}) async{
@@ -56,7 +57,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                   textFieldTitle: 'Password',
                   onMainActionPressed:(String passwordValue)async {
                     AutoRouter.of(ctx).push(
-                        SubmitNewPasswordPageRoute(args: SubmitNewPasswordArguments(
+                        SubmitNewPasswordRoute(args: SubmitNewPasswordArguments(
                           onSubmitNewPassword: (String newPassword) =>
                               widget.createdStore.changePassword(oldPassword: passwordValue, newPassword: newPassword),
                         )
@@ -73,7 +74,10 @@ class _EditAccountPageState extends State<EditAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+            appBar:CustomAppBar(
+              barTitle: 'Edit Account',
+              context: context,
+            ),
 
             backgroundColor: AppColors.blue,
 
@@ -83,7 +87,12 @@ class _EditAccountPageState extends State<EditAccountPage> {
                 children:  [
                   for(int i=0;i<titles.length;i++)
                     ...[
+                      /*RouteOptionCard(onPressed: ()=>onActionsPressed[i](context),
+                          title:titles[i],iconPath:iconPaths[i],
+                          iconColor:AppColors.blackColor.shade100),
+                      const CustomSizedBox(height: 16,),
 
+                       */
                     ],
                 ],
               ),

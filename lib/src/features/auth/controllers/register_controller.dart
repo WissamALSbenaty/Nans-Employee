@@ -1,15 +1,14 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/Data/models/login_model.dart';
-import 'package:etloob/src/core/Data/models/register_model.dart';
-import 'package:etloob/src/core/Data/repositories/abstract/i_auth_repository.dart';
+import 'package:etloob/src/Data/models/login_model.dart';
+import 'package:etloob/src/Data/models/register_model.dart';
+import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:etloob/src/core/controllers/app_controller.dart';
 import 'package:etloob/src/core/controllers/custom_form_controller.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
 import 'package:etloob/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
 import 'package:etloob/src/core/presentation/snakebars/snack_bar_messages.dart';
 import 'package:etloob/src/core/util/enums.dart';
-import 'package:etloob/src/core/util/extentions.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -17,7 +16,7 @@ class RegisterController extends CustomFormController{
 
   final IAuthRepository authRepository;
   final AppController appController;
-  RegisterController(this.appController,this.authRepository):super(
+  RegisterController(this.appController,this.authRepository,super.logger,):super(
     fieldsNumber: 5,
 
     submitFunction: (values)async{
@@ -40,8 +39,9 @@ class RegisterController extends CustomFormController{
         referralCode: values[4],
       );
 
-      AutoRouter.of(context).push(ConfirmPhoneNumberPageRoute(args: ConfirmPhoneNumberPageArguments(
+      AutoRouter.of(context).push(ConfirmPhoneNumberRoute(args: ConfirmPhoneNumberPageArguments(
         phoneNumber:registerModel.phoneNumber,
+        isOtpFromBackend: false,
         verificationReason: VerificationReason.VerifyAccount,
         afterSuccessSubmitting: ({required String otpCode,required String phoneNumber}) async{
 
@@ -49,9 +49,8 @@ class RegisterController extends CustomFormController{
 
           BottomSnackBar.show(SnackBarMessages.registeringSuccess, ToastType.success);
 
-          context.clearData();
           AutoRouter.of(context).popUntilRoot();
-          AutoRouter.of(context).replace(HomePageRoute());
+          AutoRouter.of(context).replace(HomeRoute());
         },
 
       )));

@@ -1,8 +1,8 @@
 
 
 
-import 'package:etloob/src/core/Data/Errors/custom_error.dart';
-import 'package:etloob/src/core/Data/models/pagination_data_model.dart';
+import 'package:etloob/src/Data/Errors/custom_error.dart';
+import 'package:etloob/src/Data/models/pagination_data_model.dart';
 import 'package:etloob/src/core/controllers/base_store.dart';
 import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
 import 'package:etloob/src/core/util/enums.dart';
@@ -11,7 +11,7 @@ import 'package:mobx/mobx.dart';
 part 'custom_pagination_list_data_loader.g.dart';
 
 abstract class CustomPaginationListDataLoader<T> extends CustomPaginationListDataLoaderBase<T> with _$CustomPaginationListDataLoader {
-  CustomPaginationListDataLoader({required super.emptyDataError, required super.dataGetter,super.isLazyStore});
+  CustomPaginationListDataLoader(super.logger,{required super.emptyDataError, required super.dataGetter,super.isLazyStore});
 
 }
 
@@ -21,16 +21,17 @@ abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController
   Future<PaginationDataModel<T>> Function(int page) dataGetter;
   final CustomError emptyDataError;
 
-  CustomPaginationListDataLoaderBase({required this.emptyDataError, required this.dataGetter,super.isLazyStore}){
+  CustomPaginationListDataLoaderBase(super.logger,{required this.emptyDataError, required this.dataGetter,super.isLazyStore}){
     initializeLoader();
   }
   @action
   Future<void> initializeLoader()async{
-  if(!isLazyStore) {
-  await onInit();
-  await loadData();
+    if(!isLazyStore) {
+      isLoading=true;
+      await onInit();
+      await loadData();
+    }
   }
-}
 
   int pageNumber=0;
 
@@ -48,21 +49,21 @@ abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController
   @action
   Future<void> loadData()async{
     try{
-    if(error!=null) {
-      return ;
-    }
+      if(error!=null) {
+        return ;
+      }
 
-    isLoading=true;
-    canLoadMoreData=true;
-    isLoadingMoreData=false;
-    isStillLazy=false;
-    pageNumber=0;
+      isLoading=true;
+      canLoadMoreData=true;
+      isLoadingMoreData=false;
+      isStillLazy=false;
+      pageNumber=0;
 
-    PaginationDataModel<T> paginationData=await dataGetter(++pageNumber);
-    canLoadMoreData=paginationData.canLoadMoreData;
-    dataList= ObservableList.of( paginationData.items);
+      PaginationDataModel<T> paginationData=await dataGetter(++pageNumber);
+      canLoadMoreData=paginationData.canLoadMoreData;
+      dataList= ObservableList.of( paginationData.items);
       if(dataList.isEmpty) {
-      throw emptyDataError;
+        throw emptyDataError;
       }
     }
     on CustomError catch (e){
@@ -79,21 +80,21 @@ abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController
     if(isLoadingMoreData || !canLoadMoreData) {
       return ;
     }
-      try{
-        isLoadingMoreData=true;
+    try{
+      isLoadingMoreData=true;
 
 
-        PaginationDataModel<T> paginationData=await dataGetter(++pageNumber);
-        canLoadMoreData=paginationData.canLoadMoreData;
-        List<T> newData= paginationData.items;
-        dataList.addAll(newData);
-      }
-      on CustomError catch (e){
+      PaginationDataModel<T> paginationData=await dataGetter(++pageNumber);
+      canLoadMoreData=paginationData.canLoadMoreData;
+      List<T> newData= paginationData.items;
+      dataList.addAll(newData);
+    }
+    on CustomError catch (e){
       BottomSnackBar.show(e.errorMessage, ToastType.error);
-      }
-      finally{
-        isLoadingMoreData=false;
-      }
+    }
+    finally{
+      isLoadingMoreData=false;
+    }
   }
 
   @action

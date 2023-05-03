@@ -1,5 +1,3 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/controllers/app_controller.dart';
 import 'package:etloob/src/core/controllers/search_controller.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_tab_bar.dart';
@@ -58,7 +56,7 @@ class _EtloobPageState extends State<EtloobPage>
                  builder: (_) => Expanded(
             child: TabBarView(
               controller: tabController,
-              children: [
+              children: const [
            ],
             ),
           )

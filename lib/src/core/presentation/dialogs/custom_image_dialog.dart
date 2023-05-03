@@ -1,5 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/presentation/widgets/close_widget.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
 import 'package:etloob/src/core/presentation/widgets/secondary_button.dart';
@@ -44,7 +44,7 @@ class CustomImageDialog extends StatelessWidget {
           Row(
             children:  [
               const Spacer(),
-              IconButton(icon: Icon( Icons.close),onPressed: AutoRouter.of(context).pop),
+              CloseWidget(onPressed: onCloseButtonPressed,height:36 ),
               const CustomSizedBox(width: 16,),
             ],
           ),
@@ -57,13 +57,13 @@ class CustomImageDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            content.translateWord,style: AppStyle.textTheme.headline4,textAlign: TextAlign.center,
+            content.translateWord,style: AppStyle.textTheme.headlineMedium,textAlign: TextAlign.center,
           ),
           if(subtitle!=null)
             ...[
           const CustomSizedBox(height: 8,),
               Text(
-                subtitle!.translateWord,style: AppStyle.textTheme.subtitle1,textAlign: TextAlign.center,
+                subtitle!.translateWord,style: AppStyle.textTheme.titleMedium,textAlign: TextAlign.center,
               ),
           ]
         ],

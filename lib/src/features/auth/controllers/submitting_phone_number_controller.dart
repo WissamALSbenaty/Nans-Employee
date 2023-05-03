@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/Data/repositories/abstract/i_auth_repository.dart';
+import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:etloob/src/core/controllers/custom_form_controller.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
 import 'package:etloob/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
 import 'package:injectable/injectable.dart';
@@ -11,7 +11,7 @@ class SubmittingPhoneNumberController extends CustomFormController{
 
   final IAuthRepository authRepository;
   final PhoneNumberSubmittingArguments args;
-  SubmittingPhoneNumberController(@factoryParam this.args ,this.authRepository):super(
+  SubmittingPhoneNumberController(@factoryParam this.args ,this.authRepository,super.logger,):super(
     fieldsNumber: 1,
 
     submitFunction: (values)async{
@@ -20,10 +20,10 @@ class SubmittingPhoneNumberController extends CustomFormController{
 
     afterSuccessSubmit: (values,context)async{
 
-      AutoRouter.of(context).push(ConfirmPhoneNumberPageRoute(
+      AutoRouter.of(context).push(ConfirmPhoneNumberRoute(
           args: ConfirmPhoneNumberPageArguments(
               phoneNumber:  values[0]!,verificationReason:  args.verificationReason,
-              afterSuccessSubmitting:args.afterSuccessVerification,
+              afterSuccessSubmitting:args.afterSuccessVerification,isOtpFromBackend: args.isOtpFromBackend
               )));
 
        }

@@ -4,101 +4,134 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+// ignore_for_file: unnecessary_lambdas
+// ignore_for_file: lines_longer_than_80_chars
+// coverage:ignore-file
+
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'src/core/controllers/app_controller.dart' as _i17;
-import 'src/core/controllers/search_controller.dart' as _i7;
-import 'src/core/Data/api_helper.dart' as _i8;
-import 'src/core/Data/Errors/errors_factory.dart' as _i4;
-import 'src/core/Data/local_database_tables/app_database.dart' as _i3;
-import 'src/core/Data/repositories/abstract/i_auth_repository.dart' as _i9;
-import 'src/core/Data/repositories/abstract/i_utils_repository.dart' as _i11;
-import 'src/core/Data/repositories/concret/auth_repository.dart' as _i10;
-import 'src/core/Data/repositories/concret/utils_repotsitory.dart' as _i12;
+import 'src/core/controllers/app_controller.dart' as _i23;
+import 'src/core/controllers/search_controller.dart' as _i9;
 import 'src/core/presentation/arguments/confirm_phone_number_page_arguments.dart'
-    as _i19;
+    as _i25;
 import 'src/core/presentation/arguments/phone_number_submitting_arguments.dart'
-    as _i16;
+    as _i22;
 import 'src/core/presentation/arguments/submit_new_password_arguments.dart'
-    as _i14;
-import 'src/core/util/localization_manager.dart' as _i5;
-import 'src/core/util/notification_manager.dart' as _i6;
+    as _i20;
+import 'src/core/util/localization_manager.dart' as _i7;
+import 'src/core/util/notification_manager.dart' as _i8;
+import 'src/Data/api_helper.dart' as _i10;
+import 'src/Data/Errors/errors_factory.dart' as _i4;
+import 'src/Data/local_database_tables/app_database.dart' as _i3;
+import 'src/Data/repositories/abstract/i_auth_repository.dart' as _i11;
+import 'src/Data/repositories/abstract/i_logger.dart' as _i5;
+import 'src/Data/repositories/abstract/i_profile_repository.dart' as _i13;
+import 'src/Data/repositories/abstract/i_utils_repository.dart' as _i15;
+import 'src/Data/repositories/concret/auth_repository.dart' as _i12;
+import 'src/Data/repositories/concret/logger.dart' as _i6;
+import 'src/Data/repositories/concret/profile_repository.dart' as _i14;
+import 'src/Data/repositories/concret/utils_repotsitory.dart' as _i16;
 import 'src/features/auth/controllers/confirm_phone_number_controller.dart'
-    as _i18;
-import 'src/features/auth/controllers/login_store.dart' as _i20;
-import 'src/features/auth/controllers/register_controller.dart' as _i21;
+    as _i24;
+import 'src/features/auth/controllers/login_store.dart' as _i26;
+import 'src/features/auth/controllers/register_controller.dart' as _i27;
 import 'src/features/auth/controllers/submitting_new_password_controller.dart'
-    as _i13;
+    as _i19;
 import 'src/features/auth/controllers/submitting_phone_number_controller.dart'
-    as _i15; // ignore_for_file: unnecessary_lambdas
+    as _i21;
+import 'src/features/Profile/controllers/notifications_controller.dart' as _i17;
+import 'src/features/Profile/controllers/social_media_controller.dart' as _i18;
 
+// ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
-/// initializes the registration of provided dependencies inside of [GetIt]
+// initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
-  _i1.GetIt get, {
+  _i1.GetIt getIt, {
   String? environment,
   _i2.EnvironmentFilter? environmentFilter,
 }) {
   final gh = _i2.GetItHelper(
-    get,
+    getIt,
     environment,
     environmentFilter,
   );
   gh.singleton<_i3.AppDatabase>(_i3.AppDatabase());
   gh.singleton<_i4.ErrorsFactory>(_i4.ErrorsFactory());
-  gh.singleton<_i5.LocalizationManager>(_i5.LocalizationManager());
-  gh.singleton<_i6.NotificationsManager>(_i6.NotificationsManager());
-  gh.factory<_i7.SearchController>(
-      () => _i7.SearchController(get<_i3.AppDatabase>()));
-  gh.singleton<_i8.ApiHelper>(_i8.ApiHelper(get<_i4.ErrorsFactory>()));
-  gh.singleton<_i9.IAuthRepository>(_i10.AuthRepository(
-    get<_i3.AppDatabase>(),
-    get<_i8.ApiHelper>(),
+  gh.singleton<_i5.ILogger>(_i6.Logger());
+  gh.singleton<_i7.LocalizationManager>(_i7.LocalizationManager());
+  gh.singleton<_i8.NotificationsManager>(_i8.NotificationsManager());
+  gh.factory<_i9.SearchController>(() => _i9.SearchController(
+        gh<_i3.AppDatabase>(),
+        gh<_i5.ILogger>(),
+      ));
+  gh.singleton<_i10.ApiHelper>(_i10.ApiHelper(
+    gh<_i4.ErrorsFactory>(),
+    gh<_i7.LocalizationManager>(),
   ));
-  gh.singleton<_i11.IUtilsRepository>(
-      _i12.UtilsRepository(get<_i8.ApiHelper>()));
-  gh.factoryParam<_i13.SubmittingNewPasswordController,
-      _i14.SubmitNewPasswordArguments, dynamic>((
-    args,
-    _,
-  ) =>
-      _i13.SubmittingNewPasswordController(
-        args,
-        get<_i9.IAuthRepository>(),
-      ));
-  gh.factoryParam<_i15.SubmittingPhoneNumberController,
-      _i16.PhoneNumberSubmittingArguments, dynamic>((
-    args,
-    _,
-  ) =>
-      _i15.SubmittingPhoneNumberController(
-        args,
-        get<_i9.IAuthRepository>(),
-      ));
-  gh.singleton<_i17.AppController>(_i17.AppController(
-    get<_i9.IAuthRepository>(),
-    get<_i11.IUtilsRepository>(),
-    get<_i3.AppDatabase>(),
-    get<_i5.LocalizationManager>(),
+  gh.singleton<_i11.IAuthRepository>(_i12.AuthRepository(
+    gh<_i3.AppDatabase>(),
+    gh<_i10.ApiHelper>(),
   ));
-  gh.factoryParam<_i18.ConfirmPhoneNumberController,
-      _i19.ConfirmPhoneNumberPageArguments, dynamic>((
+  gh.singleton<_i13.IProfileRepository>(
+      _i14.ProfileRepository(gh<_i10.ApiHelper>()));
+  gh.singleton<_i15.IUtilsRepository>(
+      _i16.UtilsRepository(gh<_i10.ApiHelper>()));
+  gh.factory<_i17.NotificationsController>(() => _i17.NotificationsController(
+        gh<_i13.IProfileRepository>(),
+        gh<_i5.ILogger>(),
+      ));
+  gh.factory<_i18.SocialMediaController>(() => _i18.SocialMediaController(
+        gh<_i5.ILogger>(),
+        gh<_i13.IProfileRepository>(),
+      ));
+  gh.factoryParam<_i19.SubmittingNewPasswordController,
+      _i20.SubmitNewPasswordArguments, dynamic>((
     args,
     _,
   ) =>
-      _i18.ConfirmPhoneNumberController(
+      _i19.SubmittingNewPasswordController(
         args,
-        get<_i9.IAuthRepository>(),
+        gh<_i11.IAuthRepository>(),
+        gh<_i5.ILogger>(),
       ));
-  gh.factory<_i20.LoginController>(() => _i20.LoginController(
-        get<_i9.IAuthRepository>(),
-        get<_i17.AppController>(),
+  gh.factoryParam<_i21.SubmittingPhoneNumberController,
+      _i22.PhoneNumberSubmittingArguments, dynamic>((
+    args,
+    _,
+  ) =>
+      _i21.SubmittingPhoneNumberController(
+        args,
+        gh<_i11.IAuthRepository>(),
+        gh<_i5.ILogger>(),
       ));
-  gh.factory<_i21.RegisterController>(() => _i21.RegisterController(
-        get<_i17.AppController>(),
-        get<_i9.IAuthRepository>(),
+  gh.singleton<_i23.AppController>(_i23.AppController(
+    gh<_i11.IAuthRepository>(),
+    gh<_i15.IUtilsRepository>(),
+    gh<_i3.AppDatabase>(),
+    gh<_i7.LocalizationManager>(),
+    gh<_i5.ILogger>(),
+  ));
+  gh.factoryParam<_i24.ConfirmPhoneNumberController,
+      _i25.ConfirmPhoneNumberPageArguments, dynamic>((
+    args,
+    _,
+  ) =>
+      _i24.ConfirmPhoneNumberController(
+        args,
+        gh<_i11.IAuthRepository>(),
+        gh<_i5.ILogger>(),
       ));
-  return get;
+  gh.factory<_i26.LoginController>(() => _i26.LoginController(
+        gh<_i11.IAuthRepository>(),
+        gh<_i23.AppController>(),
+        gh<_i5.ILogger>(),
+      ));
+  gh.factory<_i27.RegisterController>(() => _i27.RegisterController(
+        gh<_i23.AppController>(),
+        gh<_i11.IAuthRepository>(),
+        gh<_i5.ILogger>(),
+      ));
+  return getIt;
 }

@@ -17,16 +17,16 @@ class LocalizationManager{
   }
 
   Widget getHorizontalArrowIcon({required double height,bool isLeftInEnglish=true,
-    required void Function()? onTap,Color? color}){
+    required void Function()? onTap}){
 
     return GestureDetector(
       onTap: onTap,
       child: Center(child: isLeftInEnglish? SvgPicture.asset(
           isEnglishLanguage? Assets.leftArrow:Assets.rightArrow,height:height.r,
-        width: height.r ,color: color,
+        width: height.r
       ): SvgPicture.asset(
           !isEnglishLanguage? Assets.leftArrow:Assets.rightArrow,height:height.r,
-          width: height.r , color: color,
+          width: height.r
       ) ),
     );
   }

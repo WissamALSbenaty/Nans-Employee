@@ -17,22 +17,6 @@ mixin _$CustomFormController on CustomFormControllerBase, Store {
               name: 'CustomFormControllerBase.canSubmit'))
           .value;
 
-  late final _$isSubmittingAtom =
-      Atom(name: 'CustomFormControllerBase.isSubmitting', context: context);
-
-  @override
-  bool get isSubmitting {
-    _$isSubmittingAtom.reportRead();
-    return super.isSubmitting;
-  }
-
-  @override
-  set isSubmitting(bool value) {
-    _$isSubmittingAtom.reportWrite(value, super.isSubmitting, () {
-      super.isSubmitting = value;
-    });
-  }
-
   late final _$currentValuesAtom =
       Atom(name: 'CustomFormControllerBase.currentValues', context: context);
 
@@ -58,18 +42,23 @@ mixin _$CustomFormController on CustomFormControllerBase, Store {
         .run(() => super.changeValue(index, newValue));
   }
 
-  late final _$submitFormAsyncAction =
-      AsyncAction('CustomFormControllerBase.submitForm', context: context);
+  late final _$CustomFormControllerBaseActionController =
+      ActionController(name: 'CustomFormControllerBase', context: context);
 
   @override
   Future<void> submitForm(BuildContext context) {
-    return _$submitFormAsyncAction.run(() => super.submitForm(context));
+    final _$actionInfo = _$CustomFormControllerBaseActionController.startAction(
+        name: 'CustomFormControllerBase.submitForm');
+    try {
+      return super.submitForm(context);
+    } finally {
+      _$CustomFormControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
-isSubmitting: ${isSubmitting},
 currentValues: ${currentValues},
 canSubmit: ${canSubmit}
     ''';

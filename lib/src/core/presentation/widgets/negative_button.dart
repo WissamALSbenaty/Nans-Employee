@@ -13,24 +13,24 @@ class NegativeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: width.w,
-        height: 66.h,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(18),
-            color: AppColors.whiteColor,
-            boxShadow: AppStyle.basicBoxShadow,
-            border: Border.all(color: AppColors.darkPink)),
-        child: Center(
-          child: Text(
-            title.translateWord,
-            style: AppStyle.textTheme.bodyText2!.copyWith(
-                color: AppColors.darkPink, fontWeight: FontWeight.bold),
-          ),
+
+    return ElevatedButton(
+        style: ButtonStyle(
+            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            elevation: MaterialStateProperty.all(5),
+            backgroundColor:MaterialStateProperty.all(AppColors.whiteColor),
+            shape: MaterialStateProperty.all( RoundedRectangleBorder(side: const BorderSide(
+                color: AppColors.darkPink
+            ),
+              borderRadius: BorderRadius.circular(8),))
         ),
-      ),
-    );
+        onPressed:onPressed,
+        child: SizedBox(
+            width: width.w,
+            height: 66.h,
+
+            child: Center(
+                child: Text(title.translateWord,
+                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.darkPink,fontWeight: FontWeight.bold),))));
   }
 }

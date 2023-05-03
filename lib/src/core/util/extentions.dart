@@ -2,12 +2,9 @@
 
 
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/core/controllers/app_controller.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 extension PrintDateTime on DateTime{
   String get dayFormat{
@@ -64,15 +61,5 @@ extension NumberUtil on num{
 
     return leftToRound==0? thisNumberRounded :(thisNumberRounded -leftToRound)+100;
 
-  }
-}
-
-
-extension IntUtil on int{
-
-  String currency(BuildContext context){
-    String thousandFormat= NumberFormat.decimalPattern('en').format(this) ;
-    AppController appController=getIt<AppController>();
-    return "$thousandFormat ${appController.appConfigModel?.mobileSettings.currency ?? ''}";
   }
 }

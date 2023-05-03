@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/Data/Errors/core_errors.dart';
-import 'package:etloob/src/core/Data/Errors/custom_error.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
+import 'package:etloob/src/Data/Errors/core_errors.dart';
+import 'package:etloob/src/Data/Errors/custom_error.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
@@ -32,7 +32,7 @@ class CustomEmptyView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Text(error.errorMessage.translateWord,
               textAlign: TextAlign.center,
-              style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600)
+              style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600)
             ),
           ),
           const CustomSizedBox(height: 16,),
@@ -52,8 +52,8 @@ class CustomEmptyView extends StatelessWidget {
         title: 'Retry',onPressed: onHelperButtonPressed!,);
     } else if(error is NotAuthorizedError) {
       return MainButton(
-              isLoading: false,
-        title: 'Login/Register',onPressed: ()=>AutoRouter.of(context).replace( LoginPageRoute()),);
+        isLoading: false,
+        title: 'Login/Register', onPressed: () => AutoRouter.of(context).replace(LoginRoute()),);
     }
 
     return Container();

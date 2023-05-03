@@ -1,5 +1,6 @@
-import 'package:etloob/src/core/Data/Errors/core_errors.dart';
-import 'package:etloob/src/core/Data/Errors/custom_error.dart';
+import 'package:etloob/src/Data/Errors/core_errors.dart';
+import 'package:etloob/src/Data/Errors/custom_error.dart';
+import 'package:etloob/src/Data/repositories/abstract/i_logger.dart';
 import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
 import 'package:etloob/src/core/util/enums.dart';
 import 'package:mobx/mobx.dart';
@@ -7,13 +8,14 @@ import 'package:mobx/mobx.dart';
 part 'base_store.g.dart';
 
 class BaseStoreController extends BaseStoreControllerBase with _$BaseStoreController{
-    BaseStoreController({super.isLazyStore});
+  BaseStoreController(super.logger,{super.isLazyStore});
 }
 
 abstract class BaseStoreControllerBase with Store {
 
   final bool isLazyStore;
-  BaseStoreControllerBase({this.isLazyStore=false});
+  final ILogger logger;
+  BaseStoreControllerBase(this.logger,{this.isLazyStore=false});
 
   @observable
   CustomError? error;
@@ -41,8 +43,15 @@ abstract class BaseStoreControllerBase with Store {
       if(onCatchError!=null) {
         onCatchError();
       }
-
+      if(e is ServerError) {
+        await logger.logCritical(className:  runtimeType.toString(),exception:  e);
+      }
       error=e;
+      return false;
+    }
+    on Exception catch(e){
+      error=ServerError();
+      await logger.logCritical(className:  runtimeType.toString(),exception:  e);
       return false;
     }
     finally{
@@ -60,9 +69,14 @@ abstract class BaseStoreControllerBase with Store {
       if(onCatchError!=null) {
         onCatchError();
       }
-
-      BottomSnackBar.show(e.errorMessage,ToastType.error,onRetry:
-      e is InternetConnectionError? ()=>runStoreSecondaryFunction(function,onCatchError: onCatchError):null);
+      BottomSnackBar.show(e.errorMessage,ToastType.error);
+      if(e is ServerError) {
+        await logger.logCritical(className:  runtimeType.toString(),exception:  e);
+      }
+      return false;
+    }
+    on Exception catch(e){
+      await logger.logCritical(className:  runtimeType.toString(),exception:  e);
       return false;
     }
   }

@@ -1,7 +1,7 @@
 
 
 
-import 'package:etloob/src/core/Data/Errors/core_errors.dart';
+import 'package:etloob/src/Data/Errors/core_errors.dart';
 import 'package:etloob/src/core/presentation/validators/custom_validator.dart';
 
 class IsNumberValidator extends CustomValidator{

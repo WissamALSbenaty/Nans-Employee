@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:etloob/src/core/presentation/assets.dart';
 import 'package:etloob/src/core/presentation/sheets/custom_bottomsheet.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_pages_indicator.dart';
@@ -8,6 +9,7 @@ import 'package:etloob/src/features/intro/presentation/widgets/on_boarding.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+@RoutePage()
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
 

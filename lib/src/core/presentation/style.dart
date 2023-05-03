@@ -6,48 +6,49 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppStyle {
   static final TextTheme textTheme = TextTheme(
-    headline1: TextStyle(
+    displayLarge: TextStyle(
         fontSize: 32.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    headline2: TextStyle(
+    displayMedium: TextStyle(
         fontSize: 28.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    headline3: TextStyle(
+    displaySmall: TextStyle(
         fontSize: 24.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    headline4: TextStyle(
+    headlineMedium: TextStyle(
         fontSize: 20.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
         fontSize: 20.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
         fontSize: 16.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    subtitle1: TextStyle(
+
+    titleMedium: TextStyle(
         fontSize: 14.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    subtitle2: TextStyle(
+    titleSmall: TextStyle(
         fontSize: 12.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),
-    overline: TextStyle(
-        fontSize: 14.sp,
+    labelSmall: TextStyle(
+        fontSize: 8.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
         color: AppColors.blackColor,
         ),

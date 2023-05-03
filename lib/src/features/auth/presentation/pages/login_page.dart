@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
 import 'package:etloob/src/core/presentation/widgets/text_fields/password_text_field.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
+@RoutePage()
 class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginController>{
    LoginPage({Key? key}) : super(key: key);
 
@@ -25,6 +26,10 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
           builder: (ctx) => Scaffold(
               backgroundColor:AppColors.whiteColor,
 
+              appBar:CustomAppBar(
+                context: context,
+                barTitle:'Login' ,
+              ),
               body: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(
@@ -38,7 +43,7 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
                       children: [
                         const CustomSizedBox(width: 8,),
                         Text('Use your phone number to login'.translateWord,
-                          style:AppStyle.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold) ,),
+                          style:AppStyle.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold) ,),
                       ],
                     ),
                     const CustomSizedBox(height: 8,),
@@ -54,15 +59,15 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
                     TextButton(
                         onPressed: ()=>createdStore.restorePassword(ctx),
                         child: Text("I Forgot My Password !".translateWord,
-                            style: AppStyle.textTheme.subtitle1!.copyWith(color: Colors.blue,
+                            style: AppStyle.textTheme.titleMedium!.copyWith(color: Colors.blue,
                               fontWeight: FontWeight.bold,))
                     ),
 
                     TextButton(
 
-                        onPressed: ()=>AutoRouter.of(context).replace(const SignUpPageRoute()),
+                        onPressed: ()=>AutoRouter.of(context).replace(const SignUpRoute()),
                         child: Text("I Dont have an account !".translateWord,
-                            style: AppStyle.textTheme.subtitle1!.copyWith(color: Colors.blue,
+                            style: AppStyle.textTheme.titleMedium!.copyWith(color: Colors.blue,
                               fontWeight: FontWeight.bold,))
                     ),
 
@@ -76,11 +81,11 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
                       ),
                     ),
 
-                   const CustomSizedBox(height: 32,),
+                   const CustomSizedBox(height: 16,),
 /*
 
                   Text('Or login via social media'.translateWord,textAlign: TextAlign.center,
-                    style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600),
+                    style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600),
                   ),
 
                 const CustomSizedBox(height: 16,),
@@ -102,7 +107,7 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
                         const CustomSizedBox(width: 16,),
 
                         Text('Login via google'.translateWord,
-                            style:  AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600)),
+                            style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600)),
 
                       ],
                     ),
@@ -128,7 +133,7 @@ class LoginPage extends StatelessWidget with WidgetStoreCreatorMixin<LoginContro
                           const CustomSizedBox(width: 16,),
 
                           Text('Login via facebook'.translateWord,
-                            style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600)),
+                            style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600)),
 
                         ],
                       ),

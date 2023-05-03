@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'dart:isolate';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:etloob/firebase_options.dart';
 import 'package:etloob/src/core/util/constants.dart';
 import 'package:etloob/src/features/app/presentation/pages/app.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,7 +43,7 @@ Future<void> initApp()async{
     disableErrorBoundaries: !Constants.isTestRun,
   );
 
-   await Firebase.initializeApp();
+   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform) ;
 
 
 

@@ -1,7 +1,9 @@
+import 'package:auto_route/annotations.dart';
 import 'package:etloob/dependencies.dart';
 import 'package:etloob/src/features/auth/controllers/confirm_phone_number_controller.dart';
 import 'package:etloob/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
 import 'package:etloob/src/core/presentation/style.dart';
+import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
 import 'package:etloob/src/core/presentation/widgets/text_fields/otp_text_field.dart';
@@ -10,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
+@RoutePage()
 class ConfirmPhoneNumberPage extends StatefulWidget {
 
   final ConfirmPhoneNumberPageArguments args;
@@ -50,6 +52,10 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
       key: controller.formKey,
       child: Scaffold(
           backgroundColor:AppColors.whiteColor,
+          appBar: CustomAppBar(
+            context: context,
+            barTitle:'Confirm Your Phone Number',
+          ),
 
           body: Observer(
             builder:(_)=> Padding(
@@ -61,7 +67,7 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
                       const CustomSizedBox(height: 96,),
 
                       Text( "You will receive a code via sms... please use it to verify your phone number".translateWord,
-                        style: AppStyle.textTheme.bodyText2,textAlign: TextAlign.center,
+                        style: AppStyle.textTheme.bodyMedium,textAlign: TextAlign.center,
                       ),
 
                       const CustomSizedBox(height: 57,),
@@ -72,7 +78,7 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
                           GestureDetector(
                               onTap:resendCode,
                               child: Text('Resend Code'.translateWord,
-                                style: AppStyle.textTheme.bodyText2!.copyWith(
+                                style: AppStyle.textTheme.bodyMedium!.copyWith(
                                     color: canPressResendCode? AppColors.blackColor.shade800:AppColors.blackColor.shade300,
                                     fontWeight: FontWeight.bold),))
                         ],
@@ -85,7 +91,7 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
                       const Spacer(),
 
                       MainButton(title: 'Continue',
-                          isLoading: controller.isSubmitting,
+                          isLoading: controller.isLoading,
                           onPressed:()=> controller.submitForm(context)),
 
                       const CustomSizedBox(height: 32,),

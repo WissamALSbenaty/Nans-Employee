@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/Data/repositories/abstract/i_auth_repository.dart';
+import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:etloob/src/core/controllers/custom_form_controller.dart';
 import 'package:etloob/src/core/presentation/arguments/submit_new_password_arguments.dart';
 import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
@@ -13,7 +13,7 @@ class SubmittingNewPasswordController extends CustomFormController{
   final IAuthRepository authRepository;
   final SubmitNewPasswordArguments args;
 
-  SubmittingNewPasswordController(@factoryParam this.args,this.authRepository):super(
+  SubmittingNewPasswordController(@factoryParam this.args,this.authRepository,super.logger,):super(
     fieldsNumber: 1,
 
     submitFunction: (values)async{

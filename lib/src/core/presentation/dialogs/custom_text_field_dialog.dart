@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:etloob/src/core/presentation/style.dart';
 import 'package:etloob/src/core/presentation/validators/custom_validator.dart';
+import 'package:etloob/src/core/presentation/widgets/close_widget.dart';
 import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:etloob/src/core/presentation/widgets/main_button.dart';
 import 'package:etloob/src/core/presentation/widgets/text_fields/custom_text_field.dart';
@@ -43,10 +43,10 @@ class _CustomTextFieldDialogState extends State<CustomTextFieldDialog> {
     title: Row(
       children: [
         Text(
-          widget.title.translateWord,style: AppStyle.textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
+          widget.title.translateWord,style: AppStyle.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold),
         ),
         const Spacer(),
-         IconButton(icon: Icon( Icons.close),onPressed: AutoRouter.of(context).pop),
+        const CloseWidget(),
       ],
     ),
     content:Column(
@@ -58,7 +58,7 @@ class _CustomTextFieldDialogState extends State<CustomTextFieldDialog> {
 
         const CustomSizedBox(height: 8,),
          Text(
-          widget.dialogTextContent.translateWord,style: AppStyle.textTheme.subtitle1!.copyWith( color: AppColors.blackColor.shade800,fontWeight: FontWeight.bold),
+          widget.dialogTextContent.translateWord,style: AppStyle.textTheme.titleMedium!.copyWith( color: AppColors.blackColor.shade800,fontWeight: FontWeight.bold),
         ),
         const CustomSizedBox(height: 8,),
 

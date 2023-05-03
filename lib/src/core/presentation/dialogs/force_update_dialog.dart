@@ -11,7 +11,7 @@ class ForceUpdateDialog extends StatelessWidget {
     return CustomInfoDialog(
       title: 'Application Update !',
       content: 'This Version Is Not Supported Anymore , Please Update To The Last Version',
-      mainActionText: 'Update',
+      mainActionText: 'Update',isDismissible: false,
       onMainActionPressed: ()=>StoreRedirect.redirect(androidAppId: Constants.androidAppId,iOSAppId:Constants.iosAppId),
     );
   }

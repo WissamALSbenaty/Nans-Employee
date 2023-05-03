@@ -51,7 +51,7 @@ class _CustomPaginationListDataLoaderWidgetState<T> extends State<CustomPaginati
         child: Observer(
             builder: (_) {
               if(widget.dataLoader.isStillLazy){
-                widget.dataLoader.loadData();
+                widget.dataLoader.initializeLoader();
                 return  const CustomListLoadingShimmer();
               }
               return widget.dataLoader.isLoading?const CustomListLoadingShimmer()

@@ -1,20 +1,44 @@
+
 import 'dart:convert';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/auto_router.gr.dart';
+import 'package:etloob/src/core/presentation/auto_router.dart';
 import 'package:etloob/src/core/util/localization_manager.dart';
+import 'package:etloob/src/features/app/presentation/pages/app.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
+
+
+void handleNotificationData(String payload){
+
+  String cleanData = payload.replaceAll("{", "").replaceAll("}", "").replaceAll(r'\', "").replaceAll(r'"',"");
+  List<String> keyValueStrings = cleanData.split(",");
+
+  Map<String, dynamic> parsedData = {};
+
+  for (String keyValueString in keyValueStrings) {
+    List<String> keyValueList = keyValueString.split(":");
+
+    String key = keyValueList[0].trim();
+    dynamic value = keyValueList[1].trim();
+
+    parsedData[key] = value;
+  }
+  /*  if(int.tryParse( parsedData['OrderId'])!=null){
+      int orderId=int.parse( parsedData['OrderId']);
+
+      appRouter.push(OrderDetailsRoute(args: OrderDetailsPageArgument(orderId: orderId)));
+    }*/
+
+}
 
 @singleton
 class NotificationsManager {
   FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
 
-  initFirebaseMessaging(BuildContext context) async {
-    getNotification(context);
+  initFirebaseMessaging() async {
+    getNotification();
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     await messaging.requestPermission(
@@ -34,11 +58,11 @@ class NotificationsManager {
     );
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      handleFCMNotification(context, message);
+      handleFCMNotification( message);
     });
     FirebaseMessaging.instance.getInitialMessage().then((value) {
       if (value != null) {
-        handleFCMNotification(context, value);
+        handleFCMNotification( value);
       }
     });
 
@@ -52,18 +76,17 @@ class NotificationsManager {
             body = localizationManager.isEnglishLanguage
                 ? event.data['bodyEn']
                 : event.data['bodyAr'];
-        showNotification(title, body, event.data, context);
+        showNotification(title, body, event.data);
       } else {
         String localizedTitle = '${event.notification?.title}';
         String localizedBody = '${event.notification?.body}';
 
-        showNotification(localizedTitle, localizedBody, event.data, context);
+        showNotification(localizedTitle, localizedBody, event.data);
       }
     });
   }
 
-  Future<FlutterLocalNotificationsPlugin> getNotification(
-      BuildContext context) async {
+  Future<FlutterLocalNotificationsPlugin> getNotification() async {
     if (_flutterLocalNotificationsPlugin != null) {
       return _flutterLocalNotificationsPlugin!;
     } else {
@@ -78,7 +101,7 @@ class NotificationsManager {
           onDidReceiveLocalNotification:
               (int id, String? title, String? body, String? payload) async {
             showNotification(title ?? '', body ?? '',
-                json.decode(payload ?? ''), context);
+                json.decode(payload ?? ''));
           });
 
       final InitializationSettings initializationSettings =
@@ -94,11 +117,8 @@ class NotificationsManager {
     }
   }
 
-  Future<void> showNotification(
-      String title, String body, Map payload, BuildContext context,
-      {String? sound}) async {
-    final noti = await getNotification(context);
-    onReceiveNotification(payload, context);
+  Future<void> showNotification(String title, String body, Map payload,) async {
+    final noti = await getNotification();
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
     AndroidNotificationDetails('etloob.com', 'etloob',
@@ -116,22 +136,12 @@ class NotificationsManager {
         payload: payload.toString());
   }
 
-  void handleFCMNotification(BuildContext context, RemoteMessage message) {
+  void handleFCMNotification(  RemoteMessage message) {
     Future.delayed(const Duration(seconds: 4)).then((value) {
       // final String eventType = message.data['EventType'].toString();
 
-
+      appRouter.push(HomeRoute());
     });
   }
-
-  void onReceiveNotification(Map data, BuildContext context) {
-    final String eventType = data['EventType'].toString();
-
-    // if notification is not ads or custom
-    // => notification of orders
-    // then updating orders blocs will apply
-    if (eventType != "4" && eventType != "5") {
-      /*context.clearOrders();*/
-    }
-  }
 }
+

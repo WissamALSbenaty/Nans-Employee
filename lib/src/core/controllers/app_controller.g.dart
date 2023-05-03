@@ -6,7 +6,7 @@ part of 'app_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_User?, no_leading_underscores_for_local_identifiers
 
 mixin _$AppController on AppControllerBase, Store {
   late final _$appConfigModelAtom =
@@ -83,12 +83,28 @@ mixin _$AppController on AppControllerBase, Store {
         .run(() => super.changeAppLanguage(context));
   }
 
+  late final _$refreshProfileAsyncAction =
+      AsyncAction('AppControllerBase.refreshProfile', context: context);
+
+  @override
+  Future<void> refreshProfile() {
+    return _$refreshProfileAsyncAction.run(() => super.refreshProfile());
+  }
+
   late final _$loginAsyncAction =
       AsyncAction('AppControllerBase.login', context: context);
 
   @override
   Future<void> login(LoginModel loginModel) {
     return _$loginAsyncAction.run(() => super.login(loginModel));
+  }
+
+  late final _$loginAsGuestAsyncAction =
+      AsyncAction('AppControllerBase.loginAsGuest', context: context);
+
+  @override
+  Future<void> loginAsGuest() {
+    return _$loginAsGuestAsyncAction.run(() => super.loginAsGuest());
   }
 
   late final _$registerAsyncAction =
@@ -143,6 +159,17 @@ mixin _$AppController on AppControllerBase, Store {
         name: 'AppControllerBase.logout');
     try {
       return super.logout();
+    } finally {
+      _$AppControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<void> deleteAccount(String userInputPassword, BuildContext context) {
+    final _$actionInfo = _$AppControllerBaseActionController.startAction(
+        name: 'AppControllerBase.deleteAccount');
+    try {
+      return super.deleteAccount(userInputPassword, context);
     } finally {
       _$AppControllerBaseActionController.endAction(_$actionInfo);
     }

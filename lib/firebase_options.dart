@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBfl3z8arHs1tzl1nQe6poGH1m96PYP_8Q',
-    appId: '1:933501157199:android:79ac1ee80ed53373758f3a',
-    messagingSenderId: '933501157199',
-    projectId: 'etloob-global',
-    storageBucket: 'etloob-global.appspot.com',
+    apiKey: 'AIzaSyDb1tXvZkZnlTqUmt-zPQ2wXMeE1CxsfL0',
+    appId: '1:1058221785825:android:d77d33b67d256b56156da0',
+    messagingSenderId: '1058221785825',
+    projectId: 'nans2023',
+    storageBucket: 'nans2023.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD_E_AtTyrZMBXtz2JBCO5L5E5pYGx7Nnw',
-    appId: '1:933501157199:ios:75c32adf3da4075c758f3a',
-    messagingSenderId: '933501157199',
-    projectId: 'etloob-global',
-    storageBucket: 'etloob-global.appspot.com',
-    iosClientId: '933501157199-2s7csrgj9hq362tolb3ksukpv1h9nl1l.apps.googleusercontent.com',
-    iosBundleId: 'org.reactjs.native.example.Etloob',
+    apiKey: 'AIzaSyBNgBNDA2nsIoVFNYqLq1HrvcmGMOkp0bY',
+    appId: '1:1058221785825:ios:ff2ef813dcb235fa156da0',
+    messagingSenderId: '1058221785825',
+    projectId: 'nans2023',
+    storageBucket: 'nans2023.appspot.com',
+    iosClientId: '1058221785825-id5c0afnp4atqjgmk6qulo0l7s8ud82v.apps.googleusercontent.com',
+    iosBundleId: 'com.example.neww',
   );
 }

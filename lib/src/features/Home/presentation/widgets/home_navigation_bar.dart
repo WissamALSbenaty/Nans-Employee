@@ -29,8 +29,8 @@ class HomeNavigationBar extends StatelessWidget {
         onTap: onTabItem,
         backgroundColor: AppColors.whiteColor,
         selectedItemColor: AppColors.yellow,
-        unselectedLabelStyle: AppStyle.textTheme.subtitle1!.copyWith(fontSize:10.h, color: AppColors.blackColor.shade500,),
-        selectedLabelStyle: AppStyle.textTheme.subtitle1!.copyWith(fontSize:10.h, color: AppColors.yellow,),
+        unselectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppColors.blackColor.shade500,),
+        selectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppColors.yellow,),
         type: BottomNavigationBarType.fixed,
 
         items: [
@@ -51,7 +51,7 @@ class HomeNavigationBar extends StatelessWidget {
           imagePath[titleIndex],
           height: 24.r,
           width: 24.r,
-          color: isSelected ? AppColors.yellow : null,
+          colorFilter:ColorFilter.mode( isSelected ? AppColors.yellow : AppColors.blackColor.shade200,BlendMode.srcIn),
         ),
       ):Image.asset(Assets.homePageBox,
         height: 48.r,width: 48.r,),

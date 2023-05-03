@@ -9,7 +9,7 @@ import 'package:etloob/src/core/util/localization_manager.dart';
 import 'package:etloob/src/core/util/mixins.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+@RoutePage()
 class SearchPage extends StatelessWidget with WidgetStoreCreatorMixin<SearchController> {
     SearchPage({Key? key}) : super(key: key);
 

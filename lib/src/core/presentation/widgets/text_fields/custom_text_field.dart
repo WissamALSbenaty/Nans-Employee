@@ -20,7 +20,6 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
 
 
-
   const CustomTextField({Key? key, required this.title, this.isObscureText=false, this.suffixIcon,this.hint,this.isEnabled=true,
     this.prefixIcon, required this.onChangedFunction,this.textInputType,this.initialValue,this.inputFormatter,
     this.fieldPriority=TextFieldPriority.none, required this.validator,  this.controller,
@@ -28,67 +27,70 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 64.h,
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      decoration: BoxDecoration(
+    return TextFormField(
+      enabled: isEnabled,
+      controller: controller,
+      initialValue: initialValue,
+      obscureText: isObscureText,
+      onChanged: onChangedFunction,
+      keyboardType: textInputType,
+      validator: (value)=>validator?.check(fieldName: title, toCheckString: value),
+      cursorColor: AppColors.blackColor.shade600,
+      inputFormatters: [
+        if(inputFormatter!=null)
+          inputFormatter!,
+      ],
+      decoration:   InputDecoration(
 
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: AppColors.blackColor.shade200)
-      ),
-      child: TextFormField(
-        enabled: isEnabled,
-        controller: controller,
-        initialValue: initialValue,
-        obscureText: isObscureText,
-        onChanged: onChangedFunction,
-        keyboardType: textInputType,
-        validator: (value)=>validator?.check(fieldName: title, toCheckString: value),
-        cursorColor: AppColors.blackColor.shade600,
-        inputFormatters: [
-          if(inputFormatter!=null)
-            inputFormatter!,
-        ],
-        decoration:   InputDecoration(
+        hintText: hint?.translateWord,
+        hintStyle: AppStyle.textTheme.titleMedium,
+        suffixIcon: suffixIcon!=null? Center(child: suffixIcon!,):Container(),
 
-          hintText: hint?.translateWord,
-          hintStyle: AppStyle.textTheme.subtitle1,
-          suffixIcon: suffixIcon!=null? Center(child: suffixIcon!,):Container(),
-
-          prefixIcon: prefixIcon  ,
-          isDense: true,
-          border:InputBorder.none,
-
-          focusedBorder:InputBorder.none,
+        prefixIcon: prefixIcon  ,
+        alignLabelWithHint: true,
+        border:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: AppColors.blackColor.shade200),
+        ),
+        focusedBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.yellow),
+        ),
+        errorBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.pink),
+        ),
+        focusedErrorBorder:  OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: AppColors.red60),
+        ),
 
 
-          prefixIconConstraints: BoxConstraints(
+        prefixIconConstraints: BoxConstraints(
 
-            minWidth: 60.r,
-            maxWidth: 60.r,
+          minWidth: 60.r,
+          maxWidth: 60.r,
+        ),
+        suffixIconConstraints: BoxConstraints(
+
+          minWidth: 60.r,
+          maxWidth: 60.r,
+        ),
+
+        label: RichText(
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          text: TextSpan(
+              text: title.translateWord,
+              style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.blackColor.shade600),
+              children: [
+                TextSpan(
+                  text:fieldPriority!=TextFieldPriority.none? ' (${fieldPriority.name.translateWord})':'',
+                  style: AppStyle.textTheme.titleMedium!.copyWith(color: AppColors.red60),
+
+                )
+              ]
           ),
-          suffixIconConstraints: BoxConstraints(
-
-            minWidth: 60.r,
-            maxWidth: 60.r,
-          ),
-          label: RichText(
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            text: TextSpan(
-                text: title.translateWord,
-                style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.blackColor.shade600),
-                children: [
-                  TextSpan(
-                    text:fieldPriority!=TextFieldPriority.none? ' (${fieldPriority.name.translateWord})':'',
-                    style: AppStyle.textTheme.subtitle1!.copyWith(color: AppColors.red60),
-
-                  )
-                ]
-            ),
-          ),
-
-
         ),
       ),
     );

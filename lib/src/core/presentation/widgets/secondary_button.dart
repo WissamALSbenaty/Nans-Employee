@@ -14,22 +14,25 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPress,
-      child: Container(
-        width: width.w,
-        height: 66.h,
-        decoration: BoxDecoration(
-          color: AppColors.whiteColor,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: AppColors.yellow)
-        ),
 
-        child: Center(
-          child: Text(title.translateWord,
-            style:  AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.yellow,fontWeight: FontWeight.bold)),
+    return ElevatedButton(
+
+        style: ButtonStyle(
+            padding: MaterialStateProperty.all(EdgeInsets.zero),
+            elevation: MaterialStateProperty.all(5),
+            backgroundColor:MaterialStateProperty.all(AppColors.whiteColor),
+            shape: MaterialStateProperty.all( RoundedRectangleBorder(side: const BorderSide(
+              color: AppColors.yellow
+            ),
+              borderRadius: BorderRadius.circular(8),))
         ),
-      ),
-    );
+        onPressed:onPress,
+        child: SizedBox(
+            width: width.w,
+            height: 66.h,
+
+            child: Center(
+                child: Text(title.translateWord,
+                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.yellow,fontWeight: FontWeight.bold),))));
   }
 }

@@ -9,7 +9,7 @@ final GlobalKey<ScaffoldMessengerState> snackbarKey = GlobalKey<ScaffoldMessenge
 
 class BottomSnackBar{
 
-    static void show(String message,ToastType type,{void Function()? onRetry } ) {
+    static void show(String message,ToastType type) {
       Color backgroundColor;
       switch (type) {
         case ToastType.success:
@@ -28,13 +28,8 @@ class BottomSnackBar{
       snackbarKey.currentState?.showSnackBar(SnackBar(
           backgroundColor: backgroundColor,
           duration: const Duration(seconds: 1,milliseconds: 500),
-          content: Text(message.tr(),style: AppStyle.textTheme.bodyText2!.copyWith(color: AppColors.whiteColor,
+          content: Text(message.tr(),style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.whiteColor,
               fontWeight: FontWeight.bold),),
-          action:onRetry!=null? SnackBarAction(
-            label: 'Retry'.tr(),
-            textColor: AppColors.whiteColor,
-            onPressed: onRetry,
-          ):null,
       ));
 
     }

@@ -1,7 +1,6 @@
-import 'package:etloob/src/core/Data/repositories/abstract/i_auth_repository.dart';
+import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:etloob/src/core/controllers/custom_form_controller.dart';
 import 'package:etloob/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
-import 'package:etloob/src/core/util/enums.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -10,7 +9,7 @@ class ConfirmPhoneNumberController extends CustomFormController {
   final IAuthRepository authRepository;
   final ConfirmPhoneNumberPageArguments args;
 
-  ConfirmPhoneNumberController(@factoryParam this.args,this.authRepository):super(
+  ConfirmPhoneNumberController(@factoryParam this.args,this.authRepository,super.logger,):super(
     fieldsNumber: 1,
 
     submitFunction: (values)async{
@@ -25,7 +24,7 @@ class ConfirmPhoneNumberController extends CustomFormController {
 
   @override
   onInit()=>runStorePrimaryFunction(Future(()async{
-    if(args.verificationReason!=VerificationReason.VerifyAccount) {
+        if(args.isOtpFromBackend) {
       await authRepository.sendConfirmationCode(phoneNumber: args.phoneNumber, verificationReason: args.verificationReason);
     }
   }));

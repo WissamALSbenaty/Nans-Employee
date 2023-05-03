@@ -1,10 +1,6 @@
 
 
-import 'package:etloob/src/core/Data/Errors/core_errors.dart';
-import 'package:etloob/src/core/Data/Errors/custom_error.dart';
 import 'package:etloob/src/core/controllers/base_store.dart';
-import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:etloob/src/core/util/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,7 +8,7 @@ part 'custom_form_controller.g.dart';
 
 abstract class CustomFormController extends CustomFormControllerBase with _$CustomFormController{
 
-  CustomFormController({ super.initialValues,required super.fieldsNumber,required super.afterSuccessSubmit,required super.submitFunction});
+  CustomFormController(super.logger,{ super.initialValues,required super.fieldsNumber,required super.afterSuccessSubmit,required super.submitFunction});
 }
 
 abstract class CustomFormControllerBase extends BaseStoreController with Store {
@@ -23,20 +19,18 @@ abstract class CustomFormControllerBase extends BaseStoreController with Store {
   final Future<void> Function(List<String?>) submitFunction;
   final Future<void> Function(List<String?>,BuildContext) afterSuccessSubmit;
 
-  CustomFormControllerBase({this.initialValues,required this.fieldsNumber,required this.submitFunction, required this.afterSuccessSubmit}){
+  CustomFormControllerBase(super.logger,{this.initialValues,required this.fieldsNumber,required this.submitFunction, required this.afterSuccessSubmit}){
     onInit();
     currentValues=ObservableList.of(List.generate(fieldsNumber, (index) =>initialValues?[index] ));
   }
 
-  @observable
-  bool isSubmitting=false;
 
   @observable
   ObservableList<String?> currentValues=ObservableList();
 
 
   @action
-Future<void> changeValue(int index,String? newValue)async{
+  Future<void> changeValue(int index,String? newValue)async{
     currentValues[index]=newValue;
   }
 
@@ -45,29 +39,21 @@ Future<void> changeValue(int index,String? newValue)async{
 
 
   @action
-  Future<void> submitForm(BuildContext context)async{
-    if(isSubmitting) {
+  Future<void> submitForm(BuildContext context)=>runStoreSecondaryFunction(Future(()async{
+    if(isLoading) {
+      return ;
+    }
+    if(!canSubmit){
       return;
     }
-    try{
-      if(!formKey.currentState!.validate()){
-        return;
-      }
 
-      formKey.currentState!.save();
+    formKey.currentState!.save();
 
-      isSubmitting=true;
+    isLoading=true;
 
-      await submitFunction(currentValues);
-      await afterSuccessSubmit(currentValues,context);
-    }
-    on CustomError catch(e){
-      BottomSnackBar.show(e.errorMessage, ToastType.error,
-    onRetry: e is InternetConnectionError? ()=>submitForm(context):null);
-    }
-    finally{
-      isSubmitting=false;
-    }
-
+    await submitFunction(currentValues);
+    isLoading=false;
+    await afterSuccessSubmit(currentValues,context);
   }
+  ),onCatchError: (){isLoading=false;});
 }

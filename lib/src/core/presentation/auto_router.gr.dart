@@ -1,441 +1,463 @@
-// **************************************************************************
-// AutoRouteGenerator
-// **************************************************************************
-
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
-// AutoRouteGenerator
+// AutoRouterGenerator
 // **************************************************************************
-//
+
 // ignore_for_file: type=lint
+// coverage:ignore-file
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i12;
-import 'package:flutter/material.dart' as _i13;
+part of 'auto_router.dart';
 
-import '../../features/auth/presentation/pages/confirm_phone_number_page.dart'
-    as _i4;
-import '../../features/auth/presentation/pages/login_page.dart' as _i3;
-import '../../features/auth/presentation/pages/sign_up_page.dart' as _i2;
-import '../../features/auth/presentation/pages/submit_new_password_page.dart'
-    as _i5;
-import '../../features/auth/presentation/pages/submit_phone_number_page.dart'
-    as _i6;
-import '../../features/Home/presentation/pages/home_page.dart' as _i7;
-import '../../features/intro/presentation/pages/splash_screen.dart' as _i1;
-import '../../features/Profile/presentation/pages/edit_account_page.dart'
-    as _i10;
-import '../../features/Profile/presentation/pages/my_profile_page.dart' as _i8;
-import '../../features/Profile/presentation/pages/settings_page.dart' as _i9;
-import '../../features/Search/presentation/pages/search_page.dart' as _i11;
-import 'arguments/confirm_phone_number_page_arguments.dart' as _i14;
-import 'arguments/phone_number_submitting_arguments.dart' as _i16;
-import 'arguments/submit_new_password_arguments.dart' as _i15;
-
-class AppRouter extends _i12.RootStackRouter {
-  AppRouter([_i13.GlobalKey<_i13.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i12.PageFactory> pagesMap = {
-    SplashScreenRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+  final Map<String, PageFactory> pagesMap = {
+    ConfirmPhoneNumberRoute.name: (routeData) {
+      final args = routeData.argsAs<ConfirmPhoneNumberRouteArgs>();
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.SplashScreen(),
-      );
-    },
-    SignUpPageRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child:  _i2.SignUpPage(),
-      );
-    },
-    LoginPageRoute.name: (routeData) {
-      final args = routeData.argsAs<LoginPageRouteArgs>(
-          orElse: () => const LoginPageRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: _i3.LoginPage(key: args.key),
-      );
-    },
-    ConfirmPhoneNumberPageRoute.name: (routeData) {
-      final args = routeData.argsAs<ConfirmPhoneNumberPageRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: _i4.ConfirmPhoneNumberPage(
+        child: ConfirmPhoneNumberPage(
           key: args.key,
           args: args.args,
         ),
       );
     },
-    SubmitNewPasswordPageRoute.name: (routeData) {
-      final args = routeData.argsAs<SubmitNewPasswordPageRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+    LoginRoute.name: (routeData) {
+      final args = routeData.argsAs<LoginRouteArgs>(
+          orElse: () => const LoginRouteArgs());
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i5.SubmitNewPasswordPage(
+        child: LoginPage(key: args.key),
+      );
+    },
+    SignUpRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SignUpPage(),
+      );
+    },
+    SubmitNewPasswordRoute.name: (routeData) {
+      final args = routeData.argsAs<SubmitNewPasswordRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SubmitNewPasswordPage(
           key: args.key,
           args: args.args,
         ),
       );
     },
-    SubmitPhoneNumberPageRoute.name: (routeData) {
-      final args = routeData.argsAs<SubmitPhoneNumberPageRouteArgs>();
-      return _i12.MaterialPageX<dynamic>(
+    SubmitPhoneNumberRoute.name: (routeData) {
+      final args = routeData.argsAs<SubmitPhoneNumberRouteArgs>();
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.SubmitPhoneNumberPage(
+        child: SubmitPhoneNumberPage(
           key: args.key,
           args: args.args,
         ),
       );
     },
-    HomePageRoute.name: (routeData) {
-      final args = routeData.argsAs<HomePageRouteArgs>(
-          orElse: () => const HomePageRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
+    HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i7.HomePage(key: args.key),
+        child: HomePage(key: args.key),
       );
     },
-    MyProfilePageRoute.name: (routeData) {
-      final args = routeData.argsAs<MyProfilePageRouteArgs>(
-          orElse: () => const MyProfilePageRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
+    OnBoardingRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i8.MyProfilePage(key: args.key),
+        child: const OnBoardingPage(),
       );
     },
-    SettingsPageRoute.name: (routeData) {
-      return _i12.MaterialPageX<dynamic>(
+    SplashRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.SettingsPage(),
+        child: const SplashScreen(),
       );
     },
-    EditAccountPageRoute.name: (routeData) {
-      final args = routeData.argsAs<EditAccountPageRouteArgs>(
-          orElse: () => const EditAccountPageRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
+    EditAccountRoute.name: (routeData) {
+      final args = routeData.argsAs<EditAccountRouteArgs>(
+          orElse: () => const EditAccountRouteArgs());
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i10.EditAccountPage(key: args.key),
+        child: EditAccountPage(key: args.key),
       );
     },
-    SearchPageRoute.name: (routeData) {
-      final args = routeData.argsAs<SearchPageRouteArgs>(
-          orElse: () => const SearchPageRouteArgs());
-      return _i12.MaterialPageX<dynamic>(
+    MyProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<MyProfileRouteArgs>(
+          orElse: () => const MyProfileRouteArgs());
+      return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i11.SearchPage(key: args.key),
+        child: MyProfilePage(key: args.key),
+      );
+    },
+    NotificationsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NotificationsPage(),
+      );
+    },
+    SettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<SettingsRouteArgs>(
+          orElse: () => const SettingsRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SettingsPage(key: args.key),
+      );
+    },
+    SearchRoute.name: (routeData) {
+      final args = routeData.argsAs<SearchRouteArgs>(
+          orElse: () => const SearchRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SearchPage(key: args.key),
       );
     },
   };
-
-  @override
-  List<_i12.RouteConfig> get routes => [
-        _i12.RouteConfig(
-          SplashScreenRoute.name,
-          path: '/',
-        ),
-        _i12.RouteConfig(
-          SignUpPageRoute.name,
-          path: '/sign-up-page',
-        ),
-        _i12.RouteConfig(
-          LoginPageRoute.name,
-          path: '/login-page',
-        ),
-        _i12.RouteConfig(
-          ConfirmPhoneNumberPageRoute.name,
-          path: '/confirm-phone-number-page',
-        ),
-        _i12.RouteConfig(
-          SubmitNewPasswordPageRoute.name,
-          path: '/submit-new-password-page',
-        ),
-        _i12.RouteConfig(
-          SubmitPhoneNumberPageRoute.name,
-          path: '/submit-phone-number-page',
-        ),
-        _i12.RouteConfig(
-          HomePageRoute.name,
-          path: '/home-page',
-        ),
-        _i12.RouteConfig(
-          MyProfilePageRoute.name,
-          path: '/my-profile-page',
-        ),
-        _i12.RouteConfig(
-          SettingsPageRoute.name,
-          path: '/settings-page',
-        ),
-        _i12.RouteConfig(
-          EditAccountPageRoute.name,
-          path: '/edit-account-page',
-        ),
-        _i12.RouteConfig(
-          SearchPageRoute.name,
-          path: '/search-page',
-        ),
-      ];
 }
 
 /// generated route for
-/// [_i1.SplashScreen]
-class SplashScreenRoute extends _i12.PageRouteInfo<void> {
-  const SplashScreenRoute()
-      : super(
-          SplashScreenRoute.name,
-          path: '/',
-        );
-
-  static const String name = 'SplashScreenRoute';
-}
-
-/// generated route for
-/// [_i2.SignUpPage]
-class SignUpPageRoute extends _i12.PageRouteInfo<void> {
-  const SignUpPageRoute()
-      : super(
-          SignUpPageRoute.name,
-          path: '/sign-up-page',
-        );
-
-  static const String name = 'SignUpPageRoute';
-}
-
-/// generated route for
-/// [_i3.LoginPage]
-class LoginPageRoute extends _i12.PageRouteInfo<LoginPageRouteArgs> {
-  LoginPageRoute({_i13.Key? key})
-      : super(
-          LoginPageRoute.name,
-          path: '/login-page',
-          args: LoginPageRouteArgs(key: key),
-        );
-
-  static const String name = 'LoginPageRoute';
-}
-
-class LoginPageRouteArgs {
-  const LoginPageRouteArgs({this.key});
-
-  final _i13.Key? key;
-
-  @override
-  String toString() {
-    return 'LoginPageRouteArgs{key: $key}';
-  }
-}
-
-/// generated route for
-/// [_i4.ConfirmPhoneNumberPage]
-class ConfirmPhoneNumberPageRoute
-    extends _i12.PageRouteInfo<ConfirmPhoneNumberPageRouteArgs> {
-  ConfirmPhoneNumberPageRoute({
-    _i13.Key? key,
-    required _i14.ConfirmPhoneNumberPageArguments args,
+/// [ConfirmPhoneNumberPage]
+class ConfirmPhoneNumberRoute
+    extends PageRouteInfo<ConfirmPhoneNumberRouteArgs> {
+  ConfirmPhoneNumberRoute({
+    Key? key,
+    required ConfirmPhoneNumberPageArguments args,
+    List<PageRouteInfo>? children,
   }) : super(
-          ConfirmPhoneNumberPageRoute.name,
-          path: '/confirm-phone-number-page',
-          args: ConfirmPhoneNumberPageRouteArgs(
+          ConfirmPhoneNumberRoute.name,
+          args: ConfirmPhoneNumberRouteArgs(
             key: key,
             args: args,
           ),
+          initialChildren: children,
         );
 
-  static const String name = 'ConfirmPhoneNumberPageRoute';
+  static const String name = 'ConfirmPhoneNumberRoute';
+
+  static const PageInfo<ConfirmPhoneNumberRouteArgs> page =
+      PageInfo<ConfirmPhoneNumberRouteArgs>(name);
 }
 
-class ConfirmPhoneNumberPageRouteArgs {
-  const ConfirmPhoneNumberPageRouteArgs({
+class ConfirmPhoneNumberRouteArgs {
+  const ConfirmPhoneNumberRouteArgs({
     this.key,
     required this.args,
   });
 
-  final _i13.Key? key;
+  final Key? key;
 
-  final _i14.ConfirmPhoneNumberPageArguments args;
+  final ConfirmPhoneNumberPageArguments args;
 
   @override
   String toString() {
-    return 'ConfirmPhoneNumberPageRouteArgs{key: $key, args: $args}';
+    return 'ConfirmPhoneNumberRouteArgs{key: $key, args: $args}';
   }
 }
 
 /// generated route for
-/// [_i5.SubmitNewPasswordPage]
-class SubmitNewPasswordPageRoute
-    extends _i12.PageRouteInfo<SubmitNewPasswordPageRouteArgs> {
-  SubmitNewPasswordPageRoute({
-    _i13.Key? key,
-    required _i15.SubmitNewPasswordArguments args,
+/// [LoginPage]
+class LoginRoute extends PageRouteInfo<LoginRouteArgs> {
+  LoginRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
   }) : super(
-          SubmitNewPasswordPageRoute.name,
-          path: '/submit-new-password-page',
-          args: SubmitNewPasswordPageRouteArgs(
+          LoginRoute.name,
+          args: LoginRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const PageInfo<LoginRouteArgs> page = PageInfo<LoginRouteArgs>(name);
+}
+
+class LoginRouteArgs {
+  const LoginRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'LoginRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [SignUpPage]
+class SignUpRoute extends PageRouteInfo<void> {
+  const SignUpRoute({List<PageRouteInfo>? children})
+      : super(
+          SignUpRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SignUpRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SubmitNewPasswordPage]
+class SubmitNewPasswordRoute extends PageRouteInfo<SubmitNewPasswordRouteArgs> {
+  SubmitNewPasswordRoute({
+    Key? key,
+    required SubmitNewPasswordArguments args,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SubmitNewPasswordRoute.name,
+          args: SubmitNewPasswordRouteArgs(
             key: key,
             args: args,
           ),
+          initialChildren: children,
         );
 
-  static const String name = 'SubmitNewPasswordPageRoute';
+  static const String name = 'SubmitNewPasswordRoute';
+
+  static const PageInfo<SubmitNewPasswordRouteArgs> page =
+      PageInfo<SubmitNewPasswordRouteArgs>(name);
 }
 
-class SubmitNewPasswordPageRouteArgs {
-  const SubmitNewPasswordPageRouteArgs({
+class SubmitNewPasswordRouteArgs {
+  const SubmitNewPasswordRouteArgs({
     this.key,
     required this.args,
   });
 
-  final _i13.Key? key;
+  final Key? key;
 
-  final _i15.SubmitNewPasswordArguments args;
+  final SubmitNewPasswordArguments args;
 
   @override
   String toString() {
-    return 'SubmitNewPasswordPageRouteArgs{key: $key, args: $args}';
+    return 'SubmitNewPasswordRouteArgs{key: $key, args: $args}';
   }
 }
 
 /// generated route for
-/// [_i6.SubmitPhoneNumberPage]
-class SubmitPhoneNumberPageRoute
-    extends _i12.PageRouteInfo<SubmitPhoneNumberPageRouteArgs> {
-  SubmitPhoneNumberPageRoute({
-    _i13.Key? key,
-    required _i16.PhoneNumberSubmittingArguments args,
+/// [SubmitPhoneNumberPage]
+class SubmitPhoneNumberRoute extends PageRouteInfo<SubmitPhoneNumberRouteArgs> {
+  SubmitPhoneNumberRoute({
+    Key? key,
+    required PhoneNumberSubmittingArguments args,
+    List<PageRouteInfo>? children,
   }) : super(
-          SubmitPhoneNumberPageRoute.name,
-          path: '/submit-phone-number-page',
-          args: SubmitPhoneNumberPageRouteArgs(
+          SubmitPhoneNumberRoute.name,
+          args: SubmitPhoneNumberRouteArgs(
             key: key,
             args: args,
           ),
+          initialChildren: children,
         );
 
-  static const String name = 'SubmitPhoneNumberPageRoute';
+  static const String name = 'SubmitPhoneNumberRoute';
+
+  static const PageInfo<SubmitPhoneNumberRouteArgs> page =
+      PageInfo<SubmitPhoneNumberRouteArgs>(name);
 }
 
-class SubmitPhoneNumberPageRouteArgs {
-  const SubmitPhoneNumberPageRouteArgs({
+class SubmitPhoneNumberRouteArgs {
+  const SubmitPhoneNumberRouteArgs({
     this.key,
     required this.args,
   });
 
-  final _i13.Key? key;
+  final Key? key;
 
-  final _i16.PhoneNumberSubmittingArguments args;
+  final PhoneNumberSubmittingArguments args;
 
   @override
   String toString() {
-    return 'SubmitPhoneNumberPageRouteArgs{key: $key, args: $args}';
+    return 'SubmitPhoneNumberRouteArgs{key: $key, args: $args}';
   }
 }
 
 /// generated route for
-/// [_i7.HomePage]
-class HomePageRoute extends _i12.PageRouteInfo<HomePageRouteArgs> {
-  HomePageRoute({_i13.Key? key})
-      : super(
-          HomePageRoute.name,
-          path: '/home-page',
-          args: HomePageRouteArgs(key: key),
+/// [HomePage]
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          HomeRoute.name,
+          args: HomeRouteArgs(key: key),
+          initialChildren: children,
         );
 
-  static const String name = 'HomePageRoute';
+  static const String name = 'HomeRoute';
+
+  static const PageInfo<HomeRouteArgs> page = PageInfo<HomeRouteArgs>(name);
 }
 
-class HomePageRouteArgs {
-  const HomePageRouteArgs({this.key});
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key});
 
-  final _i13.Key? key;
+  final Key? key;
 
   @override
   String toString() {
-    return 'HomePageRouteArgs{key: $key}';
+    return 'HomeRouteArgs{key: $key}';
   }
 }
 
 /// generated route for
-/// [_i8.MyProfilePage]
-class MyProfilePageRoute extends _i12.PageRouteInfo<MyProfilePageRouteArgs> {
-  MyProfilePageRoute({_i13.Key? key})
+/// [OnBoardingPage]
+class OnBoardingRoute extends PageRouteInfo<void> {
+  const OnBoardingRoute({List<PageRouteInfo>? children})
       : super(
-          MyProfilePageRoute.name,
-          path: '/my-profile-page',
-          args: MyProfilePageRouteArgs(key: key),
+          OnBoardingRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'MyProfilePageRoute';
+  static const String name = 'OnBoardingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
-class MyProfilePageRouteArgs {
-  const MyProfilePageRouteArgs({this.key});
+/// generated route for
+/// [SplashScreen]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute({List<PageRouteInfo>? children})
+      : super(
+          SplashRoute.name,
+          initialChildren: children,
+        );
 
-  final _i13.Key? key;
+  static const String name = 'SplashRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EditAccountPage]
+class EditAccountRoute extends PageRouteInfo<EditAccountRouteArgs> {
+  EditAccountRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EditAccountRoute.name,
+          args: EditAccountRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'EditAccountRoute';
+
+  static const PageInfo<EditAccountRouteArgs> page =
+      PageInfo<EditAccountRouteArgs>(name);
+}
+
+class EditAccountRouteArgs {
+  const EditAccountRouteArgs({this.key});
+
+  final Key? key;
 
   @override
   String toString() {
-    return 'MyProfilePageRouteArgs{key: $key}';
+    return 'EditAccountRouteArgs{key: $key}';
   }
 }
 
 /// generated route for
-/// [_i9.SettingsPage]
-class SettingsPageRoute extends _i12.PageRouteInfo<void> {
-  const SettingsPageRoute()
-      : super(
-          SettingsPageRoute.name,
-          path: '/settings-page',
+/// [MyProfilePage]
+class MyProfileRoute extends PageRouteInfo<MyProfileRouteArgs> {
+  MyProfileRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MyProfileRoute.name,
+          args: MyProfileRouteArgs(key: key),
+          initialChildren: children,
         );
 
-  static const String name = 'SettingsPageRoute';
+  static const String name = 'MyProfileRoute';
+
+  static const PageInfo<MyProfileRouteArgs> page =
+      PageInfo<MyProfileRouteArgs>(name);
 }
 
-/// generated route for
-/// [_i10.EditAccountPage]
-class EditAccountPageRoute
-    extends _i12.PageRouteInfo<EditAccountPageRouteArgs> {
-  EditAccountPageRoute({_i13.Key? key})
-      : super(
-          EditAccountPageRoute.name,
-          path: '/edit-account-page',
-          args: EditAccountPageRouteArgs(key: key),
-        );
+class MyProfileRouteArgs {
+  const MyProfileRouteArgs({this.key});
 
-  static const String name = 'EditAccountPageRoute';
-}
-
-class EditAccountPageRouteArgs {
-  const EditAccountPageRouteArgs({this.key});
-
-  final _i13.Key? key;
+  final Key? key;
 
   @override
   String toString() {
-    return 'EditAccountPageRouteArgs{key: $key}';
+    return 'MyProfileRouteArgs{key: $key}';
   }
 }
 
 /// generated route for
-/// [_i11.SearchPage]
-class SearchPageRoute extends _i12.PageRouteInfo<SearchPageRouteArgs> {
-  SearchPageRoute({_i13.Key? key})
+/// [NotificationsPage]
+class NotificationsRoute extends PageRouteInfo<void> {
+  const NotificationsRoute({List<PageRouteInfo>? children})
       : super(
-          SearchPageRoute.name,
-          path: '/search-page',
-          args: SearchPageRouteArgs(key: key),
+          NotificationsRoute.name,
+          initialChildren: children,
         );
 
-  static const String name = 'SearchPageRoute';
+  static const String name = 'NotificationsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
-class SearchPageRouteArgs {
-  const SearchPageRouteArgs({this.key});
+/// generated route for
+/// [SettingsPage]
+class SettingsRoute extends PageRouteInfo<SettingsRouteArgs> {
+  SettingsRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SettingsRoute.name,
+          args: SettingsRouteArgs(key: key),
+          initialChildren: children,
+        );
 
-  final _i13.Key? key;
+  static const String name = 'SettingsRoute';
+
+  static const PageInfo<SettingsRouteArgs> page =
+      PageInfo<SettingsRouteArgs>(name);
+}
+
+class SettingsRouteArgs {
+  const SettingsRouteArgs({this.key});
+
+  final Key? key;
 
   @override
   String toString() {
-    return 'SearchPageRouteArgs{key: $key}';
+    return 'SettingsRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [SearchPage]
+class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
+  SearchRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SearchRoute.name,
+          args: SearchRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchRoute';
+
+  static const PageInfo<SearchRouteArgs> page = PageInfo<SearchRouteArgs>(name);
+}
+
+class SearchRouteArgs {
+  const SearchRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'SearchRouteArgs{key: $key}';
   }
 }
