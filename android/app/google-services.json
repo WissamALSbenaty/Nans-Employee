@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1058221785825",
+    "project_id": "nans2023",
+    "storage_bucket": "nans2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058221785825:android:d77d33b67d256b56156da0",
+        "android_client_info": {
+          "package_name": "com.example.neww"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058221785825-rh8974a7c4a70irf4kjktshm3l9bur7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb1tXvZkZnlTqUmt-zPQ2wXMeE1CxsfL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058221785825-rh8974a7c4a70irf4kjktshm3l9bur7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
