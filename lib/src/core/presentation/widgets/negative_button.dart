@@ -1,5 +1,5 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,9 +18,9 @@ class NegativeButton extends StatelessWidget {
         style: ButtonStyle(
             padding: MaterialStateProperty.all(EdgeInsets.zero),
             elevation: MaterialStateProperty.all(5),
-            backgroundColor:MaterialStateProperty.all(AppColors.whiteColor),
+            backgroundColor:MaterialStateProperty.all(Colors.white),
             shape: MaterialStateProperty.all( RoundedRectangleBorder(side: const BorderSide(
-                color: AppColors.darkPink
+                color: AppColors.errorColor
             ),
               borderRadius: BorderRadius.circular(8),))
         ),
@@ -31,6 +31,6 @@ class NegativeButton extends StatelessWidget {
 
             child: Center(
                 child: Text(title.translateWord,
-                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.darkPink,fontWeight: FontWeight.bold),))));
+                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.errorColor,fontWeight: FontWeight.bold),))));
   }
 }

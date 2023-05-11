@@ -8,7 +8,7 @@ class NotificationModel with _$NotificationModel{
   const NotificationModel._();
 
   factory NotificationModel({
-    required int id,
+    required String id,
     @JsonKey(name: 'titleEn')  required String englishTitle,
     @JsonKey(name: 'bodyEn')   required String englishBody,
     @JsonKey(name: 'titleAr')  required String arabicTitle,

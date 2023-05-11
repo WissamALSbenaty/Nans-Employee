@@ -1,12 +1,24 @@
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nans/src/core/util/enums.dart';
 
+part 'register_model.freezed.dart';
+part 'register_model.g.dart';
 
-class RegisterModel{
-  String firstName,lastName,password,phoneNumber;
-  String? referralCode;
+@freezed
+class RegisterModel with _$RegisterModel{
 
-  RegisterModel({required this.lastName,required this.firstName,required this.referralCode,
-     required this.password,required this.phoneNumber});
+  factory RegisterModel({
+    required String email,
+    required String name,
+    required String fatherName,
+    required String motherName,
+    required String phoneNumber,
+    required String password,
+    required GenderType gender,
+  })=_RegisterModel;
+
+  factory RegisterModel.fromJson( Map<String,dynamic> data)=>_$RegisterModelFromJson(data);
 
 
 }

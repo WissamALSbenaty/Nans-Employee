@@ -1,5 +1,5 @@
 
-import 'package:etloob/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/style.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

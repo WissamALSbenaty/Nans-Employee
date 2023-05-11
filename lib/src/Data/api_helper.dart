@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/errors_factory.dart';
-import 'package:etloob/src/Data/models/pagination_response_model.dart';
-import 'package:etloob/src/core/util/constants.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
+import 'package:nans/src/Data/Errors/core_errors.dart';
+import 'package:nans/src/Data/Errors/errors_factory.dart';
+import 'package:nans/src/Data/models/pagination_response_model.dart';
+import 'package:nans/src/core/util/constants.dart';
+import 'package:nans/src/core/util/localization_manager.dart';
 import 'package:injectable/injectable.dart';
 
 import 'models/response_model.dart';
@@ -37,7 +37,7 @@ class ApiHelper {
       var response = await _dio.request('${Constants.baseUrl}/$url' ,
           options: Options(method: methodName,headers: _getHeaders(isAuthenticated: isAuthenticated)),
           queryParameters:methodName!="POST"&&methodName!="DELETE"? parameters:null,
-          data:methodName=="POST"||methodName=="DELETE"?FormData.fromMap(parameters):null,
+          data:methodName=="POST"||methodName=="DELETE"?parameters:null,
 
       );
 

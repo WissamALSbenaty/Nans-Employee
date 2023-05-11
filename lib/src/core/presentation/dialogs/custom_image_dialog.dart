@@ -1,9 +1,9 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/close_widget.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/presentation/widgets/main_button.dart';
-import 'package:etloob/src/core/presentation/widgets/secondary_button.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/close_widget.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/presentation/widgets/main_button.dart';
+import 'package:nans/src/core/presentation/widgets/secondary_button.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,7 +33,7 @@ class CustomImageDialog extends StatelessWidget {
      shape: RoundedRectangleBorder(
        borderRadius: BorderRadius.circular(15),
      ),
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: Colors.white,
 
       title: Column(
 

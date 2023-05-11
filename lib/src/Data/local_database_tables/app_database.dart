@@ -3,8 +3,8 @@
 import 'dart:io';
 
 import 'package:drift/drift.dart';
-import 'package:etloob/src/Data/local_database_tables/searches.dart';
-import 'package:etloob/src/Data/local_database_tables/users.dart';
+import 'package:nans/src/Data/local_database_tables/searches.dart';
+import 'package:nans/src/Data/local_database_tables/users.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:path_provider/path_provider.dart';

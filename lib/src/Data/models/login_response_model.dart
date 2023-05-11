@@ -1,5 +1,5 @@
 
-import 'package:etloob/src/Data/models/user_profile_model.dart';
+import 'package:nans/src/Data/models/user_profile_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_response_model.freezed.dart';

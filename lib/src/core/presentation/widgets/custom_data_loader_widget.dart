@@ -1,6 +1,6 @@
-import 'package:etloob/src/core/controllers/custom_data_loader.dart';
-import 'package:etloob/src/core/presentation/widgets/base_data_loader.dart';
-import 'package:etloob/src/core/presentation/widgets/shimmers/default_shimmer.dart';
+import 'package:nans/src/core/controllers/custom_data_loader.dart';
+import 'package:nans/src/core/presentation/widgets/base_data_loader.dart';
+import 'package:nans/src/core/presentation/widgets/shimmers/default_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class CustomDataLoaderWidget<T> extends StatelessWidget {

@@ -1,8 +1,8 @@
 
 import 'dart:io';
 
-import 'package:etloob/src/core/util/enums.dart';
-import 'package:etloob/src/core/util/constants.dart';
+import 'package:nans/src/core/util/enums.dart';
+import 'package:nans/src/core/util/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_settings_model.freezed.dart';

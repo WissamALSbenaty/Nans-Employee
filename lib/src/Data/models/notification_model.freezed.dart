@@ -20,7 +20,7 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NotificationModel {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'titleEn')
   String get englishTitle => throw _privateConstructorUsedError;
   @JsonKey(name: 'bodyEn')
@@ -46,7 +46,7 @@ abstract class $NotificationModelCopyWith<$Res> {
       _$NotificationModelCopyWithImpl<$Res, NotificationModel>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       @JsonKey(name: 'titleEn')
           String englishTitle,
       @JsonKey(name: 'bodyEn')
@@ -85,7 +85,7 @@ class _$NotificationModelCopyWithImpl<$Res, $Val extends NotificationModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       englishTitle: null == englishTitle
           ? _value.englishTitle
           : englishTitle // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ abstract class _$$_NotificationModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       @JsonKey(name: 'titleEn')
           String englishTitle,
       @JsonKey(name: 'bodyEn')
@@ -160,7 +160,7 @@ class __$$_NotificationModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       englishTitle: null == englishTitle
           ? _value.englishTitle
           : englishTitle // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class _$_NotificationModel extends _NotificationModel {
       _$$_NotificationModelFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   @JsonKey(name: 'titleEn')
   final String englishTitle;
@@ -276,7 +276,7 @@ class _$_NotificationModel extends _NotificationModel {
 
 abstract class _NotificationModel extends NotificationModel {
   factory _NotificationModel(
-      {required final int id,
+      {required final String id,
       @JsonKey(name: 'titleEn')
           required final String englishTitle,
       @JsonKey(name: 'bodyEn')
@@ -294,7 +294,7 @@ abstract class _NotificationModel extends NotificationModel {
       _$_NotificationModel.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   @JsonKey(name: 'titleEn')
   String get englishTitle;

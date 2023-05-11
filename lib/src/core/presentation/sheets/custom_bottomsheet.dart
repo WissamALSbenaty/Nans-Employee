@@ -1,5 +1,5 @@
-import 'package:etloob/src/core/presentation/sheets/sheet_header.dart';
-import 'package:etloob/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/sheets/sheet_header.dart';
+import 'package:nans/src/core/presentation/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
@@ -28,7 +28,7 @@ Future showCustomBottomSheet(BuildContext context,Widget sheetWidget ,List<doubl
            return const SheetHeader();
        },
        builder: (_,__)=>Material(
-           color:AppColors.whiteColor ,
+           color:Colors.white ,
            child: sheetWidget,
        ),
 

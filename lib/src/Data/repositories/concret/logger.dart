@@ -1,4 +1,4 @@
-import 'package:etloob/src/Data/repositories/abstract/i_logger.dart';
+import 'package:nans/src/Data/repositories/abstract/i_logger.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: ILogger)

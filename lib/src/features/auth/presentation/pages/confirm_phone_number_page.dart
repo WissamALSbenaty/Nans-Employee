@@ -1,13 +1,13 @@
 import 'package:auto_route/annotations.dart';
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/features/auth/controllers/confirm_phone_number_controller.dart';
-import 'package:etloob/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/presentation/widgets/main_button.dart';
-import 'package:etloob/src/core/presentation/widgets/text_fields/otp_text_field.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/dependencies.dart';
+import 'package:nans/src/features/auth/controllers/confirm_phone_number_controller.dart';
+import 'package:nans/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/presentation/widgets/main_button.dart';
+import 'package:nans/src/core/presentation/widgets/text_fields/otp_text_field.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 @RoutePage()
 class ConfirmPhoneNumberPage extends StatefulWidget {
 
-  final ConfirmPhoneNumberPageArguments args;
+  final ConfirmEmailPageArguments args;
   const ConfirmPhoneNumberPage({Key? key, required this.args}) : super(key: key);
 
   @override
@@ -51,7 +51,7 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
     return Form(
       key: controller.formKey,
       child: Scaffold(
-          backgroundColor:AppColors.whiteColor,
+          backgroundColor:Colors.white,
           appBar: CustomAppBar(
             context: context,
             barTitle:'Confirm Your Phone Number',
@@ -66,7 +66,7 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
                     children: [
                       const CustomSizedBox(height: 96,),
 
-                      Text( "You will receive a code via sms... please use it to verify your phone number".translateWord,
+                      Text( "You will receive a code via sms... please use it to verify your email".translateWord,
                         style: AppStyle.textTheme.bodyMedium,textAlign: TextAlign.center,
                       ),
 

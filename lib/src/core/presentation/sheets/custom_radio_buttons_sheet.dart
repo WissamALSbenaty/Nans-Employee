@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -45,7 +45,7 @@ class CustomRadioButtonsSheet<T> extends StatelessWidget {
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                          groupValue: selectedItem,
                           value: item,
-                          activeColor: AppColors.secondaryYellow,
+                          activeColor: AppColors.yellow,
                           onChanged: (_) {
                             onSelectItem(item);
                             AutoRouter.of(context).pop();
@@ -54,7 +54,7 @@ class CustomRadioButtonsSheet<T> extends StatelessWidget {
                       Expanded(
                           child: Text(nameGetter(item),maxLines: 2
                             ,style: AppStyle.textTheme.bodyMedium!.copyWith(color:
-                            item==selectedItem?AppColors.secondaryYellow :AppColors.blackColor.shade600),)),
+                            item==selectedItem?AppColors.yellow :AppColors.blackColor.shade600),)),
                     ]
                 ),
               ),

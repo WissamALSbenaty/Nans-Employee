@@ -2,8 +2,8 @@
 
 
 
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/controllers/app_controller.dart';
+import 'package:nans/dependencies.dart';
+import 'package:nans/src/core/controllers/app_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 extension PrintDateTime on DateTime{
@@ -30,20 +30,11 @@ extension ContextUtil on BuildContext{
 
 
 extension PrintString on String{
-  String get toCamelCase{
-    List<String> allLetters=split('');
-    String ret='';
-    for(int i=0;i<allLetters.length;i++){
-      if(i==0) {
-        ret+=allLetters[0].toUpperCase();
-      } else if(allLetters[i][0]==allLetters[i][0].toUpperCase()) {
-        ret+=' ${allLetters[i][0]}';
-      } else {
-        ret+=allLetters[i][0];
-      }
-
-    }
-    return ret;
+  String get capitalFirst{
+    return this[0].toUpperCase()+substring(1);
+  }
+  String get lowerFirst{
+    return this[0].toLowerCase()+substring(1);
   }
 
   String get translateWord {

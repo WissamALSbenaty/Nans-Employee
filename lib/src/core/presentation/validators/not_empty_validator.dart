@@ -1,8 +1,8 @@
 
 
 
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/core/presentation/validators/custom_validator.dart';
+import 'package:nans/src/Data/Errors/core_errors.dart';
+import 'package:nans/src/core/presentation/validators/custom_validator.dart';
 
 class NotEmptyValidator extends CustomValidator{
 

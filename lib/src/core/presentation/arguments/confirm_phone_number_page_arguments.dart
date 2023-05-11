@@ -3,15 +3,13 @@
 
 
 
-import 'package:etloob/src/core/util/enums.dart';
 
-class ConfirmPhoneNumberPageArguments{
-  final Future<void> Function({required String phoneNumber,required String otpCode}) afterSuccessSubmitting;
-  final String phoneNumber;
-  final VerificationReason verificationReason;
+class ConfirmEmailPageArguments{
+  final Future<void> Function({required String email,required String otpCode}) afterSuccessSubmitting;
+  final String email;
   final bool isOtpFromBackend;
 
-  ConfirmPhoneNumberPageArguments({required  this.verificationReason,
+  ConfirmEmailPageArguments({
       required this.afterSuccessSubmitting,required this.isOtpFromBackend,
-        required this.phoneNumber});
+        required this.email});
 }

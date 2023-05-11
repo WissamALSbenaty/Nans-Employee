@@ -1,7 +1,7 @@
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/models/notification_model.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_profile_repository.dart';
-import 'package:etloob/src/core/controllers/custom_pagination_list_data_loader.dart';
+import 'package:nans/src/Data/models/notification_model.dart';
+import 'package:nans/src/Data/models/pagination_data_model.dart';
+import 'package:nans/src/Data/repositories/abstract/i_profile_repository.dart';
+import 'package:nans/src/core/controllers/custom_pagination_list_data_loader.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
@@ -9,10 +9,10 @@ class NotificationsController extends CustomPaginationListDataLoader<Notificatio
 
   final IProfileRepository profileRepository;
 
-  NotificationsController(this.profileRepository,super.logger,):super(
-    dataGetter:(page)=> profileRepository.getNotifications(pageNumber: page),
-    emptyDataError: EmptyItemsError(),
-  );
+  NotificationsController(this.profileRepository,super.logger,);
+  @override
+  Future<PaginationDataModel<NotificationModel>> dataGetter(int page) => profileRepository.getNotifications(pageNumber: pageNumber);
+
 
 
 }

@@ -1,7 +1,7 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/presentation/widgets/shimmers/custom_list_loading_shimmer.dart';
-import 'package:etloob/src/core/presentation/widgets/shimmers/custom_shimmer.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/presentation/widgets/shimmers/custom_list_loading_shimmer.dart';
+import 'package:nans/src/core/presentation/widgets/shimmers/custom_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +20,7 @@ class DefaultShimmer extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(8.r),
                 decoration: BoxDecoration(
-                color: AppColors.whiteColor,
+                color: Colors.white,
                   borderRadius: BorderRadius.circular(16.r)
                 ),
                 child: CustomShimmer(height: 300.h, width: 312.w, radius: 16.r)),

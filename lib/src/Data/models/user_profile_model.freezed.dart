@@ -20,13 +20,13 @@ UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfileModel {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get fatherName => throw _privateConstructorUsedError;
+  String get motherName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
-  int? get usedPoints => throw _privateConstructorUsedError;
-  int? get savingByPoints => throw _privateConstructorUsedError;
-  int? get currentPoint => throw _privateConstructorUsedError;
-  String? get referralCode => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  GenderType get gender => throw _privateConstructorUsedError;
   bool get accountConfirmation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,13 +42,13 @@ abstract class $UserProfileModelCopyWith<$Res> {
       _$UserProfileModelCopyWithImpl<$Res, UserProfileModel>;
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
+      {String email,
+      String name,
+      String fatherName,
+      String motherName,
       String phoneNumber,
-      int? usedPoints,
-      int? savingByPoints,
-      int? currentPoint,
-      String? referralCode,
+      String password,
+      GenderType gender,
       bool accountConfirmation});
 }
 
@@ -65,44 +65,44 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? email = null,
+    Object? name = null,
+    Object? fatherName = null,
+    Object? motherName = null,
     Object? phoneNumber = null,
-    Object? usedPoints = freezed,
-    Object? savingByPoints = freezed,
-    Object? currentPoint = freezed,
-    Object? referralCode = freezed,
+    Object? password = null,
+    Object? gender = null,
     Object? accountConfirmation = null,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      fatherName: null == fatherName
+          ? _value.fatherName
+          : fatherName // ignore: cast_nullable_to_non_nullable
+              as String,
+      motherName: null == motherName
+          ? _value.motherName
+          : motherName // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      usedPoints: freezed == usedPoints
-          ? _value.usedPoints
-          : usedPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      savingByPoints: freezed == savingByPoints
-          ? _value.savingByPoints
-          : savingByPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentPoint: freezed == currentPoint
-          ? _value.currentPoint
-          : currentPoint // ignore: cast_nullable_to_non_nullable
-              as int?,
-      referralCode: freezed == referralCode
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as GenderType,
       accountConfirmation: null == accountConfirmation
           ? _value.accountConfirmation
           : accountConfirmation // ignore: cast_nullable_to_non_nullable
@@ -120,13 +120,13 @@ abstract class _$$_UserProfileModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String firstName,
-      String lastName,
+      {String email,
+      String name,
+      String fatherName,
+      String motherName,
       String phoneNumber,
-      int? usedPoints,
-      int? savingByPoints,
-      int? currentPoint,
-      String? referralCode,
+      String password,
+      GenderType gender,
       bool accountConfirmation});
 }
 
@@ -141,44 +141,44 @@ class __$$_UserProfileModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? email = null,
+    Object? name = null,
+    Object? fatherName = null,
+    Object? motherName = null,
     Object? phoneNumber = null,
-    Object? usedPoints = freezed,
-    Object? savingByPoints = freezed,
-    Object? currentPoint = freezed,
-    Object? referralCode = freezed,
+    Object? password = null,
+    Object? gender = null,
     Object? accountConfirmation = null,
   }) {
     return _then(_$_UserProfileModel(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      fatherName: null == fatherName
+          ? _value.fatherName
+          : fatherName // ignore: cast_nullable_to_non_nullable
+              as String,
+      motherName: null == motherName
+          ? _value.motherName
+          : motherName // ignore: cast_nullable_to_non_nullable
               as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      usedPoints: freezed == usedPoints
-          ? _value.usedPoints
-          : usedPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      savingByPoints: freezed == savingByPoints
-          ? _value.savingByPoints
-          : savingByPoints // ignore: cast_nullable_to_non_nullable
-              as int?,
-      currentPoint: freezed == currentPoint
-          ? _value.currentPoint
-          : currentPoint // ignore: cast_nullable_to_non_nullable
-              as int?,
-      referralCode: freezed == referralCode
-          ? _value.referralCode
-          : referralCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as GenderType,
       accountConfirmation: null == accountConfirmation
           ? _value.accountConfirmation
           : accountConfirmation // ignore: cast_nullable_to_non_nullable
@@ -191,38 +191,38 @@ class __$$_UserProfileModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserProfileModel implements _UserProfileModel {
   _$_UserProfileModel(
-      {required this.firstName,
-      required this.lastName,
+      {required this.email,
+      required this.name,
+      required this.fatherName,
+      required this.motherName,
       required this.phoneNumber,
-      required this.usedPoints,
-      required this.savingByPoints,
-      required this.currentPoint,
-      required this.referralCode,
+      required this.password,
+      required this.gender,
       required this.accountConfirmation});
 
   factory _$_UserProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileModelFromJson(json);
 
   @override
-  final String firstName;
+  final String email;
   @override
-  final String lastName;
+  final String name;
+  @override
+  final String fatherName;
+  @override
+  final String motherName;
   @override
   final String phoneNumber;
   @override
-  final int? usedPoints;
+  final String password;
   @override
-  final int? savingByPoints;
-  @override
-  final int? currentPoint;
-  @override
-  final String? referralCode;
+  final GenderType gender;
   @override
   final bool accountConfirmation;
 
   @override
   String toString() {
-    return 'UserProfileModel(firstName: $firstName, lastName: $lastName, phoneNumber: $phoneNumber, usedPoints: $usedPoints, savingByPoints: $savingByPoints, currentPoint: $currentPoint, referralCode: $referralCode, accountConfirmation: $accountConfirmation)';
+    return 'UserProfileModel(email: $email, name: $name, fatherName: $fatherName, motherName: $motherName, phoneNumber: $phoneNumber, password: $password, gender: $gender, accountConfirmation: $accountConfirmation)';
   }
 
   @override
@@ -230,36 +230,25 @@ class _$_UserProfileModel implements _UserProfileModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserProfileModel &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.fatherName, fatherName) ||
+                other.fatherName == fatherName) &&
+            (identical(other.motherName, motherName) ||
+                other.motherName == motherName) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.usedPoints, usedPoints) ||
-                other.usedPoints == usedPoints) &&
-            (identical(other.savingByPoints, savingByPoints) ||
-                other.savingByPoints == savingByPoints) &&
-            (identical(other.currentPoint, currentPoint) ||
-                other.currentPoint == currentPoint) &&
-            (identical(other.referralCode, referralCode) ||
-                other.referralCode == referralCode) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.accountConfirmation, accountConfirmation) ||
                 other.accountConfirmation == accountConfirmation));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      firstName,
-      lastName,
-      phoneNumber,
-      usedPoints,
-      savingByPoints,
-      currentPoint,
-      referralCode,
-      accountConfirmation);
+  int get hashCode => Object.hash(runtimeType, email, name, fatherName,
+      motherName, phoneNumber, password, gender, accountConfirmation);
 
   @JsonKey(ignore: true)
   @override
@@ -277,32 +266,32 @@ class _$_UserProfileModel implements _UserProfileModel {
 
 abstract class _UserProfileModel implements UserProfileModel {
   factory _UserProfileModel(
-      {required final String firstName,
-      required final String lastName,
+      {required final String email,
+      required final String name,
+      required final String fatherName,
+      required final String motherName,
       required final String phoneNumber,
-      required final int? usedPoints,
-      required final int? savingByPoints,
-      required final int? currentPoint,
-      required final String? referralCode,
+      required final String password,
+      required final GenderType gender,
       required final bool accountConfirmation}) = _$_UserProfileModel;
 
   factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
       _$_UserProfileModel.fromJson;
 
   @override
-  String get firstName;
+  String get email;
   @override
-  String get lastName;
+  String get name;
+  @override
+  String get fatherName;
+  @override
+  String get motherName;
   @override
   String get phoneNumber;
   @override
-  int? get usedPoints;
+  String get password;
   @override
-  int? get savingByPoints;
-  @override
-  int? get currentPoint;
-  @override
-  String? get referralCode;
+  GenderType get gender;
   @override
   bool get accountConfirmation;
   @override

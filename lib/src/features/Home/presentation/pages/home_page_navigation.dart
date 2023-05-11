@@ -1,7 +1,8 @@
 
-import 'package:etloob/src/features/Home/presentation/pages/main_page.dart';
-import 'package:etloob/src/features/Home/presentation/widgets/home_navigation_bar.dart';
-import 'package:etloob/src/features/Profile/presentation/pages/my_profile_page.dart';
+import 'package:nans/src/features/Home/presentation/pages/main_page.dart';
+import 'package:nans/src/features/Home/presentation/widgets/home_navigation_bar.dart';
+import 'package:nans/src/features/Profile/presentation/pages/my_profile_page.dart';
+import 'package:nans/src/features/request/presentation/pages/requests_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageNavigation extends StatefulWidget {
@@ -17,14 +18,14 @@ class HomePageNavigationState extends State<HomePageNavigation>
     with SingleTickerProviderStateMixin  {
 late TabController tabController;
 
+  int selectedNavigationBarItem=1;
   @override
   void initState() {
-    tabController=TabController(length: 5, vsync:this,initialIndex: 2);
+    tabController=TabController(length: 3, vsync:this,initialIndex: selectedNavigationBarItem);
     tabController.addListener(() =>changeNavigationBarItem(tabController.index));
     super.initState();
   }
 
-  int selectedNavigationBarItem=2;
 
   void changeNavigationBarItem(int selectedIndex){
     tabController.animateTo(selectedIndex);
@@ -34,8 +35,8 @@ late TabController tabController;
   }
 
   Future<bool> popPage()async{
-    if(selectedNavigationBarItem!=2) {
-      changeNavigationBarItem(2);
+    if(selectedNavigationBarItem!=1) {
+      changeNavigationBarItem(1);
       return false;
     }
     else {
@@ -56,7 +57,8 @@ late TabController tabController;
               body: TabBarView(
                 controller: tabController,
                 children:    [
-                    EtloobPage(),
+                  RequestsPage(),
+                    const MainPage(),
                      MyProfilePage(),
                 ],
 

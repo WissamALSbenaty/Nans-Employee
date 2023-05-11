@@ -1,10 +1,11 @@
 
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
+import 'package:nans/dependencies.dart';
+import 'package:nans/src/core/util/localization_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppStyle {
+
   static final TextTheme textTheme = TextTheme(
     displayLarge: TextStyle(
         fontSize: 32.sp,
@@ -64,18 +65,8 @@ class AppColors {
 
   static const Color backgroundColor = Color(0xFFE5E5E5);
   static const Color yellow = Color(0xFFFFCD41);
-  static const Color darkPink = Color(0xFFFF7556);
-  static const Color red60 = Color(0xFFE47272);
   static const Color pink = Color(0xFFFFF5F6);
-  static const Color secondaryYellow = Color(0xFFF9CC00);
   static const Color blue = Color(0xFFF5F6FE);
-  static const Color green = Color(0xFFEEFFEB);
-  static const Color darkGreen = Color(0xFF038929);
-  static const Color lightGreen = Color(0xFFF0F9FF);
-  static const Color lightYellow = Color(0xFFFEFDEB);
-  static const Color darkYellow = Color(0xFFF0B100);
-  static const Color whiteColor=Color(0xFFFFFFFF);
-  static const Color purple=Color(0xFF4D24E1);
 
   static const MaterialColor blackColor=MaterialColor(0xFF171C34,{
     100:Color(0xFFE5E5E5),

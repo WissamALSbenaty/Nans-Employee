@@ -1,8 +1,8 @@
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_logger.dart';
-import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:etloob/src/core/util/enums.dart';
+import 'package:nans/src/Data/Errors/core_errors.dart';
+import 'package:nans/src/Data/Errors/custom_error.dart';
+import 'package:nans/src/Data/repositories/abstract/i_logger.dart';
+import 'package:nans/src/core/presentation/snakebars/bottom_snack_bar.dart';
+import 'package:nans/src/core/util/enums.dart';
 import 'package:mobx/mobx.dart';
 
 part 'base_store.g.dart';

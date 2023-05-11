@@ -2,9 +2,8 @@
 
 
 class LoginModel{
-   String phoneNumber;
+   String email;
    String password;
-
-   LoginModel({ required this.phoneNumber, required this.password});
+   LoginModel({ required this.email, required this.password});
 
 }

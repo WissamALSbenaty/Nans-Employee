@@ -8,23 +8,33 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $UsersTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _firstNameMeta =
-      const VerificationMeta('firstName');
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
-  late final GeneratedColumn<String> firstName = GeneratedColumn<String>(
-      'first_name', aliasedName, false,
+  late final GeneratedColumn<String> name = GeneratedColumn<String>(
+      'name', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _lastNameMeta =
-      const VerificationMeta('lastName');
+  static const VerificationMeta _fatherNameMeta =
+      const VerificationMeta('fatherName');
   @override
-  late final GeneratedColumn<String> lastName = GeneratedColumn<String>(
-      'last_name', aliasedName, false,
+  late final GeneratedColumn<String> fatherName = GeneratedColumn<String>(
+      'father_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _motherNameMeta =
+      const VerificationMeta('motherName');
+  @override
+  late final GeneratedColumn<String> motherName = GeneratedColumn<String>(
+      'mother_name', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _phoneNumberMeta =
       const VerificationMeta('phoneNumber');
   @override
   late final GeneratedColumn<String> phoneNumber = GeneratedColumn<String>(
       'phone_number', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _emailMeta = const VerificationMeta('email');
+  @override
+  late final GeneratedColumn<String> email = GeneratedColumn<String>(
+      'email', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _passwordMeta =
       const VerificationMeta('password');
@@ -37,35 +47,9 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   late final GeneratedColumn<String> token = GeneratedColumn<String>(
       'token', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _referralCodeMeta =
-      const VerificationMeta('referralCode');
   @override
-  late final GeneratedColumn<String> referralCode = GeneratedColumn<String>(
-      'referral_code', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _isLoggedInBeforeMeta =
-      const VerificationMeta('isLoggedInBefore');
-  @override
-  late final GeneratedColumn<bool> isLoggedInBefore =
-      GeneratedColumn<bool>('is_logged_in_before', aliasedName, false,
-          type: DriftSqlType.bool,
-          requiredDuringInsert: false,
-          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
-            SqlDialect.sqlite: 'CHECK ("is_logged_in_before" IN (0, 1))',
-            SqlDialect.mysql: '',
-            SqlDialect.postgres: '',
-          }),
-          defaultValue: const Constant(false));
-  @override
-  List<GeneratedColumn> get $columns => [
-        firstName,
-        lastName,
-        phoneNumber,
-        password,
-        token,
-        referralCode,
-        isLoggedInBefore
-      ];
+  List<GeneratedColumn> get $columns =>
+      [name, fatherName, motherName, phoneNumber, email, password, token];
   @override
   String get aliasedName => _alias ?? 'users';
   @override
@@ -75,17 +59,27 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('first_name')) {
-      context.handle(_firstNameMeta,
-          firstName.isAcceptableOrUnknown(data['first_name']!, _firstNameMeta));
+    if (data.containsKey('name')) {
+      context.handle(
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
     } else if (isInserting) {
-      context.missing(_firstNameMeta);
+      context.missing(_nameMeta);
     }
-    if (data.containsKey('last_name')) {
-      context.handle(_lastNameMeta,
-          lastName.isAcceptableOrUnknown(data['last_name']!, _lastNameMeta));
+    if (data.containsKey('father_name')) {
+      context.handle(
+          _fatherNameMeta,
+          fatherName.isAcceptableOrUnknown(
+              data['father_name']!, _fatherNameMeta));
     } else if (isInserting) {
-      context.missing(_lastNameMeta);
+      context.missing(_fatherNameMeta);
+    }
+    if (data.containsKey('mother_name')) {
+      context.handle(
+          _motherNameMeta,
+          motherName.isAcceptableOrUnknown(
+              data['mother_name']!, _motherNameMeta));
+    } else if (isInserting) {
+      context.missing(_motherNameMeta);
     }
     if (data.containsKey('phone_number')) {
       context.handle(
@@ -94,6 +88,12 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
               data['phone_number']!, _phoneNumberMeta));
     } else if (isInserting) {
       context.missing(_phoneNumberMeta);
+    }
+    if (data.containsKey('email')) {
+      context.handle(
+          _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
+    } else if (isInserting) {
+      context.missing(_emailMeta);
     }
     if (data.containsKey('password')) {
       context.handle(_passwordMeta,
@@ -107,20 +107,6 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
     } else if (isInserting) {
       context.missing(_tokenMeta);
     }
-    if (data.containsKey('referral_code')) {
-      context.handle(
-          _referralCodeMeta,
-          referralCode.isAcceptableOrUnknown(
-              data['referral_code']!, _referralCodeMeta));
-    } else if (isInserting) {
-      context.missing(_referralCodeMeta);
-    }
-    if (data.containsKey('is_logged_in_before')) {
-      context.handle(
-          _isLoggedInBeforeMeta,
-          isLoggedInBefore.isAcceptableOrUnknown(
-              data['is_logged_in_before']!, _isLoggedInBeforeMeta));
-    }
     return context;
   }
 
@@ -130,20 +116,20 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   User map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return User(
-      firstName: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}first_name'])!,
-      lastName: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}last_name'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      fatherName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}father_name'])!,
+      motherName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}mother_name'])!,
       phoneNumber: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}phone_number'])!,
+      email: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
       password: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}password'])!,
       token: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}token'])!,
-      referralCode: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}referral_code'])!,
-      isLoggedInBefore: attachedDatabase.typeMapping.read(
-          DriftSqlType.bool, data['${effectivePrefix}is_logged_in_before'])!,
     );
   }
 
@@ -154,43 +140,43 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
 }
 
 class User extends DataClass implements Insertable<User> {
-  final String firstName;
-  final String lastName;
+  final String name;
+  final String fatherName;
+  final String motherName;
   final String phoneNumber;
+  final String email;
   final String password;
   final String token;
-  final String referralCode;
-  final bool isLoggedInBefore;
   const User(
-      {required this.firstName,
-      required this.lastName,
+      {required this.name,
+      required this.fatherName,
+      required this.motherName,
       required this.phoneNumber,
+      required this.email,
       required this.password,
-      required this.token,
-      required this.referralCode,
-      required this.isLoggedInBefore});
+      required this.token});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['first_name'] = Variable<String>(firstName);
-    map['last_name'] = Variable<String>(lastName);
+    map['name'] = Variable<String>(name);
+    map['father_name'] = Variable<String>(fatherName);
+    map['mother_name'] = Variable<String>(motherName);
     map['phone_number'] = Variable<String>(phoneNumber);
+    map['email'] = Variable<String>(email);
     map['password'] = Variable<String>(password);
     map['token'] = Variable<String>(token);
-    map['referral_code'] = Variable<String>(referralCode);
-    map['is_logged_in_before'] = Variable<bool>(isLoggedInBefore);
     return map;
   }
 
   UsersCompanion toCompanion(bool nullToAbsent) {
     return UsersCompanion(
-      firstName: Value(firstName),
-      lastName: Value(lastName),
+      name: Value(name),
+      fatherName: Value(fatherName),
+      motherName: Value(motherName),
       phoneNumber: Value(phoneNumber),
+      email: Value(email),
       password: Value(password),
       token: Value(token),
-      referralCode: Value(referralCode),
-      isLoggedInBefore: Value(isLoggedInBefore),
     );
   }
 
@@ -198,149 +184,150 @@ class User extends DataClass implements Insertable<User> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return User(
-      firstName: serializer.fromJson<String>(json['firstName']),
-      lastName: serializer.fromJson<String>(json['lastName']),
+      name: serializer.fromJson<String>(json['name']),
+      fatherName: serializer.fromJson<String>(json['fatherName']),
+      motherName: serializer.fromJson<String>(json['motherName']),
       phoneNumber: serializer.fromJson<String>(json['phoneNumber']),
+      email: serializer.fromJson<String>(json['email']),
       password: serializer.fromJson<String>(json['password']),
       token: serializer.fromJson<String>(json['token']),
-      referralCode: serializer.fromJson<String>(json['referralCode']),
-      isLoggedInBefore: serializer.fromJson<bool>(json['isLoggedInBefore']),
     );
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'firstName': serializer.toJson<String>(firstName),
-      'lastName': serializer.toJson<String>(lastName),
+      'name': serializer.toJson<String>(name),
+      'fatherName': serializer.toJson<String>(fatherName),
+      'motherName': serializer.toJson<String>(motherName),
       'phoneNumber': serializer.toJson<String>(phoneNumber),
+      'email': serializer.toJson<String>(email),
       'password': serializer.toJson<String>(password),
       'token': serializer.toJson<String>(token),
-      'referralCode': serializer.toJson<String>(referralCode),
-      'isLoggedInBefore': serializer.toJson<bool>(isLoggedInBefore),
     };
   }
 
   User copyWith(
-          {String? firstName,
-          String? lastName,
+          {String? name,
+          String? fatherName,
+          String? motherName,
           String? phoneNumber,
+          String? email,
           String? password,
-          String? token,
-          String? referralCode,
-          bool? isLoggedInBefore}) =>
+          String? token}) =>
       User(
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
+        name: name ?? this.name,
+        fatherName: fatherName ?? this.fatherName,
+        motherName: motherName ?? this.motherName,
         phoneNumber: phoneNumber ?? this.phoneNumber,
+        email: email ?? this.email,
         password: password ?? this.password,
         token: token ?? this.token,
-        referralCode: referralCode ?? this.referralCode,
-        isLoggedInBefore: isLoggedInBefore ?? this.isLoggedInBefore,
       );
   @override
   String toString() {
     return (StringBuffer('User(')
-          ..write('firstName: $firstName, ')
-          ..write('lastName: $lastName, ')
+          ..write('name: $name, ')
+          ..write('fatherName: $fatherName, ')
+          ..write('motherName: $motherName, ')
           ..write('phoneNumber: $phoneNumber, ')
+          ..write('email: $email, ')
           ..write('password: $password, ')
-          ..write('token: $token, ')
-          ..write('referralCode: $referralCode, ')
-          ..write('isLoggedInBefore: $isLoggedInBefore')
+          ..write('token: $token')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(firstName, lastName, phoneNumber, password,
-      token, referralCode, isLoggedInBefore);
+  int get hashCode => Object.hash(
+      name, fatherName, motherName, phoneNumber, email, password, token);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is User &&
-          other.firstName == this.firstName &&
-          other.lastName == this.lastName &&
+          other.name == this.name &&
+          other.fatherName == this.fatherName &&
+          other.motherName == this.motherName &&
           other.phoneNumber == this.phoneNumber &&
+          other.email == this.email &&
           other.password == this.password &&
-          other.token == this.token &&
-          other.referralCode == this.referralCode &&
-          other.isLoggedInBefore == this.isLoggedInBefore);
+          other.token == this.token);
 }
 
 class UsersCompanion extends UpdateCompanion<User> {
-  final Value<String> firstName;
-  final Value<String> lastName;
+  final Value<String> name;
+  final Value<String> fatherName;
+  final Value<String> motherName;
   final Value<String> phoneNumber;
+  final Value<String> email;
   final Value<String> password;
   final Value<String> token;
-  final Value<String> referralCode;
-  final Value<bool> isLoggedInBefore;
   final Value<int> rowid;
   const UsersCompanion({
-    this.firstName = const Value.absent(),
-    this.lastName = const Value.absent(),
+    this.name = const Value.absent(),
+    this.fatherName = const Value.absent(),
+    this.motherName = const Value.absent(),
     this.phoneNumber = const Value.absent(),
+    this.email = const Value.absent(),
     this.password = const Value.absent(),
     this.token = const Value.absent(),
-    this.referralCode = const Value.absent(),
-    this.isLoggedInBefore = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   UsersCompanion.insert({
-    required String firstName,
-    required String lastName,
+    required String name,
+    required String fatherName,
+    required String motherName,
     required String phoneNumber,
+    required String email,
     required String password,
     required String token,
-    required String referralCode,
-    this.isLoggedInBefore = const Value.absent(),
     this.rowid = const Value.absent(),
-  })  : firstName = Value(firstName),
-        lastName = Value(lastName),
+  })  : name = Value(name),
+        fatherName = Value(fatherName),
+        motherName = Value(motherName),
         phoneNumber = Value(phoneNumber),
+        email = Value(email),
         password = Value(password),
-        token = Value(token),
-        referralCode = Value(referralCode);
+        token = Value(token);
   static Insertable<User> custom({
-    Expression<String>? firstName,
-    Expression<String>? lastName,
+    Expression<String>? name,
+    Expression<String>? fatherName,
+    Expression<String>? motherName,
     Expression<String>? phoneNumber,
+    Expression<String>? email,
     Expression<String>? password,
     Expression<String>? token,
-    Expression<String>? referralCode,
-    Expression<bool>? isLoggedInBefore,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
-      if (firstName != null) 'first_name': firstName,
-      if (lastName != null) 'last_name': lastName,
+      if (name != null) 'name': name,
+      if (fatherName != null) 'father_name': fatherName,
+      if (motherName != null) 'mother_name': motherName,
       if (phoneNumber != null) 'phone_number': phoneNumber,
+      if (email != null) 'email': email,
       if (password != null) 'password': password,
       if (token != null) 'token': token,
-      if (referralCode != null) 'referral_code': referralCode,
-      if (isLoggedInBefore != null) 'is_logged_in_before': isLoggedInBefore,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
   UsersCompanion copyWith(
-      {Value<String>? firstName,
-      Value<String>? lastName,
+      {Value<String>? name,
+      Value<String>? fatherName,
+      Value<String>? motherName,
       Value<String>? phoneNumber,
+      Value<String>? email,
       Value<String>? password,
       Value<String>? token,
-      Value<String>? referralCode,
-      Value<bool>? isLoggedInBefore,
       Value<int>? rowid}) {
     return UsersCompanion(
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
+      name: name ?? this.name,
+      fatherName: fatherName ?? this.fatherName,
+      motherName: motherName ?? this.motherName,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      email: email ?? this.email,
       password: password ?? this.password,
       token: token ?? this.token,
-      referralCode: referralCode ?? this.referralCode,
-      isLoggedInBefore: isLoggedInBefore ?? this.isLoggedInBefore,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -348,26 +335,26 @@ class UsersCompanion extends UpdateCompanion<User> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (firstName.present) {
-      map['first_name'] = Variable<String>(firstName.value);
+    if (name.present) {
+      map['name'] = Variable<String>(name.value);
     }
-    if (lastName.present) {
-      map['last_name'] = Variable<String>(lastName.value);
+    if (fatherName.present) {
+      map['father_name'] = Variable<String>(fatherName.value);
+    }
+    if (motherName.present) {
+      map['mother_name'] = Variable<String>(motherName.value);
     }
     if (phoneNumber.present) {
       map['phone_number'] = Variable<String>(phoneNumber.value);
+    }
+    if (email.present) {
+      map['email'] = Variable<String>(email.value);
     }
     if (password.present) {
       map['password'] = Variable<String>(password.value);
     }
     if (token.present) {
       map['token'] = Variable<String>(token.value);
-    }
-    if (referralCode.present) {
-      map['referral_code'] = Variable<String>(referralCode.value);
-    }
-    if (isLoggedInBefore.present) {
-      map['is_logged_in_before'] = Variable<bool>(isLoggedInBefore.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -378,13 +365,13 @@ class UsersCompanion extends UpdateCompanion<User> {
   @override
   String toString() {
     return (StringBuffer('UsersCompanion(')
-          ..write('firstName: $firstName, ')
-          ..write('lastName: $lastName, ')
+          ..write('name: $name, ')
+          ..write('fatherName: $fatherName, ')
+          ..write('motherName: $motherName, ')
           ..write('phoneNumber: $phoneNumber, ')
+          ..write('email: $email, ')
           ..write('password: $password, ')
           ..write('token: $token, ')
-          ..write('referralCode: $referralCode, ')
-          ..write('isLoggedInBefore: $isLoggedInBefore, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();

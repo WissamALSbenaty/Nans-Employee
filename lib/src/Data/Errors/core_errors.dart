@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
+import 'package:nans/src/Data/Errors/custom_error.dart';
+import 'package:nans/src/core/presentation/assets.dart';
 
 
 

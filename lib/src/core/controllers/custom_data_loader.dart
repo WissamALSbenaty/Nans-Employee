@@ -1,7 +1,7 @@
 
 
 
-import 'package:etloob/src/core/controllers/base_store.dart';
+import 'package:nans/src/core/controllers/base_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'custom_data_loader.g.dart';

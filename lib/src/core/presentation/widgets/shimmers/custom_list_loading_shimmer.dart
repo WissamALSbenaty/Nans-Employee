@@ -1,6 +1,6 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/presentation/widgets/shimmers/custom_tile_shimmer.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/presentation/widgets/shimmers/custom_tile_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class CustomListLoadingShimmer extends StatelessWidget {

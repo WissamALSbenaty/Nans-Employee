@@ -1,10 +1,10 @@
 
 import 'dart:convert';
 
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/auto_router.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
-import 'package:etloob/src/features/app/presentation/pages/app.dart';
+import 'package:nans/dependencies.dart';
+import 'package:nans/src/core/presentation/auto_router.dart';
+import 'package:nans/src/core/util/localization_manager.dart';
+import 'package:nans/src/features/app/presentation/pages/app.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
@@ -121,8 +121,8 @@ class NotificationsManager {
     final noti = await getNotification();
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails('etloob.com', 'etloob',
-        channelDescription: 'etloob channel',
+    AndroidNotificationDetails('nans.com', 'nans',
+        channelDescription: 'nans channel',
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker');

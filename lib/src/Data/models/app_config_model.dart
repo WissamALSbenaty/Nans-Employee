@@ -1,5 +1,5 @@
 
-import 'package:etloob/src/Data/models/app_settings_model.dart';
+import 'package:nans/src/Data/models/app_settings_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'app_config_model.freezed.dart';

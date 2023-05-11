@@ -1,17 +1,15 @@
 
 import 'dart:io';
 
-import 'package:etloob/src/Data/Errors/core_errors.dart';
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/Data/api_helper.dart';
-import 'package:etloob/src/Data/local_database_tables/app_database.dart';
-import 'package:etloob/src/Data/models/login_model.dart';
-import 'package:etloob/src/Data/models/login_response_model.dart';
-import 'package:etloob/src/Data/models/register_model.dart';
-import 'package:etloob/src/Data/models/response_model.dart';
-import 'package:etloob/src/Data/models/user_profile_model.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_auth_repository.dart';
-import 'package:etloob/src/core/util/enums.dart';
+import 'package:nans/src/Data/Errors/core_errors.dart';
+import 'package:nans/src/Data/Errors/custom_error.dart';
+import 'package:nans/src/Data/local_database_tables/app_database.dart';
+import 'package:nans/src/Data/models/login_model.dart';
+import 'package:nans/src/Data/models/login_response_model.dart';
+import 'package:nans/src/Data/models/register_model.dart';
+import 'package:nans/src/Data/models/response_model.dart';
+import 'package:nans/src/Data/models/user_profile_model.dart';
+import 'package:nans/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,32 +17,22 @@ import 'package:injectable/injectable.dart';
 @Singleton(as: IAuthRepository)
 class AuthRepository extends IAuthRepository{
 
-  final AppDatabase localDatabase;
-  AuthRepository(this.localDatabase,ApiHelper apiHelper,):super(apiHelper);
+  AuthRepository(super.localDatabase,super.apiHelper);
 
   @override
   Future<LoginResponseModel> register(RegisterModel registerModel)async{
     try{
-        String? firebaseToken=await getFirebaseToken();
 
         ResponseModel responseModel= await apiHelper.post(url:  'Auth/Register',isAuthenticated: false,
-        formData:{
-          'LastName':registerModel.lastName,
-          'FirstName':registerModel.firstName,
-          'Password':registerModel.password,
-          'ReferralCode':registerModel.referralCode,
-          'Phone':registerModel.phoneNumber,
-          'FireBaseToken':firebaseToken??'',
-          "DeviceType":Platform.isIOS? "IOS":"Android",
-          "UserType":"Client",
+        formData: {
+          ...registerModel.toJson()
         });
 
         LoginResponseModel loginResponseModel=LoginResponseModel.fromJson(responseModel.data);
         apiHelper.setToken(loginResponseModel.token);
-        await setAuthLocalData(firstName:  loginResponseModel.user.firstName,lastName: loginResponseModel.user.lastName,
-
+        await setAuthLocalData(name:  loginResponseModel.user.name,email: loginResponseModel.user.email,
+          fatherName: loginResponseModel.user.fatherName,motherName: loginResponseModel.user.motherName,
           phoneNumber: registerModel.phoneNumber,token: loginResponseModel.token,
-          referralCode: loginResponseModel.user.referralCode??"",
           password: registerModel.password,);
         return loginResponseModel;
     }
@@ -63,16 +51,15 @@ class AuthRepository extends IAuthRepository{
         String? firebaseToken=await getFirebaseToken();
       ResponseModel response=await apiHelper.post(url:  'Auth/Login',isAuthenticated: false,
         formData:{
-          'Phone':loginModel.phoneNumber,
+          'Phone':loginModel.email,
           'Password':loginModel.password,
-          "DeviceType":Platform.isIOS? "IOS":"Android",
           'FireBaseToken': firebaseToken??'',
         });
     LoginResponseModel loginResponseModel=LoginResponseModel.fromJson(response.data);
 
-    await setAuthLocalData(firstName:  loginResponseModel.user.firstName,lastName: loginResponseModel.user.lastName,
-       phoneNumber: loginModel.phoneNumber,token: loginResponseModel.token,referralCode: loginResponseModel.user.referralCode??"",
-        password: loginModel.password,);
+    await setAuthLocalData(name:  loginResponseModel.user.name,email: loginResponseModel.user.email,
+        fatherName: loginResponseModel.user.fatherName,motherName: loginResponseModel.user.motherName,
+       phoneNumber: loginResponseModel.user.phoneNumber,token: loginResponseModel.token, password: loginModel.password,);
 
     return loginResponseModel;
     }
@@ -84,67 +71,22 @@ class AuthRepository extends IAuthRepository{
     }
   }
 
-  @override
-  Future<bool> checkIfPhoneExist(String phoneNumber) async{
-    ResponseModel responseModel=await apiHelper.get(url: 'Auth/CheckIfExistPhoneNumber', parameters:{
-      'PhoneNumber':phoneNumber,
-      "UserType":"Client"
-    });
-
-    return responseModel.data as bool;
-
-  }
 
   @override
   Future<void> loginAsGuest() async{
-    await setAuthLocalData(firstName:'', lastName:'', phoneNumber:'', password:'', token:'', referralCode:'');
-  }
-
-
-  @override
-  Future<void> deleteAccount({required String userInputPassword})async{
-
-    await Future.wait( [
-      FirebaseMessaging.instance.deleteToken(),
-      localDatabase.clearDatabase(),
-      apiHelper.post(url: 'Auth/DeleteMyAccount', formData: {'Password':userInputPassword})]);
-    apiHelper.setToken('');
+    await setAuthLocalData(name:'',motherName:'',fatherName: '', email:'', phoneNumber:'', password:'', token:'');
   }
 
   @override
-  Future<void> sendConfirmationCode({required String phoneNumber,required VerificationReason verificationReason})async{
-     await apiHelper.post(url: 'Auth/SendConfirmationCode', formData:  {
-      'EmailOrPhone':phoneNumber,
-       'UserType':'Client',
-       'VerificationType':verificationReason.name,
-       'VerificationMethod':'ByPhone',
-
-    });
+  Future<void> sendConfirmationCode({required String email})async{
+    throw UnimplementedError();
   }
 
 
-
-  Future<void> setAuthLocalData(
-      {required String firstName,
-      required String lastName,
-      required String phoneNumber,
-      required String password,
-      required String token,
-      required String referralCode,
-      })async{
-    apiHelper.setToken(token);
-
-    await localDatabase.insertUser(User(firstName: firstName,phoneNumber:phoneNumber,isLoggedInBefore: true,
-        lastName: lastName,referralCode: referralCode,token: token,password: password));
-  }
 
   @override
-  Future<void> resetPassword({required String phoneNumber,required String newPassword,required String otpCode,}) async{
-    await apiHelper.post(url: 'Auth/ResetPassword', formData: {
-      'EmailOrPhone':phoneNumber,
-      'NewPassword':newPassword,
-      'Method':'ByPhone'
-    });
+  Future<void> resetPassword({required String email,required String newPassword,required String otpCode,}) async{
+    throw UnimplementedError();
   }
 
 
@@ -155,26 +97,22 @@ class AuthRepository extends IAuthRepository{
       'OldPassword':oldPassword,
       'NewPassword':newPassword,
     });
-    await setAuthLocalData(firstName:currentUser. firstName,
-    lastName:currentUser.lastName,
-        phoneNumber:currentUser.phoneNumber,
+    await setAuthLocalData(name:currentUser.name,email: currentUser.email,
+        phoneNumber:currentUser.phoneNumber,fatherName:currentUser.fatherName ,motherName:currentUser.motherName ,
         password:newPassword,
-        token:currentUser.token,
-        referralCode:currentUser.referralCode);
+        token:currentUser.token,);
   }
 
   @override
-  Future<UserProfileModel> changePhoneNumber({required String phoneNumber})async {
+  Future<UserProfileModel> changeEmail({required String email})async {
     User currentUser=await localDatabase.getUser();
     ResponseModel responseModel= await apiHelper.post(url: 'Auth/UpdateProfile', formData: {
-      'Phone':phoneNumber,
+      'Phone':email,
     });
-    await setAuthLocalData(firstName:currentUser. firstName,
-        lastName:currentUser.lastName,
-        phoneNumber:phoneNumber,
+    await setAuthLocalData(name:currentUser.name,phoneNumber: currentUser.phoneNumber,
+        email:email,fatherName:currentUser.fatherName ,motherName:currentUser.motherName ,
         password:currentUser.password,
-        token:currentUser.token,
-        referralCode:currentUser.referralCode);
+        token:currentUser.token,);
     return UserProfileModel.fromJson(responseModel.data);
   }
 
@@ -184,22 +122,19 @@ class AuthRepository extends IAuthRepository{
     ResponseModel responseModel =await apiHelper.get(url: 'Auth/Profile', parameters: {});
     Map<String,dynamic> data=responseModel.data;
     UserProfileModel ret=  UserProfileModel.fromJson(data);
-    await setAuthLocalData(firstName:ret.firstName,
-        lastName:ret.lastName,
-        phoneNumber:ret.phoneNumber,
+    await setAuthLocalData(name:ret.name,email: ret.email,
+      phoneNumber:ret.phoneNumber,fatherName: ret.fatherName,motherName: ret.motherName,
         password:currentUser.password,
-        token:currentUser.token,
-        referralCode:ret.referralCode??"");
+        token:currentUser.token,);
 
     return ret;
   }
 
   @override
-  Future<void> checkConfirmationCode({required String phoneNumber, required String otpCode, required VerificationReason verificationReason})async {
+  Future<void> checkConfirmationCode({required String email, required String otpCode})async {
     await apiHelper.post(url: 'Auth/CheckConfirmationCode', formData:  {
       'Code':otpCode,
-      'EmailOrPhone':phoneNumber,
-      'VerificationType':verificationReason.name,
+      'EmailOrPhone':email,
       'VerificationMethod':'ByPhone',
 
     });
@@ -235,11 +170,6 @@ class AuthRepository extends IAuthRepository{
       throw SomethingWentWrongError();
     }
   }
-
-  @override
-  Future<void> refreshToken()async {
-  }
-
 
 
 

@@ -1,5 +1,5 @@
 
-import 'package:etloob/src/Data/models/key_value_model.dart';
+import 'package:nans/src/Data/models/key_value_model.dart';
 
 class AppTranslationModel{
 

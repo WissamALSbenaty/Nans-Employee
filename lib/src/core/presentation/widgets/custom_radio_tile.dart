@@ -1,4 +1,4 @@
-import 'package:etloob/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +25,7 @@ class CustomRadioTile<T> extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.blue,
           borderRadius: BorderRadius.circular(8),
-          border: isSelected ?Border.all(width: 2,color: AppColors.secondaryYellow):null,
+          border: isSelected ?Border.all(width: 2,color: AppColors.yellow):null,
         ),
 
         child: Row(
@@ -34,7 +34,7 @@ class CustomRadioTile<T> extends StatelessWidget {
               value: value,
               groupValue: selectedValue,
 
-              activeColor: AppColors.secondaryYellow,
+              activeColor: AppColors.yellow,
               onChanged: onTapRadio,
             ),
 
@@ -43,14 +43,14 @@ class CustomRadioTile<T> extends StatelessWidget {
               children: [
                 Text(titleGetter(value),style:
                      subtitleGetter==null? AppStyle.textTheme.bodyMedium!.copyWith(
-                         fontWeight: FontWeight.bold,color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 ):
+                         fontWeight: FontWeight.bold,color:isSelected?AppColors.yellow:AppColors.blackColor.shade300 ):
 
                      AppStyle.textTheme.titleMedium!.copyWith(
-                         fontWeight: FontWeight.bold,color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 ),
+                         fontWeight: FontWeight.bold,color:isSelected?AppColors.yellow:AppColors.blackColor.shade300 ),
                 ),
 
                 if(subtitleGetter!=null)
-                Text(subtitleGetter!(value),style: AppStyle.textTheme.titleSmall!.copyWith(color:isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300 )
+                Text(subtitleGetter!(value),style: AppStyle.textTheme.titleSmall!.copyWith(color:isSelected?AppColors.yellow:AppColors.blackColor.shade300 )
                 ),
               ],
             ),
@@ -59,7 +59,7 @@ class CustomRadioTile<T> extends StatelessWidget {
 
             if(trailingGetter!=null)
               Text(trailingGetter!(value),style: AppStyle.textTheme.bodyMedium!.copyWith(
-                  color: isSelected?AppColors.secondaryYellow:AppColors.blackColor.shade300,fontWeight: FontWeight.bold),)
+                  color: isSelected?AppColors.yellow:AppColors.blackColor.shade300,fontWeight: FontWeight.bold),)
           ],
         ),
       ),

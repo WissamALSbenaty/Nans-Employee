@@ -6,7 +6,7 @@ part of 'app_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_User?, no_leading_underscores_for_local_identifiers
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AppController on AppControllerBase, Store {
   late final _$appConfigModelAtom =
@@ -45,13 +45,13 @@ mixin _$AppController on AppControllerBase, Store {
       Atom(name: 'AppControllerBase.currentUser', context: context);
 
   @override
-  User? get currentUser {
+  dynamic get currentUser {
     _$currentUserAtom.reportRead();
     return super.currentUser;
   }
 
   @override
-  set currentUser(User? value) {
+  set currentUser(dynamic value) {
     _$currentUserAtom.reportWrite(value, super.currentUser, () {
       super.currentUser = value;
     });
@@ -130,11 +130,11 @@ mixin _$AppController on AppControllerBase, Store {
   }
 
   @override
-  Future<void> changePhoneNumber(String newPhoneNumber, BuildContext context) {
+  Future<void> changeEmail(String newEmail, BuildContext context) {
     final _$actionInfo = _$AppControllerBaseActionController.startAction(
-        name: 'AppControllerBase.changePhoneNumber');
+        name: 'AppControllerBase.changeEmail');
     try {
-      return super.changePhoneNumber(newPhoneNumber, context);
+      return super.changeEmail(newEmail, context);
     } finally {
       _$AppControllerBaseActionController.endAction(_$actionInfo);
     }

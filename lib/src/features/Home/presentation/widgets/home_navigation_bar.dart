@@ -1,8 +1,8 @@
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/extentions.dart';
-import 'package:etloob/src/core/util/localization_manager.dart';
+import 'package:nans/dependencies.dart';
+import 'package:nans/src/core/presentation/assets.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/util/extentions.dart';
+import 'package:nans/src/core/util/localization_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +27,7 @@ class HomeNavigationBar extends StatelessWidget {
       child: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: onTabItem,
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: Colors.white,
         selectedItemColor: AppColors.yellow,
         unselectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppColors.blackColor.shade500,),
         selectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppColors.yellow,),

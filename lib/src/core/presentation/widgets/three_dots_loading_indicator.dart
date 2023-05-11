@@ -1,5 +1,5 @@
-import 'package:etloob/src/core/presentation/widgets/animated_loading_dot.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/presentation/widgets/animated_loading_dot.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

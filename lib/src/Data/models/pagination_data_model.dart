@@ -1,7 +1,7 @@
 
 
 
-import 'package:etloob/src/Data/models/pagination_response_model.dart';
+import 'package:nans/src/Data/models/pagination_response_model.dart';
 
 class PaginationDataModel<T>{
   late List<T> items;

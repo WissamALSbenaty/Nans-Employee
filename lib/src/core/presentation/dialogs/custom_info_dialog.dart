@@ -1,8 +1,8 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/close_widget.dart';
-import 'package:etloob/src/core/presentation/widgets/main_button.dart';
-import 'package:etloob/src/core/presentation/widgets/negative_button.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/close_widget.dart';
+import 'package:nans/src/core/presentation/widgets/main_button.dart';
+import 'package:nans/src/core/presentation/widgets/negative_button.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -27,7 +27,7 @@ class CustomInfoDialog extends StatelessWidget {
       contentPadding: EdgeInsets.all( 8.h),
       actionsPadding: EdgeInsets.all( 8.h),
 
-      backgroundColor: AppColors.whiteColor,
+      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),

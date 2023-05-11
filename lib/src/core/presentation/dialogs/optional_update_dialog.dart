@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/presentation/dialogs/custom_info_dialog.dart';
-import 'package:etloob/src/core/util/constants.dart';
+import 'package:nans/src/core/presentation/dialogs/custom_info_dialog.dart';
+import 'package:nans/src/core/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:store_redirect/store_redirect.dart';
 

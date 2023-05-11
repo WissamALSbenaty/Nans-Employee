@@ -11,7 +11,7 @@ class SheetHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40.h,
-      color: AppColors.whiteColor,
+      color: Colors.white,
       child: Center(
         child: Container(
           height: 4.h,

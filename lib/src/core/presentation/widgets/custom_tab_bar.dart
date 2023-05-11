@@ -1,4 +1,4 @@
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -16,7 +16,7 @@ class CustomTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.whiteColor,
+      color: Colors.white,
       padding: EdgeInsets.symmetric(vertical: 8.h),
       child: TabBar(
         controller: controller,

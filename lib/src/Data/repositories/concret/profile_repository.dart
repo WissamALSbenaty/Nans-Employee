@@ -1,8 +1,8 @@
-import 'package:etloob/src/Data/models/notification_model.dart';
-import 'package:etloob/src/Data/models/pagination_data_model.dart';
-import 'package:etloob/src/Data/models/pagination_response_model.dart';
-import 'package:etloob/src/Data/models/social_media_model.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_profile_repository.dart';
+import 'package:nans/src/Data/models/notification_model.dart';
+import 'package:nans/src/Data/models/pagination_data_model.dart';
+import 'package:nans/src/Data/models/pagination_response_model.dart';
+import 'package:nans/src/Data/models/social_media_model.dart';
+import 'package:nans/src/Data/repositories/abstract/i_profile_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: IProfileRepository)

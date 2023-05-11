@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/controllers/app_controller.dart';
-import 'package:etloob/src/core/util/extentions.dart';
-import 'package:etloob/src/core/presentation/sheets/custom_radio_buttons_sheet.dart';
-import 'package:etloob/src/core/util/mixins.dart';
+import 'package:nans/src/core/controllers/app_controller.dart';
+import 'package:nans/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/sheets/custom_radio_buttons_sheet.dart';
+import 'package:nans/src/core/util/mixins.dart';
 import 'package:flutter/material.dart';
 
 class LanguageBottomSheet extends StatelessWidget with WidgetStoreCreatorMixin<AppController> {

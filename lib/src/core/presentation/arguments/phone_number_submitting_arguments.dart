@@ -1,16 +1,14 @@
 
 
-import 'package:etloob/src/core/util/enums.dart';
 
-class PhoneNumberSubmittingArguments{
+class EmailSubmittingArguments{
 
-  final Future<void> Function({required String phoneNumber}) afterSubmittingPhoneNumber;
-  final Future<void> Function({required String phoneNumber,required String otpCode}) afterSuccessVerification;
+  final Future<void> Function({required String email}) afterSubmittingEmail;
+  final Future<void> Function({required String email,required String otpCode}) afterSuccessVerification;
   final String pageTitle;
-  final VerificationReason verificationReason;
   final bool isOtpFromBackend;
 
 
-  PhoneNumberSubmittingArguments({ required this.verificationReason, required this.pageTitle,required this.afterSuccessVerification,
-    required  this.afterSubmittingPhoneNumber,this.isOtpFromBackend=true});
+  EmailSubmittingArguments({ required this.pageTitle,required this.afterSuccessVerification,
+    required  this.afterSubmittingEmail,this.isOtpFromBackend=true});
 }

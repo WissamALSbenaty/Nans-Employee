@@ -1,6 +1,6 @@
-import 'package:etloob/src/core/presentation/assets.dart';
-import 'package:etloob/src/core/presentation/validators/not_empty_validator.dart';
-import 'package:etloob/src/core/presentation/widgets/text_fields/custom_text_field.dart';
+import 'package:nans/src/core/presentation/assets.dart';
+import 'package:nans/src/core/presentation/validators/not_empty_validator.dart';
+import 'package:nans/src/core/presentation/widgets/text_fields/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

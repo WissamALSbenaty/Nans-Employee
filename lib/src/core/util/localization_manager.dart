@@ -1,7 +1,7 @@
 
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
+import 'package:nans/src/core/presentation/assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

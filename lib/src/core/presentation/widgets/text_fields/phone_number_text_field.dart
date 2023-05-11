@@ -1,6 +1,6 @@
-import 'package:etloob/src/core/presentation/validators/is_phone_number_validator.dart';
-import 'package:etloob/src/core/presentation/widgets/text_fields/custom_text_field.dart';
-import 'package:etloob/src/core/util/masked_formatter.dart';
+import 'package:nans/src/core/presentation/validators/is_phone_number_validator.dart';
+import 'package:nans/src/core/presentation/widgets/text_fields/custom_text_field.dart';
+import 'package:nans/src/core/util/masked_formatter.dart';
 import 'package:flutter/material.dart';
 
 class PhoneNumberTextField extends StatelessWidget {

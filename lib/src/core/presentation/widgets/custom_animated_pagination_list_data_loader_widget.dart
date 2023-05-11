@@ -1,9 +1,9 @@
-import 'package:etloob/src/core/controllers/custom_pagination_list_data_loader.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_animated_list.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_empty_view.dart';
-import 'package:etloob/src/core/presentation/widgets/shimmers/custom_list_loading_shimmer.dart';
-import 'package:etloob/src/core/presentation/widgets/three_dots_loading_indicator.dart';
+import 'package:nans/src/core/controllers/custom_pagination_list_data_loader.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_animated_list.dart';
+import 'package:nans/src/core/presentation/widgets/custom_empty_view.dart';
+import 'package:nans/src/core/presentation/widgets/shimmers/custom_list_loading_shimmer.dart';
+import 'package:nans/src/core/presentation/widgets/three_dots_loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

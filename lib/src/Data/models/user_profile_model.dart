@@ -1,5 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nans/src/core/util/enums.dart';
 
 part 'user_profile_model.freezed.dart';
 part 'user_profile_model.g.dart';
@@ -8,13 +9,13 @@ part 'user_profile_model.g.dart';
 class UserProfileModel with _$UserProfileModel{
 
   factory UserProfileModel({
-    required String firstName,
-    required String lastName,
+    required String email,
+    required String name,
+    required String fatherName,
+    required String motherName,
     required String phoneNumber,
-    required int? usedPoints,
-    required int? savingByPoints,
-    required int? currentPoint,
-    required String? referralCode,
+    required String password,
+    required GenderType gender,
     required bool accountConfirmation,
   })=_UserProfileModel;
 

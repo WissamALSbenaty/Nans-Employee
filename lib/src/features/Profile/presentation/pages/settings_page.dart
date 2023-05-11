@@ -1,13 +1,13 @@
 // ignore_for_file: deprecated_member_use
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/Data/models/social_media_model.dart';
-import 'package:etloob/src/core/presentation/widgets/base_data_loader.dart';
-import 'package:etloob/src/core/util/extentions.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
-import 'package:etloob/src/core/util/mixins.dart';
-import 'package:etloob/src/features/Profile/controllers/social_media_controller.dart';
-import 'package:etloob/src/features/Profile/presentation/sheets_and_popups/logout_dialog.dart';
+import 'package:nans/src/Data/models/social_media_model.dart';
+import 'package:nans/src/core/presentation/widgets/base_data_loader.dart';
+import 'package:nans/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
+import 'package:nans/src/core/util/mixins.dart';
+import 'package:nans/src/features/Profile/controllers/social_media_controller.dart';
+import 'package:nans/src/features/Profile/presentation/sheets_and_popups/logout_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -32,7 +32,7 @@ class SettingsPage extends StatelessWidget with WidgetStoreCreatorMixin<SocialMe
               child: Text(
                 'Logout'.translateWord,
                 style: AppStyle.textTheme.bodyMedium!
-                    .copyWith(color: AppColors.secondaryYellow, fontWeight: FontWeight.bold),
+                    .copyWith(color: AppColors.yellow, fontWeight: FontWeight.bold),
               ),
             ),
           ),

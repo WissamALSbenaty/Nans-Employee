@@ -1,6 +1,6 @@
 
 
-import 'package:etloob/src/core/controllers/base_store.dart';
+import 'package:nans/src/core/controllers/base_store.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
@@ -8,18 +8,16 @@ part 'custom_form_controller.g.dart';
 
 abstract class CustomFormController extends CustomFormControllerBase with _$CustomFormController{
 
-  CustomFormController(super.logger,{ super.initialValues,required super.fieldsNumber,required super.afterSuccessSubmit,required super.submitFunction});
+  CustomFormController(super.logger,{ super.initialValues,required super.fieldsNumber,});
 }
 
 abstract class CustomFormControllerBase extends BaseStoreController with Store {
 
-  final int fieldsNumber;
-  final List<String?>? initialValues;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final Future<void> Function(List<String?>) submitFunction;
-  final Future<void> Function(List<String?>,BuildContext) afterSuccessSubmit;
+   Future<void> submitFunction() ;
+   Future<void> afterSuccessSubmit(BuildContext context) ;
 
-  CustomFormControllerBase(super.logger,{this.initialValues,required this.fieldsNumber,required this.submitFunction, required this.afterSuccessSubmit}){
+  CustomFormControllerBase(super.logger,{List<String?>? initialValues,required int fieldsNumber,}){
     onInit();
     currentValues=ObservableList.of(List.generate(fieldsNumber, (index) =>initialValues?[index] ));
   }
@@ -51,9 +49,9 @@ abstract class CustomFormControllerBase extends BaseStoreController with Store {
 
     isLoading=true;
 
-    await submitFunction(currentValues);
+    await submitFunction();
     isLoading=false;
-    await afterSuccessSubmit(currentValues,context);
+    await afterSuccessSubmit(context);
   }
   ),onCatchError: (){isLoading=false;});
 }

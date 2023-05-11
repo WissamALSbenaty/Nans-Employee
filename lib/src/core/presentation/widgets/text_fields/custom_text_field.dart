@@ -1,7 +1,7 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/validators/custom_validator.dart';
-import 'package:etloob/src/core/util/enums.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/validators/custom_validator.dart';
+import 'package:nans/src/core/util/enums.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,7 +62,7 @@ class CustomTextField extends StatelessWidget {
         ),
         focusedErrorBorder:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.red60),
+          borderSide: const BorderSide(color: AppColors.errorColor),
         ),
 
 
@@ -86,7 +86,7 @@ class CustomTextField extends StatelessWidget {
               children: [
                 TextSpan(
                   text:fieldPriority!=TextFieldPriority.none? ' (${fieldPriority.name.translateWord})':'',
-                  style: AppStyle.textTheme.titleMedium!.copyWith(color: AppColors.red60),
+                  style: AppStyle.textTheme.titleMedium!.copyWith(color: AppColors.errorColor),
 
                 )
               ]

@@ -1,13 +1,13 @@
 import 'package:auto_route/annotations.dart';
-import 'package:etloob/dependencies.dart';
-import 'package:etloob/src/features/auth/controllers/submitting_phone_number_controller.dart';
-import 'package:etloob/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_sized_box.dart';
-import 'package:etloob/src/core/presentation/widgets/main_button.dart';
-import 'package:etloob/src/core/presentation/widgets/text_fields/phone_number_text_field.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/dependencies.dart';
+import 'package:nans/src/core/presentation/widgets/text_fields/email_text_field.dart';
+import 'package:nans/src/features/auth/controllers/submitting_phone_number_controller.dart';
+import 'package:nans/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
+import 'package:nans/src/core/presentation/widgets/main_button.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 @RoutePage()
 class SubmitPhoneNumberPage extends StatefulWidget {
 
-  final PhoneNumberSubmittingArguments args;
+  final EmailSubmittingArguments args;
   const SubmitPhoneNumberPage({Key? key, required this.args}) : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class _SubmitPhoneNumberPageState extends State<SubmitPhoneNumberPage> {
     return Form(
       key: controller.formKey,
       child: Scaffold(
-              backgroundColor:AppColors.whiteColor,
+              backgroundColor:Colors.white,
               appBar: CustomAppBar(
                 context: context,
                 barTitle:'Enter Your Phone Number',
@@ -56,7 +56,7 @@ class _SubmitPhoneNumberPageState extends State<SubmitPhoneNumberPage> {
 
                           const CustomSizedBox(height: 57,),
 
-                          PhoneNumberTextField(onChangedFunction:(value)=> controller.changeValue(0, value)) ,
+                          EmailTextField(onChangedFunction:(value)=> controller.changeValue(0, value)) ,
 
                           const Spacer(),
 

@@ -1,16 +1,15 @@
 
 import 'package:auto_route/auto_route.dart';
-import 'package:etloob/src/core/controllers/app_controller.dart';
-import 'package:etloob/src/core/presentation/assets.dart';
-import 'package:etloob/src/core/presentation/auto_router.dart';
-import 'package:etloob/src/core/presentation/dialogs/custom_text_field_dialog.dart';
-import 'package:etloob/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
-import 'package:etloob/src/core/presentation/arguments/submit_new_password_arguments.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/validators/not_empty_validator.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
-import 'package:etloob/src/core/util/enums.dart';
-import 'package:etloob/src/core/util/mixins.dart';
+import 'package:nans/src/core/controllers/app_controller.dart';
+import 'package:nans/src/core/presentation/assets.dart';
+import 'package:nans/src/core/presentation/auto_router.dart';
+import 'package:nans/src/core/presentation/dialogs/custom_text_field_dialog.dart';
+import 'package:nans/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
+import 'package:nans/src/core/presentation/arguments/submit_new_password_arguments.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/validators/not_empty_validator.dart';
+import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
+import 'package:nans/src/core/util/mixins.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,13 +37,12 @@ class _EditAccountPageState extends State<EditAccountPage> {
     if(isFirstDependency){
       isFirstDependency=false;
       onActionsPressed=[
-            (ctx)=> AutoRouter.of(ctx).push(SubmitPhoneNumberRoute(args: PhoneNumberSubmittingArguments(
+            (ctx)=> AutoRouter.of(ctx).push(SubmitPhoneNumberRoute(args: EmailSubmittingArguments(
           pageTitle:'Please enter your new phone number' ,
-          verificationReason: VerificationReason.ChangePhoneNumber,
-          afterSubmittingPhoneNumber: ({required String phoneNumber}) async{
+          afterSubmittingEmail: ({required String email}) async{
           },
-          afterSuccessVerification:({required String phoneNumber,required String otpCode})async{
-            widget.createdStore.changePhoneNumber(phoneNumber,ctx);
+          afterSuccessVerification:({required String email,required String otpCode})async{
+            widget.createdStore.changeEmail(email,ctx);
           },
         ))),
 

@@ -1,27 +1,27 @@
 
 
 
-import 'package:etloob/src/Data/Errors/custom_error.dart';
-import 'package:etloob/src/Data/models/pagination_data_model.dart';
-import 'package:etloob/src/core/controllers/base_store.dart';
-import 'package:etloob/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:etloob/src/core/util/enums.dart';
+import 'package:nans/src/Data/Errors/core_errors.dart';
+import 'package:nans/src/Data/Errors/custom_error.dart';
+import 'package:nans/src/Data/models/pagination_data_model.dart';
+import 'package:nans/src/core/controllers/base_store.dart';
+import 'package:nans/src/core/presentation/snakebars/bottom_snack_bar.dart';
+import 'package:nans/src/core/util/enums.dart';
 import 'package:mobx/mobx.dart';
 
 part 'custom_pagination_list_data_loader.g.dart';
 
 abstract class CustomPaginationListDataLoader<T> extends CustomPaginationListDataLoaderBase<T> with _$CustomPaginationListDataLoader {
-  CustomPaginationListDataLoader(super.logger,{required super.emptyDataError, required super.dataGetter,super.isLazyStore});
+  CustomPaginationListDataLoader(super.logger,{super.isLazyStore});
 
 }
 
 abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController with Store{
 
 
-  Future<PaginationDataModel<T>> Function(int page) dataGetter;
-  final CustomError emptyDataError;
+  Future<PaginationDataModel<T>> dataGetter (int page);
 
-  CustomPaginationListDataLoaderBase(super.logger,{required this.emptyDataError, required this.dataGetter,super.isLazyStore}){
+  CustomPaginationListDataLoaderBase(super.logger,{super.isLazyStore}){
     initializeLoader();
   }
   @action
@@ -59,11 +59,11 @@ abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController
       isStillLazy=false;
       pageNumber=0;
 
-      PaginationDataModel<T> paginationData=await dataGetter(++pageNumber);
+      PaginationDataModel<T> paginationData=await dataGetter(pageNumber++);
       canLoadMoreData=paginationData.canLoadMoreData;
       dataList= ObservableList.of( paginationData.items);
       if(dataList.isEmpty) {
-        throw emptyDataError;
+        throw EmptyItemsError();
       }
     }
     on CustomError catch (e){

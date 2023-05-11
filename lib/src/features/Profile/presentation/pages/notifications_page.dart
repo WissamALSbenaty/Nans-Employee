@@ -1,8 +1,8 @@
 import 'package:auto_route/annotations.dart';
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_app_bar.dart';
-import 'package:etloob/src/core/util/mixins.dart';
-import 'package:etloob/src/features/Profile/controllers/notifications_controller.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
+import 'package:nans/src/core/util/mixins.dart';
+import 'package:nans/src/features/Profile/controllers/notifications_controller.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()

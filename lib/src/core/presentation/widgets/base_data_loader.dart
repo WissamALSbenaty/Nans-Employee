@@ -1,6 +1,6 @@
-import 'package:etloob/src/core/controllers/base_store.dart';
-import 'package:etloob/src/core/presentation/widgets/custom_empty_view.dart';
-import 'package:etloob/src/core/presentation/widgets/shimmers/default_shimmer.dart';
+import 'package:nans/src/core/controllers/base_store.dart';
+import 'package:nans/src/core/presentation/widgets/custom_empty_view.dart';
+import 'package:nans/src/core/presentation/widgets/shimmers/default_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 

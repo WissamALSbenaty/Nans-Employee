@@ -1,7 +1,7 @@
 
 
 
-import 'package:etloob/src/Data/api_helper.dart';
+import 'package:nans/src/Data/api_helper.dart';
 
 
 abstract class Repository{

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:etloob/firebase_options.dart';
-import 'package:etloob/src/core/util/constants.dart';
-import 'package:etloob/src/features/app/presentation/pages/app.dart';
+import 'package:nans/firebase_options.dart';
+import 'package:nans/src/core/util/constants.dart';
+import 'package:nans/src/features/app/presentation/pages/app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

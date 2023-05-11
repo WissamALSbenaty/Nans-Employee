@@ -1,5 +1,5 @@
-import 'package:etloob/src/core/presentation/style.dart';
-import 'package:etloob/src/core/util/extentions.dart';
+import 'package:nans/src/core/presentation/style.dart';
+import 'package:nans/src/core/util/extentions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,9 +35,9 @@ class MainButton extends StatelessWidget {
             child: Center(
               child: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 500),
-                child: isLoading? const CircularProgressIndicator(color: AppColors.whiteColor,):
+                child: isLoading? const CircularProgressIndicator(color: Colors.white,):
                 Text(title.translateWord,
-                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.whiteColor,fontWeight: FontWeight.bold),),
+                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: Colors.white,fontWeight: FontWeight.bold),),
               ))));
   }
 }

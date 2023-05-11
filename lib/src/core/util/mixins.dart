@@ -1,6 +1,6 @@
 
 
-import 'package:etloob/dependencies.dart';
+import 'package:nans/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';

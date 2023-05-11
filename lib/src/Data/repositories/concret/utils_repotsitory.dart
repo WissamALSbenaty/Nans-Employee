@@ -2,12 +2,12 @@
 
 
 
-import 'package:etloob/src/Data/api_helper.dart';
-import 'package:etloob/src/Data/models/app_config_model.dart';
-import 'package:etloob/src/Data/models/app_translation_model.dart';
-import 'package:etloob/src/Data/models/key_value_model.dart';
-import 'package:etloob/src/Data/models/response_model.dart';
-import 'package:etloob/src/Data/repositories/abstract/i_utils_repository.dart';
+import 'package:nans/src/Data/api_helper.dart';
+import 'package:nans/src/Data/models/app_config_model.dart';
+import 'package:nans/src/Data/models/app_translation_model.dart';
+import 'package:nans/src/Data/models/key_value_model.dart';
+import 'package:nans/src/Data/models/response_model.dart';
+import 'package:nans/src/Data/repositories/abstract/i_utils_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Singleton(as: IUtilsRepository)
