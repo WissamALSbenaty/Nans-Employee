@@ -1,10 +1,10 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:nans/src/core/controllers/app_controller.dart';
+import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/presentation/dialogs/custom_info_dialog.dart';
 import 'package:nans/src/core/util/mixins.dart';
 import 'package:flutter/material.dart';
 
-class LogoutDialog extends StatelessWidget with WidgetStoreCreatorMixin<AppController> {
+class LogoutDialog extends StatelessWidget with WidgetControllerCreatorMixin<AppController> {
   LogoutDialog({Key? key}) : super(key: key);
 
   @override
@@ -13,11 +13,11 @@ class LogoutDialog extends StatelessWidget with WidgetStoreCreatorMixin<AppContr
         title: 'Are You Sure ?',
         mainActionText: 'Logout',
         onMainActionPressed:()async{
-          await createdStore.logout();
-          AutoRouter.of(context).popUntilRoot();
+          await createdController.logout();
+          appRouter.popUntilRoot();
         },
         secondActionText: 'Cancel',
-        onSecondActionPressed:()=>AutoRouter.of(context).pop(),
+        onSecondActionPressed:()=>appRouter.pop(),
 
     );
   }

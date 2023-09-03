@@ -1,14 +1,16 @@
+import 'package:nans/src/core/controllers/custom_form_mixin.dart';
 import 'package:nans/src/core/presentation/assets.dart';
-import 'package:nans/src/core/presentation/validators/not_empty_validator.dart';
-import 'package:nans/src/core/presentation/widgets/text_fields/custom_text_field.dart';
+import 'package:nans/src/core/presentation/validators/is_not_empty_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nans/src/core/presentation/widgets/text_fields/form_controller_text_field.dart';
 
 class PasswordTextField extends StatefulWidget {
-  final void Function(String?) onChangedFunction;
+  final int fieldIndex;
+  final CustomFormMixin formController;
   final String title;
-  const PasswordTextField({Key? key, required this.onChangedFunction, this.title='Password'}) : super(key: key);
+  const PasswordTextField({Key? key,this.title="Password" ,required this.fieldIndex, required this.formController}) : super(key: key);
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -25,9 +27,10 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   }
   @override
   Widget build(BuildContext context) {
-    return CustomTextField(
-      validator: NotEmptyValidator(),
-      onChangedFunction: widget.onChangedFunction,
+    return FormControllerTextField(
+      fieldIndex: widget.fieldIndex,
+      formController: widget.formController,
+      validator: IsNotEmptyValidator(),
       title: widget.title,
       isObscureText:isObscurePassword,
       suffixIcon: Center(

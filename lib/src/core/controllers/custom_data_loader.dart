@@ -1,22 +1,22 @@
 
 
 
-import 'package:nans/src/core/controllers/base_store.dart';
+import 'package:nans/src/core/controllers/base_controller.dart';
 import 'package:mobx/mobx.dart';
 
 part 'custom_data_loader.g.dart';
 
-class CustomDataLoader<T> extends CustomDataLoaderBase<T> with _$CustomDataLoader {
-  CustomDataLoader(super.logger,{required super.dataGetter});
+abstract class CustomDataLoader<T> extends CustomDataLoaderBase<T> with _$CustomDataLoader {
+  CustomDataLoader(super.logger,{super.isLazyController});
 
 }
 
-abstract class CustomDataLoaderBase<T> extends BaseStoreController with Store {
+abstract class CustomDataLoaderBase<T> extends BaseController with Store {
 
-  final Future<T> Function() dataGetter;
+  Future<T> dataGetter();
 
-  CustomDataLoaderBase(super.logger,{required this.dataGetter,}){
-    if(!isLazyStore) {
+  CustomDataLoaderBase(super.logger,{super.isLazyController}){
+    if(!isLazyController) {
       loadData();
     }
   }
@@ -26,10 +26,12 @@ abstract class CustomDataLoaderBase<T> extends BaseStoreController with Store {
 
   @action
   Future<void> loadData()=>runStorePrimaryFunction(Future(()async{
-
-    await onInit();
+    print('Wiso before init');
+        await onInit();
+    print('Wiso after init');
     data = await dataGetter();
-  }));
+
+      }));
 
 
 }

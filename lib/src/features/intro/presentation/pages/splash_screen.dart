@@ -3,7 +3,6 @@ import 'package:nans/src/core/presentation/assets.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {
@@ -34,7 +33,7 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
   void setNavigationTimer()async{
     await Future.delayed(const Duration(seconds: 3));
 
-    AutoRouter.of(context).replace(   HomeRoute( ));
+    appRouter.replace(   const AuthRoute( ));
 
   }
 
@@ -44,8 +43,8 @@ class SplashScreenState extends State<SplashScreen> with SingleTickerProviderSta
         body: Center(
         child: FadeTransition(
         opacity: _animationController,
-        child: SvgPicture.asset(
-        Assets.sort,
+        child: Image.asset(
+        Assets.logo,
         width: 200.r,
         height: 200.r,
     ),

@@ -22,7 +22,7 @@ class SecondaryButton extends StatelessWidget {
             elevation: MaterialStateProperty.all(5),
             backgroundColor:MaterialStateProperty.all(Colors.white),
             shape: MaterialStateProperty.all( RoundedRectangleBorder(side: const BorderSide(
-              color: AppColors.yellow
+              color: AppStyle.primary
             ),
               borderRadius: BorderRadius.circular(8),))
         ),
@@ -33,6 +33,6 @@ class SecondaryButton extends StatelessWidget {
 
             child: Center(
                 child: Text(title.translateWord,
-                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.yellow,fontWeight: FontWeight.bold),))));
+                  style:  AppStyle.textTheme.bodyMedium!.copyWith(color: AppStyle.primary,fontWeight: FontWeight.bold),))));
   }
 }

@@ -53,7 +53,7 @@ class _CustomAnimatedPaginationListDataLoaderWidgetState<T> extends State<Custom
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      color: AppColors.yellow,
+      color: AppStyle.primary,
       onRefresh: widget.dataLoader.initializeLoader,
       child :  AnimatedSwitcher(
             duration:const Duration(milliseconds: 1000),

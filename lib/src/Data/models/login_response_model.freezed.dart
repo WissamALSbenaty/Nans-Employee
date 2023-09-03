@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'login_response_model.dart';
 
@@ -20,7 +20,9 @@ LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LoginResponseModel {
+  @JsonKey(name: 'accessToken')
   String get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'employee')
   UserProfileModel get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +37,9 @@ abstract class $LoginResponseModelCopyWith<$Res> {
           LoginResponseModel value, $Res Function(LoginResponseModel) then) =
       _$LoginResponseModelCopyWithImpl<$Res, LoginResponseModel>;
   @useResult
-  $Res call({String token, UserProfileModel user});
+  $Res call(
+      {@JsonKey(name: 'accessToken') String token,
+      @JsonKey(name: 'employee') UserProfileModel user});
 
   $UserProfileModelCopyWith<$Res> get user;
 }
@@ -85,7 +89,9 @@ abstract class _$$_LoginResponseModelCopyWith<$Res>
       __$$_LoginResponseModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, UserProfileModel user});
+  $Res call(
+      {@JsonKey(name: 'accessToken') String token,
+      @JsonKey(name: 'employee') UserProfileModel user});
 
   @override
   $UserProfileModelCopyWith<$Res> get user;
@@ -121,14 +127,18 @@ class __$$_LoginResponseModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_LoginResponseModel implements _LoginResponseModel {
-  _$_LoginResponseModel({required this.token, required this.user});
+  _$_LoginResponseModel(
+      {@JsonKey(name: 'accessToken') required this.token,
+      @JsonKey(name: 'employee') required this.user});
 
   factory _$_LoginResponseModel.fromJson(Map<String, dynamic> json) =>
       _$$_LoginResponseModelFromJson(json);
 
   @override
+  @JsonKey(name: 'accessToken')
   final String token;
   @override
+  @JsonKey(name: 'employee')
   final UserProfileModel user;
 
   @override
@@ -166,15 +176,18 @@ class _$_LoginResponseModel implements _LoginResponseModel {
 
 abstract class _LoginResponseModel implements LoginResponseModel {
   factory _LoginResponseModel(
-      {required final String token,
-      required final UserProfileModel user}) = _$_LoginResponseModel;
+          {@JsonKey(name: 'accessToken') required final String token,
+          @JsonKey(name: 'employee') required final UserProfileModel user}) =
+      _$_LoginResponseModel;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
       _$_LoginResponseModel.fromJson;
 
   @override
+  @JsonKey(name: 'accessToken')
   String get token;
   @override
+  @JsonKey(name: 'employee')
   UserProfileModel get user;
   @override
   @JsonKey(ignore: true)

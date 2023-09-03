@@ -10,13 +10,13 @@ class CustomListLoadingShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.blue,
+      color: AppStyle.blue,
       child: Column(
         children: [
 
           const CustomSizedBox(height: 16,),
-          ...List.generate(3, (index) => Column(
-        children:  const [
+          ...List.generate(3, (index) => const Column(
+        children:  [
           CustomTileShimmer(),
           CustomSizedBox(height: 16,),
         ],

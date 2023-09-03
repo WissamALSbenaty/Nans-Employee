@@ -56,18 +56,23 @@ class _SubmitPhoneNumberPageState extends State<SubmitPhoneNumberPage> {
 
                           const CustomSizedBox(height: 57,),
 
-                          EmailTextField(onChangedFunction:(value)=> controller.changeValue(0, value)) ,
+                          EmailTextField(fieldIndex: 0,formController: controller) ,
 
                           const Spacer(),
 
                           MainButton(title: 'Continue',
                               isLoading:controller.isLoading,
-                              onPressed:()=> controller.submitForm(context)),
+                              onPressed:controller.submitForm),
 
                           const CustomSizedBox(height: 32,),
                         ])
                 ),
               )),
     );
+  }
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

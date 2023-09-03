@@ -17,7 +17,7 @@ class CustomListDataLoaderWidget<T> extends StatelessWidget {
   Widget build(BuildContext context) {
       return Observer(
         builder:(_)=> RefreshIndicator(
-          color: AppColors.yellow,
+          color: AppStyle.primary,
           onRefresh: dataLoader.loadData,
           child : AnimatedSwitcher(
               duration:const Duration(milliseconds: 300),

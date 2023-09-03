@@ -6,7 +6,7 @@ part of 'app_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_User?, no_leading_underscores_for_local_identifiers
 
 mixin _$AppController on AppControllerBase, Store {
   late final _$appConfigModelAtom =
@@ -45,13 +45,13 @@ mixin _$AppController on AppControllerBase, Store {
       Atom(name: 'AppControllerBase.currentUser', context: context);
 
   @override
-  dynamic get currentUser {
+  User? get currentUser {
     _$currentUserAtom.reportRead();
     return super.currentUser;
   }
 
   @override
-  set currentUser(dynamic value) {
+  set currentUser(User? value) {
     _$currentUserAtom.reportWrite(value, super.currentUser, () {
       super.currentUser = value;
     });
@@ -78,9 +78,8 @@ mixin _$AppController on AppControllerBase, Store {
       AsyncAction('AppControllerBase.changeAppLanguage', context: context);
 
   @override
-  Future<void> changeAppLanguage(BuildContext context) {
-    return _$changeAppLanguageAsyncAction
-        .run(() => super.changeAppLanguage(context));
+  Future<void> changeAppLanguage() {
+    return _$changeAppLanguageAsyncAction.run(() => super.changeAppLanguage());
   }
 
   late final _$refreshProfileAsyncAction =
@@ -99,22 +98,6 @@ mixin _$AppController on AppControllerBase, Store {
     return _$loginAsyncAction.run(() => super.login(loginModel));
   }
 
-  late final _$loginAsGuestAsyncAction =
-      AsyncAction('AppControllerBase.loginAsGuest', context: context);
-
-  @override
-  Future<void> loginAsGuest() {
-    return _$loginAsGuestAsyncAction.run(() => super.loginAsGuest());
-  }
-
-  late final _$registerAsyncAction =
-      AsyncAction('AppControllerBase.register', context: context);
-
-  @override
-  Future<void> register(RegisterModel registerModel) {
-    return _$registerAsyncAction.run(() => super.register(registerModel));
-  }
-
   late final _$AppControllerBaseActionController =
       ActionController(name: 'AppControllerBase', context: context);
 
@@ -130,24 +113,11 @@ mixin _$AppController on AppControllerBase, Store {
   }
 
   @override
-  Future<void> changeEmail(String newEmail, BuildContext context) {
-    final _$actionInfo = _$AppControllerBaseActionController.startAction(
-        name: 'AppControllerBase.changeEmail');
-    try {
-      return super.changeEmail(newEmail, context);
-    } finally {
-      _$AppControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  Future<void> changePassword(
-      {required String oldPassword, required String newPassword}) {
+  void changePassword() {
     final _$actionInfo = _$AppControllerBaseActionController.startAction(
         name: 'AppControllerBase.changePassword');
     try {
-      return super
-          .changePassword(oldPassword: oldPassword, newPassword: newPassword);
+      return super.changePassword();
     } finally {
       _$AppControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -159,17 +129,6 @@ mixin _$AppController on AppControllerBase, Store {
         name: 'AppControllerBase.logout');
     try {
       return super.logout();
-    } finally {
-      _$AppControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  Future<void> deleteAccount(String userInputPassword, BuildContext context) {
-    final _$actionInfo = _$AppControllerBaseActionController.startAction(
-        name: 'AppControllerBase.deleteAccount');
-    try {
-      return super.deleteAccount(userInputPassword, context);
     } finally {
       _$AppControllerBaseActionController.endAction(_$actionInfo);
     }

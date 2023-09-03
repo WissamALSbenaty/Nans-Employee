@@ -1,5 +1,4 @@
 
-import 'package:auto_route/auto_route.dart';
 import 'package:nans/dependencies.dart';
 import 'package:nans/src/Data/api_helper.dart';
 import 'package:nans/src/Data/local_database_tables/app_database.dart';
@@ -7,19 +6,20 @@ import 'package:nans/src/Data/models/app_config_model.dart';
 import 'package:nans/src/Data/models/app_translation_model.dart';
 import 'package:nans/src/Data/models/login_model.dart';
 import 'package:nans/src/Data/models/login_response_model.dart';
-import 'package:nans/src/Data/models/register_model.dart';
 import 'package:nans/src/Data/models/user_profile_model.dart';
 import 'package:nans/src/Data/repositories/abstract/i_auth_repository.dart';
 import 'package:nans/src/Data/repositories/abstract/i_utils_repository.dart';
-import 'package:nans/src/core/controllers/base_store.dart';
-import 'package:nans/src/core/presentation/arguments/confirm_phone_number_page_arguments.dart';
+import 'package:nans/src/core/controllers/base_controller.dart';
+import 'package:nans/src/core/presentation/arguments/submit_new_password_arguments.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
-import 'package:nans/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:nans/src/core/presentation/snakebars/snack_bar_messages.dart';
+import 'package:nans/src/core/presentation/dialogs/custom_dialog.dart';
+import 'package:nans/src/core/presentation/dialogs/custom_text_field_dialog.dart';
+import 'package:nans/src/core/presentation/dialogs/force_update_dialog.dart';
+import 'package:nans/src/core/presentation/dialogs/optional_update_dialog.dart';
+import 'package:nans/src/core/presentation/validators/is_equal_validator.dart';
 import 'package:nans/src/core/util/enums.dart';
 import 'package:nans/src/core/util/localization_manager.dart';
-import 'package:nans/src/features/app/presentation/pages/app.dart';
-import 'package:flutter/material.dart';
+import 'package:nans/src/core/util/notification_manager.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
@@ -28,25 +28,22 @@ part 'app_controller.g.dart';
 
 @singleton
 class AppController extends AppControllerBase with _$AppController{
-  AppController( super.authRepository, super.utilsRepository, super.appDatabase, super.localizationManager,super.logger);
+  AppController( super.authRepository, super.utilsRepository, super.appDatabase, super.localizationManager, super.notificationsManager,super.logger);
 
 }
 
-abstract class AppControllerBase extends BaseStoreController with Store {
+abstract class AppControllerBase extends BaseController with Store {
 
 
   final IUtilsRepository utilsRepository;
   final IAuthRepository authRepository;
   final AppDatabase appDatabase;
   final LocalizationManager localizationManager;
+  final NotificationsManager notificationsManager;
 
-  late ReactionDisposer confirmAccountReaction;
-  AppControllerBase(this.authRepository,this.utilsRepository, this.appDatabase, this.localizationManager,super.logger){
-
-    confirmAccountReaction=confirmAccountReactionGetter();
+  AppControllerBase(this.authRepository,this.utilsRepository, this.appDatabase, this.localizationManager, this.notificationsManager,super.logger){
     loadData();
   }
-
 
   @observable
   AppConfigModel? appConfigModel;
@@ -61,8 +58,8 @@ abstract class AppControllerBase extends BaseStoreController with Store {
   AppTranslationModel? applicationTranslationModel;
 
   @action
-  Future<void> changeAppLanguage(BuildContext context)async{
-    localizationManager.toggleLanguage(context);
+  Future<void> changeAppLanguage()async{
+    localizationManager.toggleLanguage();
     loadData();
   }
 
@@ -74,7 +71,7 @@ abstract class AppControllerBase extends BaseStoreController with Store {
     bool isAuthenticatedUser = false;
     try {
       currentUser = await appDatabase.getUser();
-      if (currentUser!.email.isNotEmpty && currentUser!.password.isNotEmpty) {
+      if (currentUser?.token.isNotEmpty ?? false) {
         isAuthenticatedUser = true;
         getIt<ApiHelper>().setToken(currentUser!.token);
       }
@@ -88,34 +85,37 @@ abstract class AppControllerBase extends BaseStoreController with Store {
           refreshProfile(),
           authRepository.updateFirebaseToken(),
         ],
-      utilsRepository.getAppConfig().then((value) => appConfigModel = value),
+      utilsRepository.getAppConfig().then((value) {
+         appConfigModel = value;
+         checkAppVersion();
+      }),
       utilsRepository.getAppTranslation().then((value) => applicationTranslationModel = value),
     ];
-
-
     await Future.wait(dataGetters);
-
-
   }));
 
   @action
   Future<void> refreshProfile()async{
-    await authRepository.getUserProfile().then((value) => userProfileModel = value);
+    await authRepository.getUserProfile().then((value) {
+      userProfileModel = value;
+    });
   }
 
 
   @action
-  Future<void> changeEmail(String newEmail,BuildContext context)=>runStoreSecondaryFunction(Future(()async{
-    userProfileModel=await authRepository.changeEmail(email: newEmail);
-    currentUser=await appDatabase.getUser();
-
-    BottomSnackBar.show(SnackBarMessages.successChangingEmail, ToastType.success);
-    AutoRouter.of(context).popUntilRoot();
-  }));
-
-  @action
-  Future<void> changePassword({required String oldPassword,required String newPassword,})=>runStoreSecondaryFunction(Future(()async{
-    await authRepository.changePassword(oldPassword: oldPassword, newPassword: newPassword);
+  void changePassword()=>runStoreSecondaryFunction(Future(()async {
+    showCustomDialog(dialog: CustomTextFieldDialog(title: 'Are You Sure ?',
+        dialogTextContent: 'Please Enter Your Password',
+        mainActionText: 'Continue',
+        textFieldValidator:IsEqualValidator(toCompare: currentUser?.password,),
+        textFieldTitle: 'old password',
+        onMainActionPressed: (String? passwordValue)  => appRouter.push(
+              SubmitNewPasswordRoute(args: SubmitNewPasswordArguments(
+                onSubmitNewPassword: (String newPassword) async =>
+                await authRepository.changePassword(oldPassword: passwordValue!,
+                    newPassword: newPassword),
+              )
+              ))));
   }));
 
   @action
@@ -133,43 +133,14 @@ abstract class AppControllerBase extends BaseStoreController with Store {
 
   }
 
-  @action
-  Future<void> loginAsGuest()async{
-    await authRepository.loginAsGuest();
-    currentUser=await appDatabase.getUser();
-    userProfileModel=null;
-  }
-
-
-  @action
-  Future<void> register(RegisterModel registerModel)async{
-    LoginResponseModel loginResponseModel =await authRepository.register(registerModel);
-    userProfileModel=loginResponseModel.user;
-  }
-
-  ReactionDisposer confirmAccountReactionGetter(){
-    return  reaction((_) => userProfileModel, (value) {
-      if ((currentUser != null) && (value?.accountConfirmation == false)) {
-        Future.delayed(const Duration(seconds: 3)).then((value) =>
-            appRouter.push(ConfirmPhoneNumberRoute(args: ConfirmEmailPageArguments(
-              email: currentUser!.email,
-              isOtpFromBackend: true,
-              afterSuccessSubmitting: ({required String otpCode, required String email}) async {
-
-                login(LoginModel(email: currentUser!.email,
-                    password: currentUser!.password));
-
-                BottomSnackBar.show(SnackBarMessages.registeringSuccess, ToastType.success);
-
-                appRouter.popUntilRoot();
-              },
-
-            ))));
+ void checkAppVersion()async{
+    await Future.delayed(const Duration(seconds: 7));
+      ApplicationState currentApplicationState=appConfigModel?.mobileSettings.getApplicationState() ?? ApplicationState.stable;
+      if( currentApplicationState==ApplicationState.mustUpdate){
+          showCustomDialog(isDismissible: false, dialog: const ForceUpdateDialog(),);
       }
-    });
-  }
-
-  void dispose() {
-    confirmAccountReaction();
+      else if(currentApplicationState==ApplicationState.canUpdate){
+        showCustomDialog(dialog: const OptionalUpdateDialog());
+      }
   }
 }

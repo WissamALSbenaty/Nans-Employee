@@ -58,18 +58,23 @@ class _SubmitNewPasswordPageState extends State<SubmitNewPasswordPage> {
 
               const CustomSizedBox(height: 57,),
 
-               PasswordTextField(onChangedFunction: (value)=>controller.changeValue( 0,value),),
+               PasswordTextField(formController: controller,fieldIndex: 0,),
 
               const Spacer(),
 
               MainButton(title: 'Reset My Password',
                   isLoading:controller.isLoading,
-                  onPressed:()=> controller.submitForm(context)),
+                  onPressed:controller.submitForm),
 
               const CustomSizedBox(height: 32,),
               ])
           )
       )),
     );
+  }
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

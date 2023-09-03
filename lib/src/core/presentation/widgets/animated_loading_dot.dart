@@ -36,7 +36,7 @@ class _AnimatedLoadingDotState extends State<AnimatedLoadingDot> with TickerProv
       height: 20.r+ (sin(sizeAnimation.value+widget.initialValue)*8).r,
       width: 20.r+ (sin(sizeAnimation.value+widget.initialValue)*8).r,
       decoration: const BoxDecoration(
-        color: AppColors.yellow,
+        color: AppStyle.primary,
         shape: BoxShape.circle
       ),
     ));

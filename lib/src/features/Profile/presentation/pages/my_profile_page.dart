@@ -4,7 +4,7 @@ import 'package:nans/src/Data/models/user_profile_model.dart';
 import 'package:nans/src/core/controllers/app_controller.dart';
 import 'package:nans/src/core/presentation/assets.dart';
 import 'package:nans/src/core/presentation/auto_router.dart';
-import 'package:nans/src/core/presentation/sheets/custom_bottomsheet.dart';
+import 'package:nans/src/core/presentation/sheets/custom_bottom_sheet.dart';
 import 'package:nans/src/core/presentation/style.dart';
 import 'package:nans/src/core/presentation/widgets/base_data_loader.dart';
 import 'package:nans/src/core/presentation/widgets/custom_empty_view.dart';
@@ -15,17 +15,18 @@ import 'package:nans/src/features/Profile/presentation/sheets_and_popups/languag
 import 'package:nans/src/features/Profile/presentation/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nans/src/features/Profile/presentation/widgets/route_option_card.dart';
 @RoutePage()
-class MyProfilePage extends StatelessWidget with WidgetStoreCreatorMixin<AppController> {
+class MyProfilePage extends StatelessWidget with WidgetControllerCreatorMixin<AppController> {
    MyProfilePage({Key? key}) : super(key: key);
 
   final List<String> titles=['Notifications','Settings',];
 
   final List<String> iconPaths=[Assets.bell,Assets.settings,];
 
-  final List<Color> avatarColors=[AppColors.yellow,AppColors.blackColor.shade100,];
+  final List<Color> avatarColors=[Colors.white,AppStyle.blackColor.shade100,];
 
-  final List<PageRouteInfo> nextPages=[ const NotificationsRoute(), SettingsRoute(),];
+  final List<PageRouteInfo> nextPages=[ const NotificationsRoute(), const SettingsRoute(),];
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +44,19 @@ class MyProfilePage extends StatelessWidget with WidgetStoreCreatorMixin<AppCont
             onTap:()=>showCustomBottomSheet(context,   LanguageBottomSheet(),[0.5]),
             child: Center(
               child: Text(
-                'Change Language'.translateWord,style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppColors.yellow, fontWeight: FontWeight.bold),
+                'Change Language'.translateWord,style: AppStyle.textTheme.bodyMedium!.copyWith(color: AppStyle.primary, fontWeight: FontWeight.bold),
               ),
             ),
           ),
             const CustomSizedBox(width: 16,),
         ]
       ),
-      backgroundColor: AppColors.blue,
+      backgroundColor: AppStyle.blue,
 
       body:BaseDataLoader<UserProfileModel?>(
-        dataLoader: createdStore,
-        onFailLoading: createdStore.loadData,
-        dataGetter: ()=>createdStore.userProfileModel,
+        dataLoader: createdController,
+        onFailLoading: createdController.loadData,
+        dataGetter: ()=>createdController.userProfileModel,
         childBuilder: (data)=>data==null?
         CustomEmptyView(NotAuthorizedError(message: null)):
           Column(
@@ -70,22 +71,22 @@ class MyProfilePage extends StatelessWidget with WidgetStoreCreatorMixin<AppCont
 
                   )
               ),
-              Expanded(
+               Expanded(
                 child: SingleChildScrollView(
         child: Column(
-                children: const [
+                children: [
 
-          /*      const CustomSizedBox(height: 16,),
+             const CustomSizedBox(height: 16,),
                   for(int i=0;i<titles.length;i++)
                     ...[
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal:  16.w,),
                         child: RouteOptionCard(
-                          onPressed: ()=>AutoRouter.of(context).push(nextPages[i]),
+                          onPressed: ()=>appRouter.push(nextPages[i]),
                             title:titles[i],iconPath:iconPaths[i],iconColor:avatarColors[i]),
                       ),
                       const CustomSizedBox(height: 16,),
-                    ]*/
+                    ]
                 ],
         ),
       ),

@@ -15,8 +15,8 @@ class HomeNavigationBar extends StatelessWidget {
 
   HomeNavigationBar({super.key, required this.onTabItem, required this.currentIndex});
 
-  final List<String> titles = ['My Orders','My Cart','Etloob','Daily Shopping','My Profile'],
-      imagePath = [Assets.myOrders, Assets.cart, Assets.homePageBox, Assets.dailyShopping, Assets.profile,];
+  final List<String> titles = ['Home','My Profile'],
+      imagePath = [Assets.myOrders, Assets.profile,];
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class HomeNavigationBar extends StatelessWidget {
         currentIndex: currentIndex,
         onTap: onTabItem,
         backgroundColor: Colors.white,
-        selectedItemColor: AppColors.yellow,
-        unselectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppColors.blackColor.shade500,),
-        selectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppColors.yellow,),
+        selectedItemColor: AppStyle.primary,
+        unselectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppStyle.blackColor.shade500,),
+        selectedLabelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontSize:10.h, color: AppStyle.primary,),
         type: BottomNavigationBarType.fixed,
 
         items: [
@@ -51,13 +51,12 @@ class HomeNavigationBar extends StatelessWidget {
           imagePath[titleIndex],
           height: 24.r,
           width: 24.r,
-          colorFilter:ColorFilter.mode( isSelected ? AppColors.yellow : AppColors.blackColor.shade200,BlendMode.srcIn),
+          colorFilter:ColorFilter.mode( isSelected ? AppStyle.primary : AppStyle.blackColor.shade200,BlendMode.srcIn),
         ),
       ):Image.asset(Assets.homePageBox,
         height: 48.r,width: 48.r,),
 
-      label:  titleIndex!=2?  titles[titleIndex].translateWord:'',
-
+      label:  titles[titleIndex].translateWord,
 
     );
   }

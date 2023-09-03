@@ -10,7 +10,7 @@ class IsNumberValidator extends CustomValidator{
 
   @override
   String? validate({required String fieldName,required String? toCheckString}) {
-    if(toCheckString==null|| int.tryParse(toCheckString)==null) {
+    if(toCheckString==null|| num.tryParse(toCheckString)==null) {
       return NotNumberError(fieldName:fieldName).errorMessage;
     }
     return null;

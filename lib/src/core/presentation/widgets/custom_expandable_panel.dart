@@ -40,7 +40,7 @@ class _CustomExpandablePanelState extends State<CustomExpandablePanel> {
         width: 343.w,
         padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 24.h),
         decoration: BoxDecoration(
-          color: AppColors.blue,
+          color: AppStyle.blue,
           borderRadius: BorderRadius.circular(8),
         ),
 

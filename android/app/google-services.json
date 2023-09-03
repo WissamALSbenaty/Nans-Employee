@@ -1,36 +1,64 @@
 {
   "project_info": {
-    "project_number": "1058221785825",
-    "project_id": "nans2023",
-    "storage_bucket": "nans2023.appspot.com"
+    "project_number": "362165460109",
+    "project_id": "nans-ac222",
+    "storage_bucket": "nans-ac222.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1058221785825:android:d77d33b67d256b56156da0",
+        "mobilesdk_app_id": "1:362165460109:android:bb4ea32f3816f9734316c4",
         "android_client_info": {
           "package_name": "com.example.neww"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1058221785825-rh8974a7c4a70irf4kjktshm3l9bur7j.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDb1tXvZkZnlTqUmt-zPQ2wXMeE1CxsfL0"
+          "current_key": "AIzaSyAmo8wfBRAFJRuuVIQ2TCG28CyVlkKu6Es"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1058221785825-rh8974a7c4a70irf4kjktshm3l9bur7j.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362165460109:android:36190025b8b5c4444316c4",
+        "android_client_info": {
+          "package_name": "com.nans.client"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmo8wfBRAFJRuuVIQ2TCG28CyVlkKu6Es"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362165460109:android:b9933b054b6363e24316c4",
+        "android_client_info": {
+          "package_name": "com.nans.employee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmo8wfBRAFJRuuVIQ2TCG28CyVlkKu6Es"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     }

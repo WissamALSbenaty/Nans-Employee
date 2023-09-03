@@ -8,63 +8,86 @@ class AppStyle {
 
   static final TextTheme textTheme = TextTheme(
     displayLarge: TextStyle(
-        fontSize: 32.sp,
+        fontSize: 36.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
     displayMedium: TextStyle(
-        fontSize: 28.sp,
+        fontSize: 32.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
     displaySmall: TextStyle(
-        fontSize: 24.sp,
+        fontSize: 28.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
+        ),
+    headlineLarge: TextStyle(
+        fontSize: 26.sp,
+        height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
+        color: blackColor,
         ),
     headlineMedium: TextStyle(
-        fontSize: 20.sp,
+        fontSize: 24.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
+    headlineSmall: TextStyle(
+      fontSize: 22.sp,
+      height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
+      color: blackColor,
+    ),
+
     bodyLarge: TextStyle(
         fontSize: 20.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
     bodyMedium: TextStyle(
+        fontSize: 18.sp,
+        height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
+        color: blackColor,
+        ),
+    bodySmall: TextStyle(
         fontSize: 16.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
-
+    titleLarge: TextStyle(
+      fontSize: 14.sp,
+      height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
+      color: blackColor,
+    ),
     titleMedium: TextStyle(
-        fontSize: 14.sp,
-        height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
-        ),
-    titleSmall: TextStyle(
         fontSize: 12.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
+    titleSmall: TextStyle(
+        fontSize: 10.sp,
+        height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
+        color: blackColor,
+        ),
+
     labelSmall: TextStyle(
         fontSize: 8.sp,
         height: getIt<LocalizationManager>().isEnglishLanguage?1.3:1,
-        color: AppColors.blackColor,
+        color: blackColor,
         ),
-  );
 
+  );
+  static ButtonStyle buttonsStyle= ButtonStyle(
+      padding: MaterialStateProperty.all(EdgeInsets.zero),
+      backgroundColor:MaterialStateProperty.all(Colors.white),
+      shape: MaterialStateProperty.all( RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r),))
+  );
   static  List<BoxShadow> basicBoxShadow = [BoxShadow(
     spreadRadius: 1,
       offset: const Offset(-1, 5), color:Colors.black.withOpacity(0.2), blurRadius: 16.r)];
-}
-
-class AppColors {
-
 
   static const Color backgroundColor = Color(0xFFE5E5E5);
-  static const Color yellow = Color(0xFFFFCD41);
+  static const Color primary =  Color(0xFF2D3192);
+  static const Color green = Color(0xFF038929);
   static const Color pink = Color(0xFFFFF5F6);
   static const Color blue = Color(0xFFF5F6FE);
 

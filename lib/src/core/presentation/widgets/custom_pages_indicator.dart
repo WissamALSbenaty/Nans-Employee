@@ -18,8 +18,8 @@ class CustomPagesIndicator extends StatelessWidget {
       effect: ExpandingDotsEffect(
         dotHeight: 4.h,
         dotWidth: 8.w,
-        dotColor: AppColors.blackColor.shade100,
-        activeDotColor: AppColors.yellow,
+        dotColor: AppStyle.blackColor.shade100,
+        activeDotColor: AppStyle.primary,
       ),
     );
   }

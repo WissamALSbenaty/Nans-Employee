@@ -2,39 +2,36 @@
 
 
 import 'package:nans/src/Data/Errors/core_errors.dart';
-import 'package:nans/src/Data/Errors/custom_error.dart';
 import 'package:nans/src/Data/models/pagination_data_model.dart';
-import 'package:nans/src/core/controllers/base_store.dart';
-import 'package:nans/src/core/presentation/snakebars/bottom_snack_bar.dart';
-import 'package:nans/src/core/util/enums.dart';
+import 'package:nans/src/core/controllers/base_controller.dart';
 import 'package:mobx/mobx.dart';
 
 part 'custom_pagination_list_data_loader.g.dart';
 
 abstract class CustomPaginationListDataLoader<T> extends CustomPaginationListDataLoaderBase<T> with _$CustomPaginationListDataLoader {
-  CustomPaginationListDataLoader(super.logger,{super.isLazyStore});
+  CustomPaginationListDataLoader(super.logger,{super.isLazyController});
 
 }
 
-abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController with Store{
+abstract class CustomPaginationListDataLoaderBase<T> extends BaseController with Store{
 
 
   Future<PaginationDataModel<T>> dataGetter (int page);
 
-  CustomPaginationListDataLoaderBase(super.logger,{super.isLazyStore}){
+  CustomPaginationListDataLoaderBase(super.logger,{super.isLazyController}){
     initializeLoader();
   }
   @action
   Future<void> initializeLoader()async{
-    if(!isLazyStore) {
+    if(!isLazyController) {
       isLoading=true;
+      error=null;
       await onInit();
       await loadData();
     }
   }
 
   int pageNumber=0;
-
 
   @observable
   bool isLoadingMoreData=false;
@@ -47,55 +44,37 @@ abstract class CustomPaginationListDataLoaderBase<T> extends BaseStoreController
 
 
   @action
-  Future<void> loadData()async{
-    try{
-      if(error!=null) {
-        return ;
-      }
-
-      isLoading=true;
+  Future<void> loadData()=>runStorePrimaryFunction(Future(()async{
       canLoadMoreData=true;
       isLoadingMoreData=false;
       isStillLazy=false;
       pageNumber=0;
 
-      PaginationDataModel<T> paginationData=await dataGetter(pageNumber++);
-      canLoadMoreData=paginationData.canLoadMoreData;
+      PaginationDataModel<T> paginationData=await dataGetter(pageNumber);
+      canLoadMoreData=paginationData.items.isNotEmpty;
       dataList= ObservableList.of( paginationData.items);
+      pageNumber++;
       if(dataList.isEmpty) {
-        throw EmptyItemsError();
+        error=EmptyItemsError();
       }
-    }
-    on CustomError catch (e){
-      error=e;
-    }
-    finally{
-      isLoading=false;
-    }
-  }
+
+  }));
 
 
   @action
-  Future<void> loadNextPage()async{
+  Future<void> loadNextPage()=>runStoreSecondaryFunction(Future(()async{
     if(isLoadingMoreData || !canLoadMoreData) {
       return ;
     }
-    try{
-      isLoadingMoreData=true;
+    isLoadingMoreData=true;
 
 
       PaginationDataModel<T> paginationData=await dataGetter(++pageNumber);
-      canLoadMoreData=paginationData.canLoadMoreData;
+      canLoadMoreData=paginationData.items.isNotEmpty;
       List<T> newData= paginationData.items;
       dataList.addAll(newData);
-    }
-    on CustomError catch (e){
-      BottomSnackBar.show(e.errorMessage, ToastType.error);
-    }
-    finally{
-      isLoadingMoreData=false;
-    }
-  }
+    isLoadingMoreData=false;
+  }),onCatchError: (){isLoadingMoreData=false;});
 
   @action
   void markAsDirtyLoader(){

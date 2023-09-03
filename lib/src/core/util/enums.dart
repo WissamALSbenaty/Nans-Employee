@@ -2,9 +2,9 @@
 // ignore_for_file: constant_identifier_names
 enum ToastType {  success, error }
 
-enum TextFieldPriority{none,optional,required, }
+enum RequestType{GET,DELETE,POST,PATCH}
 
-enum OrderStatus{ Pending,Approved,Delivering,Delivered,Rejected,CanceledByAdmin,CanceledByClient, }
+enum TextFieldPriority{none,optional,required, }
 
 enum ApplicationState{stable,canUpdate,mustUpdate}
 

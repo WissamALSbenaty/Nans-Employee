@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:nans/src/Data/Errors/core_errors.dart';
 import 'package:nans/src/Data/Errors/errors_factory.dart';
+import 'package:nans/src/Data/models/api_error_model.dart';
+import 'package:nans/src/Data/models/pagination_data_model.dart';
 import 'package:nans/src/Data/models/pagination_response_model.dart';
 import 'package:nans/src/core/util/constants.dart';
+import 'package:nans/src/core/util/enums.dart';
 import 'package:nans/src/core/util/localization_manager.dart';
 import 'package:injectable/injectable.dart';
 
@@ -26,60 +29,73 @@ class ApiHelper {
 
   String get userToken => _userToken;
 
-  Map<String, String> _getHeaders({bool isAuthenticated = true}) => {
-        "Accept-Language": localizationManager.isEnglishLanguage ? "en" : "ar",
-        "accept": "application/json",
-        if (isAuthenticated && userToken.length > 7) "Authorization": "Bearer $userToken",
-      };
+  Map<String, String> _getHeaders() => {
+    "language": localizationManager.isEnglishLanguage ? "en" : "ar",
+    "accept": "application/json",
+    if ( userToken.length > 7) "Authorization": "Bearer $userToken",
+  };
 
-  Future<ResponseModel> _sendRequest(String methodName,String url,bool isAuthenticated,Map<String,dynamic> parameters)async{
+  Future<ResponseModel> _sendRequest(RequestType requestType,String url,Map<String,dynamic> parameters)async{
     try {
       var response = await _dio.request('${Constants.baseUrl}/$url' ,
-          options: Options(method: methodName,headers: _getHeaders(isAuthenticated: isAuthenticated)),
-          queryParameters:methodName!="POST"&&methodName!="DELETE"? parameters:null,
-          data:methodName=="POST"||methodName=="DELETE"?parameters:null,
+        options: Options(method: requestType.name,headers: _getHeaders()),
+        queryParameters:requestType==RequestType.GET? parameters:null,
+        data:requestType!=RequestType.GET?parameters:null,
 
       );
 
       return mapResponseToModel(response);
     } on DioError catch (e) {
-      if((e.response?.statusCode?? 0)>=500 || e.type==DioErrorType.connectionTimeout||e.type==DioErrorType.unknown) {
-        throw ServerError();
-      } else if(e.response!.data is String){
+      if( e.type==DioErrorType.connectionTimeout||e.type==DioErrorType.unknown) {
+        throw InternetConnectionError();
+      } else if((e.response?.statusCode?? 0)>=500 || e.response!.data is String){
         throw ServerError();
       } else {
         Map<String, dynamic> data = e.response!.data;
-        ResponseModel responseModel = ResponseModel.fromMap(
-            apiData: data, statusCode: e.response!.statusCode!);
-        throw errorsFactory.mapStatusCodeToErrors(responseModel);
+        throw errorsFactory.mapStatusCodeToErrors(ApiErrorModel.fromMap(data));
       }
     }
   }
 
 
-  Future<ResponseModel> get({required String url, required Map<String, dynamic> parameters, bool isAuthenticated = true}) async {
-    return await _sendRequest("GET", url, isAuthenticated, parameters);
+  Future<ResponseModel> _get({required String url, required Map<String, dynamic> parameters}) async {
+    return await _sendRequest(RequestType.GET, url, parameters);
+  }
+  Future<T> getObject<T>({required String url,  required Map<String, dynamic> parameters,required T Function(Map<String,dynamic>) mapper}) async {
+    Map<String,dynamic> data=(await _get(url:url, parameters: parameters)).data;
+    return mapper(data);
+  }
+  Future<List<T>> getList<T>({required String url, required Map<String, dynamic> parameters,required T Function(Map<String,dynamic>) mapper}) async {
+    ResponseModel response = await _get(url: url, parameters:parameters);
+    List<dynamic> data=response.data;
+    return data.map((e) => mapper(e)).toList();
   }
 
-  Future<PaginationResponseModel> getPagination({required String url, required Map<String, dynamic> parameters, bool isAuthenticated = true}) async {
-    return await _sendRequest("GET", url, isAuthenticated, parameters) as PaginationResponseModel;
+  Future<PaginationDataModel<T>> getPagination<T>({required String url, required Map<String, dynamic> parameters,required T Function(Map<String,dynamic>) mapper}) async {
+    PaginationResponseModel response= await _sendRequest(RequestType.GET, url, parameters) as PaginationResponseModel;
+    return  PaginationDataModel.fromPaginationResponse(response,mapper);
   }
-  Future<ResponseModel> post({required String url, bool isAuthenticated = true, required Map<String, dynamic> formData}) async {
-    return await _sendRequest("POST", url, isAuthenticated, formData);
+  Future<ResponseModel> post({required String url, required Map<String, dynamic> formData}) async {
+    return await _sendRequest(RequestType.POST, url,  formData);
   }
-
+  Future<void> patch({required String url, required Map<String, dynamic> formData}) async {
+    await _sendRequest(RequestType.PATCH, url,  formData);
+  }
   Future<ResponseModel> delete({required String url,Map<String, dynamic>? parameters,}) async {
-    return await _sendRequest("DELETE", url, true,parameters??{});
+    return await _sendRequest(RequestType.DELETE, url, parameters??{});
   }
 
 
 
   ResponseModel mapResponseToModel(Response response) {
-    Map<String, dynamic> data = response.data;
-    if (data['currentPage'] != null) {
-      return PaginationResponseModel.fromMap(apiData: data, statusCode: response.statusCode!);
+    Map<String, dynamic>? data = response.data;
+    if(data==null) {
+      return ResponseModel();
     }
-    return ResponseModel.fromMap(apiData: data, statusCode: response.statusCode!);
+    if (data['data']!=null &&  data['data']['records'] != null) {
+      return PaginationResponseModel(data: data);
+    }
+    return ResponseModel.fromMap(apiData: data, );
   }
 
 

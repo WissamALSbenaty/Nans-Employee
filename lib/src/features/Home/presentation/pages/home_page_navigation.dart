@@ -1,5 +1,4 @@
 
-import 'package:nans/src/features/Home/presentation/pages/main_page.dart';
 import 'package:nans/src/features/Home/presentation/widgets/home_navigation_bar.dart';
 import 'package:nans/src/features/Profile/presentation/pages/my_profile_page.dart';
 import 'package:nans/src/features/request/presentation/pages/requests_page.dart';
@@ -18,10 +17,10 @@ class HomePageNavigationState extends State<HomePageNavigation>
     with SingleTickerProviderStateMixin  {
 late TabController tabController;
 
-  int selectedNavigationBarItem=1;
+  int selectedNavigationBarItem=0;
   @override
   void initState() {
-    tabController=TabController(length: 3, vsync:this,initialIndex: selectedNavigationBarItem);
+    tabController=TabController(length: 2, vsync:this,initialIndex: selectedNavigationBarItem);
     tabController.addListener(() =>changeNavigationBarItem(tabController.index));
     super.initState();
   }
@@ -35,8 +34,8 @@ late TabController tabController;
   }
 
   Future<bool> popPage()async{
-    if(selectedNavigationBarItem!=1) {
-      changeNavigationBarItem(1);
+    if(selectedNavigationBarItem!=0) {
+      changeNavigationBarItem(0);
       return false;
     }
     else {
@@ -58,8 +57,7 @@ late TabController tabController;
                 controller: tabController,
                 children:    [
                   RequestsPage(),
-                    const MainPage(),
-                     MyProfilePage(),
+                   MyProfilePage(),
                 ],
 
         ),

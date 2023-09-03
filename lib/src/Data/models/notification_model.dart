@@ -1,23 +1,22 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'notification_model.freezed.dart';
 part 'notification_model.g.dart';
 
-@freezed
-class NotificationModel with _$NotificationModel{
-  const NotificationModel._();
+@JsonSerializable()
+class NotificationModel {
 
-  factory NotificationModel({
-    required String id,
-    @JsonKey(name: 'titleEn')  required String englishTitle,
-    @JsonKey(name: 'bodyEn')   required String englishBody,
-    @JsonKey(name: 'titleAr')  required String arabicTitle,
-    @JsonKey(name: 'bodyAr')   required String arabicBody,
-    @JsonKey(name: 'createdOn',fromJson:DateTime.parse,) required DateTime notificationDate,
-    required String data,
+  final String id,title,body;
 
-  })=_NotificationModel;
+  @JsonKey(name:'createdAt')
+  final DateTime creationDate;
 
-  factory NotificationModel.fromJson(Map<String,dynamic> data)=>_$NotificationModelFromJson(data);
+  NotificationModel({
+    required this.id,
+    required this.title,
+    required this.body,
+    required this.creationDate,
+  });
+
+  factory NotificationModel.fromJson( Map<String,dynamic> data)=>_$NotificationModelFromJson(data);
+
 
 }

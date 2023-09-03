@@ -1,37 +1,16 @@
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:nans/dependencies.dart';
-import 'package:nans/src/core/presentation/auto_router.dart';
+import 'package:nans/src/core/util/enums.dart';
 import 'package:nans/src/core/util/localization_manager.dart';
-import 'package:nans/src/features/app/presentation/pages/app.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 
 
-void handleNotificationData(String payload){
-
-  String cleanData = payload.replaceAll("{", "").replaceAll("}", "").replaceAll(r'\', "").replaceAll(r'"',"");
-  List<String> keyValueStrings = cleanData.split(",");
-
-  Map<String, dynamic> parsedData = {};
-
-  for (String keyValueString in keyValueStrings) {
-    List<String> keyValueList = keyValueString.split(":");
-
-    String key = keyValueList[0].trim();
-    dynamic value = keyValueList[1].trim();
-
-    parsedData[key] = value;
-  }
-  /*  if(int.tryParse( parsedData['OrderId'])!=null){
-      int orderId=int.parse( parsedData['OrderId']);
-
-      appRouter.push(OrderDetailsRoute(args: OrderDetailsPageArgument(orderId: orderId)));
-    }*/
-
-}
 
 @singleton
 class NotificationsManager {
@@ -50,23 +29,25 @@ class NotificationsManager {
       provisional: false,
       sound: true,
     );
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true, // Required to display a heads up notification
       badge: true,
       sound: true,
     );
 
+/*    RemoteMessage? initialMessage= await  FirebaseMessaging.instance.getInitialMessage();
+      if (initialMessage != null) {
+        print('Wiso onMessage');
+        handleNotificationData(initialMessage.data.toString());
+      }*/
+
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      handleFCMNotification( message);
-    });
-    FirebaseMessaging.instance.getInitialMessage().then((value) {
-      if (value != null) {
-        handleFCMNotification( value);
-      }
+      print('Wiso onMessageOpendApp');
+      handleNotificationData(message.data.toString());
     });
 
     FirebaseMessaging.onMessage.listen((event) {
+      print('Wiso onMessage');
       String? titleInData = event.data['titleAr'];
       if (titleInData != null) {
         LocalizationManager localizationManager = getIt<LocalizationManager>();
@@ -78,6 +59,7 @@ class NotificationsManager {
                 : event.data['bodyAr'];
         showNotification(title, body, event.data);
       } else {
+
         String localizedTitle = '${event.notification?.title}';
         String localizedBody = '${event.notification?.body}';
 
@@ -86,9 +68,9 @@ class NotificationsManager {
     });
   }
 
-  Future<FlutterLocalNotificationsPlugin> getNotification() async {
+  Future<void> getNotification() async {
     if (_flutterLocalNotificationsPlugin != null) {
-      return _flutterLocalNotificationsPlugin!;
+      return ;
     } else {
       const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -111,37 +93,77 @@ class NotificationsManager {
       );
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
       await _flutterLocalNotificationsPlugin!.initialize(
-        initializationSettings,
+          initializationSettings,onDidReceiveNotificationResponse: (value)=>handleNotificationData(value.payload??"")
       );
-      return _flutterLocalNotificationsPlugin!;
+      return ;
     }
   }
 
   Future<void> showNotification(String title, String body, Map payload,) async {
-    final noti = await getNotification();
 
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails('nans.com', 'nans',
-        channelDescription: 'nans channel',
+    AndroidNotificationChannel channel=AndroidNotificationChannel(Random.secure().nextInt(10000).toString(), 'etloob');
+
+    AndroidNotificationDetails androidPlatformChannelSpecifics =
+    AndroidNotificationDetails(channel.id, channel.name,
+        channelDescription: 'etloob channel',
         importance: Importance.max,
         priority: Priority.high,
         ticker: 'ticker');
 
     const DarwinNotificationDetails iosNotificationDetails =
     DarwinNotificationDetails();
-    const NotificationDetails platformChannelSpecifics = NotificationDetails(
+    NotificationDetails platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics, iOS: iosNotificationDetails);
 
-    await noti.show(0, title, body, platformChannelSpecifics,
+    await _flutterLocalNotificationsPlugin?.show(0, title, body, platformChannelSpecifics,
         payload: payload.toString());
   }
 
-  void handleFCMNotification(  RemoteMessage message) {
-    Future.delayed(const Duration(seconds: 4)).then((value) {
-      // final String eventType = message.data['EventType'].toString();
 
-      appRouter.push(HomeRoute());
-    });
+  void handleNotificationData(String payload){
+    print('Wiso payload $payload');
+
+    String cleanData = payload.replaceAll("{", "").replaceAll("}", "").replaceAll(r'\', "").replaceAll(r'"',"");
+    List<String> keyValueStrings = cleanData.split(",");
+
+    Map<String, dynamic> parsedData = {};
+
+    for (String keyValueString in keyValueStrings) {
+      List<String> keyValueList = keyValueString.split(":");
+
+      String key = keyValueList[0].trim();
+      dynamic value = keyValueList[1].trim();
+
+      parsedData[key] = value;
+    }
+
+    print('Wiso Start here $parsedData');
+ /*   if(int.tryParse( parsedData['OrderId']??'')!=null){
+      int orderId=int.parse( parsedData['OrderId']??'');
+      appRouter.push(OrderDetailsPageRoute(args: OrderDetailsPageArgument(orderId: orderId)));
+      return;
+    }
+    else if (int.tryParse( parsedData['ProductId']??'')!=null){
+      int productId=int.parse( parsedData['ProductId']??'');
+      appRouter.push(ProductDetailsPageRoute(args: ProductDetailsPageArguments(productId: productId)));
+      return;
+    }
+    else if (int.tryParse( parsedData['CategoryId']??'')!=null){
+      int categoryId=int.parse( parsedData['CategoryId']??'');
+      appRouter.push( ChipDetailsPageRoute(chipType: ChipType.category, chipId:  categoryId,));
+      return;
+    }
+    else if (int.tryParse( parsedData['BrandId']??'')!=null){
+      int brandId=int.parse( parsedData['BrandId']??'');
+      appRouter.push( ChipDetailsPageRoute(chipType: ChipType.brand, chipId:  brandId,));
+      return;
+    }
+    else if (int.tryParse( parsedData['VendorId']??'')!=null){
+      int vendorId=int.parse( parsedData['VendorId']??'');
+      appRouter.push( ChipDetailsPageRoute(chipType: ChipType.vendor, chipId:  vendorId,));
+      return;
+    }*/
+    print('Wiso Finish here');
   }
 }
 

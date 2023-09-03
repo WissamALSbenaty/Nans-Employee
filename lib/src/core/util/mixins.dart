@@ -2,28 +2,41 @@
 
 import 'package:nans/dependencies.dart';
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
+import 'package:nans/src/core/controllers/base_controller.dart';
 import 'package:provider/provider.dart';
 
 
-mixin StateStoreCreatorMixin<T extends Store,F extends StatefulWidget> on State<F>{
-  final T createdStore = getIt<T>();
+mixin StateControllerCreatorMixin<T extends BaseController,F extends StatefulWidget> on State<F>{
+  final T createdController = getIt<T>();
+
+  @override
+  void dispose() {
+    createdController.dispose();
+    super.dispose();
+  }
 }
 
-mixin WidgetStoreCreatorMixin<T extends Store> on Widget{
-  final T createdStore = getIt<T>();
+mixin WidgetControllerCreatorMixin<T extends BaseController> on Widget{
+  final T createdController = getIt<T>();
+
 }
 
-mixin StoreProviderMixin<T extends Store,F extends StatefulWidget>on State<F>{
-  late T providedStore ;
+mixin ControllerProviderMixin<T extends BaseController,F extends StatefulWidget>on State<F>{
+  late T providedController ;
   bool isFirstDependency=true;
   @override
   void didChangeDependencies() {
     if(isFirstDependency) {
-      providedStore = Provider.of<T>(context);
+      providedController = Provider.of<T>(context);
       isFirstDependency=false;
     }
     super.didChangeDependencies();
+  }
+
+  @override
+  void dispose(){
+    providedController.dispose();
+    super.dispose();
   }
 }
 

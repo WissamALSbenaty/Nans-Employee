@@ -79,25 +79,31 @@ class _ConfirmPhoneNumberPageState extends State<ConfirmPhoneNumberPage> {
                               onTap:resendCode,
                               child: Text('Resend Code'.translateWord,
                                 style: AppStyle.textTheme.bodyMedium!.copyWith(
-                                    color: canPressResendCode? AppColors.blackColor.shade800:AppColors.blackColor.shade300,
+                                    color: canPressResendCode? AppStyle.blackColor.shade800:AppStyle.blackColor.shade300,
                                     fontWeight: FontWeight.bold),))
                         ],
                       ),
 
                       const CustomSizedBox(height: 16,),
 
-                      OtpTextField(onChangedFunction: (value)=>controller.changeValue(0,value),),
+                      OtpTextField(fieldIndex: 0,formController: controller,),
 
                       const Spacer(),
 
                       MainButton(title: 'Continue',
                           isLoading: controller.isLoading,
-                          onPressed:()=> controller.submitForm(context)),
+                          onPressed:controller.submitForm),
 
                       const CustomSizedBox(height: 32,),
                     ])
             ),
           )),
     );
+  }
+  
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }

@@ -9,13 +9,13 @@ part of 'login_response_model.dart';
 _$_LoginResponseModel _$$_LoginResponseModelFromJson(
         Map<String, dynamic> json) =>
     _$_LoginResponseModel(
-      token: json['token'] as String,
-      user: UserProfileModel.fromJson(json['user'] as Map<String, dynamic>),
+      token: json['accessToken'] as String,
+      user: UserProfileModel.fromJson(json['employee'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LoginResponseModelToJson(
         _$_LoginResponseModel instance) =>
     <String, dynamic>{
-      'token': instance.token,
-      'user': instance.user,
+      'accessToken': instance.token,
+      'employee': instance.user,
     };

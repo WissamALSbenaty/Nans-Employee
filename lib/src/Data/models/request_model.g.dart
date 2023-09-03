@@ -9,20 +9,20 @@ part of 'request_model.dart';
 _$_RequestModel _$$_RequestModelFromJson(Map<String, dynamic> json) =>
     _$_RequestModel(
       id: json['id'] as String,
-      title: json['title'] as String,
-      creationDate: DateTime.parse(json['creationDate'] as String),
-      requestStatus: json['requestStatus'] as String,
+      creationDate: DateTime.parse(json['createdAt'] as String),
+      requestStatus: json['status'] as String,
       department:
           DepartmentModel.fromJson(json['department'] as Map<String, dynamic>),
       service: ServiceModel.fromJson(json['service'] as Map<String, dynamic>),
+      client: ClientModel.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_RequestModelToJson(_$_RequestModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
-      'creationDate': instance.creationDate.toIso8601String(),
-      'requestStatus': instance.requestStatus,
+      'createdAt': instance.creationDate.toIso8601String(),
+      'status': instance.requestStatus,
       'department': instance.department,
       'service': instance.service,
+      'user': instance.client,
     };

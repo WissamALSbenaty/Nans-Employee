@@ -6,12 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class MainButton extends StatelessWidget {
 
   final String title;
-  final double width;
+  final double width,height;
   final void Function() onPressed;
   final bool isLoading;
 
 
-  const MainButton({Key? key,this.width=291,  required this.title,required this.isLoading,
+  const MainButton({Key? key,this.width=291,this.height=66,  required this.title,required this.isLoading,
     required this.onPressed}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class MainButton extends StatelessWidget {
       style: ButtonStyle(
         padding: MaterialStateProperty.all(EdgeInsets.zero),
         elevation: MaterialStateProperty.all(5),
-        backgroundColor:MaterialStateProperty.all(AppColors.yellow),
+        backgroundColor:MaterialStateProperty.all(AppStyle.primary),
         shape: MaterialStateProperty.all( RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),))
       ),
         onPressed: !isLoading?  (){
@@ -30,7 +30,7 @@ class MainButton extends StatelessWidget {
         }:null,
         child: SizedBox(
             width: width.w,
-            height: 66.h,
+            height: height.h,
 
             child: Center(
               child: AnimatedSwitcher(

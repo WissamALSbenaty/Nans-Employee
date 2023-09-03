@@ -1,21 +1,18 @@
 
-import 'package:nans/src/Data/models/key_value_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class AppTranslationModel{
+part 'app_translation_model.freezed.dart';
+part 'app_translation_model.g.dart';
 
-  final List<KeyValueModel> translation;
+@freezed
+class AppTranslationModel with _$AppTranslationModel{
 
-  AppTranslationModel({required this.translation});
+  const AppTranslationModel._();
+  factory AppTranslationModel({
+    required Map<String, String> translation
+  })=_AppTranslationModel;
 
-  String translate(String word){
-    try{
-      KeyValueModel matchedKeyValue= translation.firstWhere((e)=>e.key==word);
-      return matchedKeyValue.value;
-    }
-    catch(_){
-      return word;
-    }
-  }
+  factory AppTranslationModel.fromJson( Map<String,dynamic> data)=>_$AppTranslationModelFromJson(data);
 
-
+  String translate(String word) => translation[word] ?? word;
 }

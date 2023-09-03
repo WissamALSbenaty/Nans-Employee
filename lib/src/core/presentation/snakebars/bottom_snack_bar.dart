@@ -7,19 +7,17 @@ import 'package:flutter/material.dart';
 final GlobalKey<ScaffoldMessengerState> snackbarKey = GlobalKey<ScaffoldMessengerState>();
 
 
-class BottomSnackBar{
-
-    static void show(String message,ToastType type) {
+void showSnackBar(String message,ToastType type) {
       Color backgroundColor;
       switch (type) {
         case ToastType.success:
-          backgroundColor = AppColors.blackColor;
+          backgroundColor = AppStyle.blackColor;
           break;
         case ToastType.error:
-          backgroundColor = AppColors.errorColor;
+          backgroundColor = AppStyle.errorColor;
           break;
         default:
-          backgroundColor = AppColors.blackColor;
+          backgroundColor = AppStyle.blackColor;
       }
 
       snackbarKey.currentState?.clearSnackBars();
@@ -34,4 +32,3 @@ class BottomSnackBar{
 
     }
 
-}

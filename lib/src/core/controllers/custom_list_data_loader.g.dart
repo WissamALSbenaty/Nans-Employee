@@ -25,12 +25,18 @@ mixin _$CustomListDataLoader<T> on CustomListDataLoaderBase<T>, Store {
     });
   }
 
-  late final _$loadDataAsyncAction =
-      AsyncAction('CustomListDataLoaderBase.loadData', context: context);
+  late final _$CustomListDataLoaderBaseActionController =
+      ActionController(name: 'CustomListDataLoaderBase', context: context);
 
   @override
   Future<void> loadData() {
-    return _$loadDataAsyncAction.run(() => super.loadData());
+    final _$actionInfo = _$CustomListDataLoaderBaseActionController.startAction(
+        name: 'CustomListDataLoaderBase.loadData');
+    try {
+      return super.loadData();
+    } finally {
+      _$CustomListDataLoaderBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

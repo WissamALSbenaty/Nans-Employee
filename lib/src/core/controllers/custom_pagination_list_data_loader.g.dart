@@ -69,27 +69,33 @@ mixin _$CustomPaginationListDataLoader<T>
     return _$initializeLoaderAsyncAction.run(() => super.initializeLoader());
   }
 
-  late final _$loadDataAsyncAction = AsyncAction(
-      'CustomPaginationListDataLoaderBase.loadData',
-      context: context);
-
-  @override
-  Future<void> loadData() {
-    return _$loadDataAsyncAction.run(() => super.loadData());
-  }
-
-  late final _$loadNextPageAsyncAction = AsyncAction(
-      'CustomPaginationListDataLoaderBase.loadNextPage',
-      context: context);
-
-  @override
-  Future<void> loadNextPage() {
-    return _$loadNextPageAsyncAction.run(() => super.loadNextPage());
-  }
-
   late final _$CustomPaginationListDataLoaderBaseActionController =
       ActionController(
           name: 'CustomPaginationListDataLoaderBase', context: context);
+
+  @override
+  Future<void> loadData() {
+    final _$actionInfo = _$CustomPaginationListDataLoaderBaseActionController
+        .startAction(name: 'CustomPaginationListDataLoaderBase.loadData');
+    try {
+      return super.loadData();
+    } finally {
+      _$CustomPaginationListDataLoaderBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  Future<void> loadNextPage() {
+    final _$actionInfo = _$CustomPaginationListDataLoaderBaseActionController
+        .startAction(name: 'CustomPaginationListDataLoaderBase.loadNextPage');
+    try {
+      return super.loadNextPage();
+    } finally {
+      _$CustomPaginationListDataLoaderBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
 
   @override
   void markAsDirtyLoader() {

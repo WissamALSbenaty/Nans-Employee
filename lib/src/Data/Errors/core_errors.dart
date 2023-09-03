@@ -1,6 +1,6 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:nans/src/Data/Errors/custom_error.dart';
 import 'package:nans/src/core/presentation/assets.dart';
+import 'package:nans/src/core/util/extentions.dart';
 
 
 
@@ -40,41 +40,47 @@ class SomethingWentWrongError extends CustomError{
 }
 
 class IsNotBiggerError extends CustomError{
-  IsNotBiggerError({required String  fieldName,required int number}):
-        super(errorMessage: "${fieldName.tr()} ${"Should Be Bigger Than".tr()} $number", imagePath: '',
+  IsNotBiggerError({required String  fieldName,required num number}):
+        super(errorMessage: "${fieldName.translateWord} ${"Should Be Bigger Than".translateWord} $number", imagePath: '',
       );
 }
 
 class IsNotSmallerError extends CustomError{
-  IsNotSmallerError({required String  fieldName,required int number}):
-        super(errorMessage: "${fieldName.tr()} ${"Should Be Smaller Than".tr()} $number", imagePath: '',
+  IsNotSmallerError({required String  fieldName,required num number}):
+        super(errorMessage: "${fieldName.translateWord} ${"Should Be Smaller Than".translateWord} $number", imagePath: '',
       );
 }
 
 class NotPhoneNumberError extends CustomError{
   NotPhoneNumberError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Phone Number".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.translateWord} ${"is Not a Valid Phone Number".translateWord}", imagePath: '',
       );
 }
 
 class NotNameError extends CustomError{
   NotNameError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Name".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.translateWord} ${"is Not a Valid Name".translateWord}", imagePath: '',
+      );
+}
+
+class NotEqualError extends CustomError{
+  NotEqualError({required String  fieldName}):
+        super(errorMessage: "${"the value is not equal to".translateWord} ${fieldName.translateWord}", imagePath: '',
       );
 }
 
 class NotNumberError extends CustomError{
   NotNumberError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"is Not a Valid Number".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.translateWord} ${"is Not a Valid Number".translateWord}", imagePath: '',
       );
 }
 class EmptyFieldError extends CustomError{
   EmptyFieldError({required String  fieldName}):
-        super(errorMessage: "${fieldName.tr()} ${"should not be empty".tr()}", imagePath: '',
+        super(errorMessage: "${fieldName.translateWord} ${"should not be empty".translateWord}", imagePath: '',
       );
 }
 class EmptyItemsError extends CustomError{
   EmptyItemsError():
-        super(errorMessage: "No items to show", imagePath: Assets.noNotifications,
+        super(errorMessage: "No items to show", imagePath: Assets.noPaymentCard,
       );
 }

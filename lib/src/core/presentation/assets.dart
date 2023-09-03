@@ -62,7 +62,6 @@ class Assets{
   static const String usedPoints="assets/images/svg/usedPoints.svg";
   static const String totalSaving="assets/images/svg/totalSaving.svg";
   static const String homePageGift="assets/images/svg/homePageGift.svg";
-  static const String logo="assets/images/svg/logo.svg";
   static const String deleteAccount="assets/images/svg/deleteAccount.svg";
   static const String doneProcess="assets/images/svg/doneProcess.svg";
   static const String info="assets/images/svg/info.svg";
@@ -89,4 +88,5 @@ class Assets{
   static const String onBoarding3="assets/animation/onboarding03.json";
   static const String splashScreen="assets/animation/splashScreen.json";
   static const String loader="assets/animation/loader.json";
+  static const String logo="assets/images/png/logo.png";
 }

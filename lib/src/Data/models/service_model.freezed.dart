@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'service_model.dart';
 
@@ -22,8 +22,6 @@ ServiceModel _$ServiceModelFromJson(Map<String, dynamic> json) {
 mixin _$ServiceModel {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  DepartmentModel get department => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,14 +36,7 @@ abstract class $ServiceModelCopyWith<$Res> {
           ServiceModel value, $Res Function(ServiceModel) then) =
       _$ServiceModelCopyWithImpl<$Res, ServiceModel>;
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      DepartmentModel department,
-      double price,
-      String? image});
-
-  $DepartmentModelCopyWith<$Res> get department;
+  $Res call({String id, String title, String? image});
 }
 
 /// @nodoc
@@ -63,8 +54,6 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? department = null,
-    Object? price = null,
     Object? image = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,27 +65,11 @@ class _$ServiceModelCopyWithImpl<$Res, $Val extends ServiceModel>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $DepartmentModelCopyWith<$Res> get department {
-    return $DepartmentModelCopyWith<$Res>(_value.department, (value) {
-      return _then(_value.copyWith(department: value) as $Val);
-    });
   }
 }
 
@@ -108,15 +81,7 @@ abstract class _$$_ServiceModelCopyWith<$Res>
       __$$_ServiceModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String title,
-      DepartmentModel department,
-      double price,
-      String? image});
-
-  @override
-  $DepartmentModelCopyWith<$Res> get department;
+  $Res call({String id, String title, String? image});
 }
 
 /// @nodoc
@@ -132,8 +97,6 @@ class __$$_ServiceModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? title = null,
-    Object? department = null,
-    Object? price = null,
     Object? image = freezed,
   }) {
     return _then(_$_ServiceModel(
@@ -145,14 +108,6 @@ class __$$_ServiceModelCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      department: null == department
-          ? _value.department
-          : department // ignore: cast_nullable_to_non_nullable
-              as DepartmentModel,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as double,
       image: freezed == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -164,12 +119,7 @@ class __$$_ServiceModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ServiceModel implements _ServiceModel {
-  _$_ServiceModel(
-      {required this.id,
-      required this.title,
-      required this.department,
-      required this.price,
-      this.image});
+  _$_ServiceModel({required this.id, required this.title, this.image});
 
   factory _$_ServiceModel.fromJson(Map<String, dynamic> json) =>
       _$$_ServiceModelFromJson(json);
@@ -179,15 +129,11 @@ class _$_ServiceModel implements _ServiceModel {
   @override
   final String title;
   @override
-  final DepartmentModel department;
-  @override
-  final double price;
-  @override
   final String? image;
 
   @override
   String toString() {
-    return 'ServiceModel(id: $id, title: $title, department: $department, price: $price, image: $image)';
+    return 'ServiceModel(id: $id, title: $title, image: $image)';
   }
 
   @override
@@ -197,16 +143,12 @@ class _$_ServiceModel implements _ServiceModel {
             other is _$_ServiceModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.department, department) ||
-                other.department == department) &&
-            (identical(other.price, price) || other.price == price) &&
             (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, department, price, image);
+  int get hashCode => Object.hash(runtimeType, id, title, image);
 
   @JsonKey(ignore: true)
   @override
@@ -226,8 +168,6 @@ abstract class _ServiceModel implements ServiceModel {
   factory _ServiceModel(
       {required final String id,
       required final String title,
-      required final DepartmentModel department,
-      required final double price,
       final String? image}) = _$_ServiceModel;
 
   factory _ServiceModel.fromJson(Map<String, dynamic> json) =
@@ -237,10 +177,6 @@ abstract class _ServiceModel implements ServiceModel {
   String get id;
   @override
   String get title;
-  @override
-  DepartmentModel get department;
-  @override
-  double get price;
   @override
   String? get image;
   @override

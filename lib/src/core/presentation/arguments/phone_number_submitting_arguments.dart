@@ -4,11 +4,11 @@
 class EmailSubmittingArguments{
 
   final Future<void> Function({required String email}) afterSubmittingEmail;
-  final Future<void> Function({required String email,required String otpCode}) afterSuccessVerification;
+  final Future<void> Function({required String email})? codeSender;
+  final Future<void> Function({required String email,required String otpCode}) afterSuccessVerification,codeChecker;
   final String pageTitle;
-  final bool isOtpFromBackend;
 
 
-  EmailSubmittingArguments({ required this.pageTitle,required this.afterSuccessVerification,
-    required  this.afterSubmittingEmail,this.isOtpFromBackend=true});
+  EmailSubmittingArguments({required this.codeSender,required this.codeChecker,  required this.pageTitle,required this.afterSuccessVerification,
+    required  this.afterSubmittingEmail,});
 }

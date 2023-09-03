@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/presentation/dialogs/custom_info_dialog.dart';
 import 'package:nans/src/core/util/constants.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class OptionalUpdateDialog extends StatelessWidget {
         mainActionText: 'Update',
         onMainActionPressed: ()=>StoreRedirect.redirect(androidAppId: Constants.androidAppId,iOSAppId: Constants.iosAppId),
         secondActionText: 'Later',
-        onSecondActionPressed:()=>AutoRouter.of(context).pop()
+        onSecondActionPressed:()=>appRouter.pop()
     );
   }
 }

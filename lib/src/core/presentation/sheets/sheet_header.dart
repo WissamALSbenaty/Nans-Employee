@@ -18,7 +18,7 @@ class SheetHeader extends StatelessWidget {
           width: 60.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(55),
-            color: AppColors.blackColor.shade100,
+            color: AppStyle.blackColor.shade100,
           ),
         ),
       ),

@@ -2,69 +2,34 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:nans/src/core/controllers/app_controller.dart';
 import 'package:nans/src/core/presentation/assets.dart';
-import 'package:nans/src/core/presentation/auto_router.dart';
-import 'package:nans/src/core/presentation/dialogs/custom_text_field_dialog.dart';
-import 'package:nans/src/core/presentation/arguments/phone_number_submitting_arguments.dart';
-import 'package:nans/src/core/presentation/arguments/submit_new_password_arguments.dart';
 import 'package:nans/src/core/presentation/style.dart';
-import 'package:nans/src/core/presentation/validators/not_empty_validator.dart';
 import 'package:nans/src/core/presentation/widgets/custom_app_bar.dart';
+import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:nans/src/core/util/mixins.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nans/src/features/Profile/presentation/widgets/route_option_card.dart';
 
 @RoutePage()
-class EditAccountPage extends StatefulWidget with WidgetStoreCreatorMixin<AppController> {
+class EditAccountPage extends StatefulWidget with WidgetControllerCreatorMixin<AppController> {
 
-
-
-   EditAccountPage({Key? key}) : super(key: key);
+  EditAccountPage({Key? key}) : super(key: key);
 
   @override
   State<EditAccountPage> createState() => _EditAccountPageState();
 }
 
 class _EditAccountPageState extends State<EditAccountPage> {
-  final List<String> titles=['Change My Phone Number','Change My Password',];
-
-  final List<String> iconPaths=[Assets.phoneNumber,Assets.changePassword,];
-
-  late List<void Function(BuildContext context)>onActionsPressed;
-  bool isFirstDependency=true;
+  final List<String> titles=['Change My Password',];
+  final List<String> iconPaths=[Assets.changePassword,];
+  late List<void Function()>onActionsPressed;
 
   @override
-  void didChangeDependencies(){
-    if(isFirstDependency){
-      isFirstDependency=false;
-      onActionsPressed=[
-            (ctx)=> AutoRouter.of(ctx).push(SubmitPhoneNumberRoute(args: EmailSubmittingArguments(
-          pageTitle:'Please enter your new phone number' ,
-          afterSubmittingEmail: ({required String email}) async{
-          },
-          afterSuccessVerification:({required String email,required String otpCode})async{
-            widget.createdStore.changeEmail(email,ctx);
-          },
-        ))),
-
-            (ctx){
-          showDialog(context: ctx,
-              builder: (ctx)=>CustomTextFieldDialog(title: 'Are You Sure ?',
-                  dialogTextContent:'Please Enter Your Password',
-                  mainActionText: 'Continue',
-                  textFieldValidator: NotEmptyValidator(),
-                  textFieldTitle: 'Password',
-                  onMainActionPressed:(String passwordValue)async {
-                    AutoRouter.of(ctx).push(
-                        SubmitNewPasswordRoute(args: SubmitNewPasswordArguments(
-                          onSubmitNewPassword: (String newPassword) =>
-                              widget.createdStore.changePassword(oldPassword: passwordValue, newPassword: newPassword),
-                        )
-                        ));
-                  }));
-        },
-      ];
-    }
-    super.didChangeDependencies();
+  void initState() {
+    onActionsPressed=[
+      widget.createdController.changePassword,
+    ];
+    super.initState();
   }
 
 
@@ -72,29 +37,28 @@ class _EditAccountPageState extends State<EditAccountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            appBar:CustomAppBar(
-              barTitle: 'Edit Account',
-              context: context,
-            ),
+      appBar:CustomAppBar(
+        barTitle: 'Edit Account',
+        context: context,
+      ),
 
-            backgroundColor: AppColors.blue,
+      backgroundColor: AppStyle.blue,
 
-            body: SingleChildScrollView(
-              padding: EdgeInsets.all(16.r,),
-              child: Column(
-                children:  [
-                  for(int i=0;i<titles.length;i++)
-                    ...[
-                      /*RouteOptionCard(onPressed: ()=>onActionsPressed[i](context),
-                          title:titles[i],iconPath:iconPaths[i],
-                          iconColor:AppColors.blackColor.shade100),
-                      const CustomSizedBox(height: 16,),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.r,),
+        child: Column(
+          children:  [
+            for(int i=0;i<titles.length;i++)
+              ...[
+                RouteOptionCard(
+                    onPressed: onActionsPressed[i],
+                    title:titles[i],iconPath:iconPaths[i],iconColor:Colors.white),
+                const CustomSizedBox(height: 16,),
 
-                       */
-                    ],
-                ],
-              ),
-            ),
+              ],
+          ],
+        ),
+      ),
     );
   }
 }

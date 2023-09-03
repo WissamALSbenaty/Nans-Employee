@@ -12,54 +12,45 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'src/core/controllers/app_controller.dart' as _i33;
+import 'src/core/controllers/app_controller.dart' as _i21;
+import 'src/core/controllers/text_field_dialog_controller.dart' as _i9;
 import 'src/core/presentation/arguments/confirm_phone_number_page_arguments.dart'
-    as _i35;
+    as _i23;
 import 'src/core/presentation/arguments/phone_number_submitting_arguments.dart'
-    as _i32;
+    as _i20;
+import 'src/core/presentation/arguments/request_details_page_arguments.dart'
+    as _i28;
 import 'src/core/presentation/arguments/submit_new_password_arguments.dart'
-    as _i30;
-import 'src/core/util/localization_manager.dart' as _i9;
-import 'src/core/util/notification_manager.dart' as _i12;
-import 'src/Data/api_helper.dart' as _i15;
+    as _i18;
+import 'src/core/util/localization_manager.dart' as _i7;
+import 'src/core/util/notification_manager.dart' as _i8;
+import 'src/Data/api_helper.dart' as _i10;
 import 'src/Data/Errors/errors_factory.dart' as _i4;
 import 'src/Data/local_database_tables/app_database.dart' as _i3;
-import 'src/Data/repositories/abstract/i_auth_repository.dart' as _i18;
+import 'src/Data/repositories/abstract/i_auth_repository.dart' as _i12;
 import 'src/Data/repositories/abstract/i_logger.dart' as _i5;
-import 'src/Data/repositories/abstract/i_nans_repository.dart' as _i7;
-import 'src/Data/repositories/abstract/i_profile_repository.dart' as _i20;
-import 'src/Data/repositories/abstract/i_requests_repository.dart' as _i22;
-import 'src/Data/repositories/abstract/i_utils_repository.dart' as _i24;
-import 'src/Data/repositories/concret/auth_repository.dart' as _i19;
+import 'src/Data/repositories/abstract/i_requests_repository.dart' as _i24;
+import 'src/Data/repositories/abstract/i_utils_repository.dart' as _i14;
+import 'src/Data/repositories/concret/auth_repository.dart' as _i13;
 import 'src/Data/repositories/concret/logger.dart' as _i6;
-import 'src/Data/repositories/concret/nans_repository.dart' as _i8;
-import 'src/Data/repositories/concret/profile_repository.dart' as _i21;
-import 'src/Data/repositories/concret/requests_repository.dart' as _i23;
-import 'src/Data/repositories/concret/utils_repotsitory.dart' as _i25;
+import 'src/Data/repositories/concret/requests_repository.dart' as _i25;
+import 'src/Data/repositories/concret/utils_repotsitory.dart' as _i15;
 import 'src/features/auth/controllers/confirm_phone_number_controller.dart'
-    as _i34;
-import 'src/features/auth/controllers/login_store.dart' as _i36;
-import 'src/features/auth/controllers/register_controller.dart' as _i37;
+    as _i22;
+import 'src/features/auth/controllers/login_store.dart' as _i26;
 import 'src/features/auth/controllers/submitting_new_password_controller.dart'
-    as _i29;
-import 'src/features/auth/controllers/submitting_phone_number_controller.dart'
-    as _i31;
-import 'src/features/details/controllers/department_details_controller.dart'
-    as _i16;
-import 'src/features/details/controllers/news_details_controller.dart' as _i11;
-import 'src/features/details/controllers/service_details_controller.dart'
-    as _i13;
-import 'src/features/pagination_pages/controllers/departments_controllers.dart'
     as _i17;
-import 'src/features/pagination_pages/controllers/news_controllers.dart'
-    as _i10;
-import 'src/features/pagination_pages/controllers/services_controllers.dart'
-    as _i14;
-import 'src/features/Profile/controllers/notifications_controller.dart' as _i26;
-import 'src/features/Profile/controllers/social_media_controller.dart' as _i28;
+import 'src/features/auth/controllers/submitting_phone_number_controller.dart'
+    as _i19;
+import 'src/features/Profile/controllers/notifications_controller.dart' as _i16;
+import 'src/features/request/controllers/change_stage_request_dialog_controller.dart'
+    as _i11;
+import 'src/features/request/controllers/current_request_controller.dart'
+    as _i29;
+import 'src/features/request/controllers/history_requests_controller.dart'
+    as _i30;
 import 'src/features/request/controllers/request_details_controller.dart'
-    as _i38;
-import 'src/features/request/controllers/requests_controller.dart' as _i27;
+    as _i27;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -77,130 +68,104 @@ _i1.GetIt $initGetIt(
   gh.singleton<_i3.AppDatabase>(_i3.AppDatabase());
   gh.singleton<_i4.ErrorsFactory>(_i4.ErrorsFactory());
   gh.singleton<_i5.ILogger>(_i6.Logger());
-  gh.singleton<_i7.INansRepository>(_i8.NansRepository(gh<dynamic>()));
-  gh.singleton<_i9.LocalizationManager>(_i9.LocalizationManager());
-  gh.factory<_i10.NewsController>(() => _i10.NewsController(
-        gh<_i7.INansRepository>(),
-        gh<_i5.ILogger>(),
-      ));
-  gh.factoryParam<_i11.NewsDetailsController, String, dynamic>((
-    newsId,
+  gh.singleton<_i7.LocalizationManager>(_i7.LocalizationManager());
+  gh.singleton<_i8.NotificationsManager>(_i8.NotificationsManager());
+  gh.factoryParam<_i9.TextFieldDialogController, _i9.StringCallback, dynamic>((
+    onSubmitDialog,
     _,
   ) =>
-      _i11.NewsDetailsController(
-        newsId,
-        gh<_i7.INansRepository>(),
+      _i9.TextFieldDialogController(
+        onSubmitDialog,
         gh<_i5.ILogger>(),
       ));
-  gh.singleton<_i12.NotificationsManager>(_i12.NotificationsManager());
-  gh.factoryParam<_i13.ServiceDetailsController, String, dynamic>((
-    newsId,
-    _,
-  ) =>
-      _i13.ServiceDetailsController(
-        newsId,
-        gh<_i7.INansRepository>(),
-        gh<_i5.ILogger>(),
-      ));
-  gh.factory<_i14.ServicesController>(() => _i14.ServicesController(
-        gh<_i7.INansRepository>(),
-        gh<_i5.ILogger>(),
-      ));
-  gh.singleton<_i15.ApiHelper>(_i15.ApiHelper(
+  gh.singleton<_i10.ApiHelper>(_i10.ApiHelper(
     gh<_i4.ErrorsFactory>(),
-    gh<_i9.LocalizationManager>(),
+    gh<_i7.LocalizationManager>(),
   ));
-  gh.factoryParam<_i16.DepartmentDetailsController, String, dynamic>((
-    newsId,
+  gh.factoryParam<_i11.ChangeStageRequestDialogController, _i11.StringCallback,
+      dynamic>((
+    onSubmitDialog,
     _,
   ) =>
-      _i16.DepartmentDetailsController(
-        newsId,
-        gh<_i7.INansRepository>(),
+      _i11.ChangeStageRequestDialogController(
+        onSubmitDialog,
         gh<_i5.ILogger>(),
       ));
-  gh.factory<_i17.DepartmentsController>(() => _i17.DepartmentsController(
-        gh<_i7.INansRepository>(),
-        gh<_i5.ILogger>(),
-      ));
-  gh.singleton<_i18.IAuthRepository>(_i19.AuthRepository(
-    gh<_i15.ApiHelper>(),
+  gh.singleton<_i12.IAuthRepository>(_i13.AuthRepository(
+    gh<_i10.ApiHelper>(),
     gh<_i3.AppDatabase>(),
   ));
-  gh.singleton<_i20.IProfileRepository>(
-      _i21.ProfileRepository(gh<_i15.ApiHelper>()));
-  gh.singleton<_i22.IRequestsRepository>(
-      _i23.RequestsRepository(gh<_i15.ApiHelper>()));
-  gh.singleton<_i24.IUtilsRepository>(
-      _i25.UtilsRepository(gh<_i15.ApiHelper>()));
-  gh.factory<_i26.NotificationsController>(() => _i26.NotificationsController(
-        gh<_i20.IProfileRepository>(),
+  gh.singleton<_i14.IUtilsRepository>(
+      _i15.UtilsRepository(gh<_i10.ApiHelper>()));
+  gh.factory<_i16.NotificationsController>(() => _i16.NotificationsController(
+        gh<_i14.IUtilsRepository>(),
         gh<_i5.ILogger>(),
       ));
-  gh.factory<_i27.RequestsController>(() => _i27.RequestsController(
-        gh<_i5.ILogger>(),
-        gh<_i22.IRequestsRepository>(),
-      ));
-  gh.factory<_i28.SocialMediaController>(() => _i28.SocialMediaController(
-        gh<_i5.ILogger>(),
-        gh<_i20.IProfileRepository>(),
-      ));
-  gh.factoryParam<_i29.SubmittingNewPasswordController,
-      _i30.SubmitNewPasswordArguments, dynamic>((
+  gh.factoryParam<_i17.SubmittingNewPasswordController,
+      _i18.SubmitNewPasswordArguments, dynamic>((
     args,
     _,
   ) =>
-      _i29.SubmittingNewPasswordController(
+      _i17.SubmittingNewPasswordController(
         args,
-        gh<_i18.IAuthRepository>(),
+        gh<_i12.IAuthRepository>(),
         gh<_i5.ILogger>(),
       ));
-  gh.factoryParam<_i31.SubmittingPhoneNumberController,
-      _i32.EmailSubmittingArguments, dynamic>((
+  gh.factoryParam<_i19.SubmittingPhoneNumberController,
+      _i20.EmailSubmittingArguments, dynamic>((
     args,
     _,
   ) =>
-      _i31.SubmittingPhoneNumberController(
+      _i19.SubmittingPhoneNumberController(
         args,
-        gh<_i18.IAuthRepository>(),
+        gh<_i12.IAuthRepository>(),
         gh<_i5.ILogger>(),
       ));
-  gh.singleton<_i33.AppController>(_i33.AppController(
-    gh<_i18.IAuthRepository>(),
-    gh<_i24.IUtilsRepository>(),
+  gh.singleton<_i21.AppController>(_i21.AppController(
+    gh<_i12.IAuthRepository>(),
+    gh<_i14.IUtilsRepository>(),
     gh<_i3.AppDatabase>(),
-    gh<_i9.LocalizationManager>(),
+    gh<_i7.LocalizationManager>(),
+    gh<_i8.NotificationsManager>(),
     gh<_i5.ILogger>(),
   ));
-  gh.factoryParam<_i34.ConfirmPhoneNumberController,
-      _i35.ConfirmEmailPageArguments, dynamic>((
+  gh.factoryParam<_i22.ConfirmPhoneNumberController,
+      _i23.ConfirmEmailPageArguments, dynamic>((
     args,
     _,
   ) =>
-      _i34.ConfirmPhoneNumberController(
+      _i22.ConfirmPhoneNumberController(
         args,
-        gh<_i18.IAuthRepository>(),
+        gh<_i12.IAuthRepository>(),
         gh<_i5.ILogger>(),
       ));
-  gh.factory<_i36.LoginController>(() => _i36.LoginController(
-        gh<_i18.IAuthRepository>(),
-        gh<_i33.AppController>(),
+  gh.singleton<_i24.IRequestsRepository>(_i25.RequestsRepository(
+    gh<_i21.AppController>(),
+    gh<_i10.ApiHelper>(),
+  ));
+  gh.factory<_i26.LoginController>(() => _i26.LoginController(
+        gh<_i12.IAuthRepository>(),
+        gh<_i21.AppController>(),
         gh<_i5.ILogger>(),
       ));
-  gh.factory<_i37.RegisterController>(() => _i37.RegisterController(
-        gh<_i33.AppController>(),
-        gh<_i18.IAuthRepository>(),
-        gh<_i5.ILogger>(),
-      ));
-  gh.factoryParam<_i38.RequestDetailsController, int, dynamic>((
-    requestId,
+  gh.factoryParam<_i27.RequestDetailsController,
+      _i28.RequestDetailsPageArguments, dynamic>((
+    args,
     _,
   ) =>
-      _i38.RequestDetailsController(
-        requestId,
-        gh<_i22.IRequestsRepository>(),
-        gh<_i33.AppController>(),
+      _i27.RequestDetailsController(
+        args,
+        gh<_i24.IRequestsRepository>(),
         gh<_i5.ILogger>(),
       ));
+  gh.factory<_i29.CurrentRequestController>(() => _i29.CurrentRequestController(
+        gh<_i24.IRequestsRepository>(),
+        gh<_i5.ILogger>(),
+      ));
+  gh.factory<_i30.HistoryRequestsController>(
+      () => _i30.HistoryRequestsController(
+            gh<_i24.IRequestsRepository>(),
+            gh<_i5.ILogger>(),
+          ));
   return getIt;
 }

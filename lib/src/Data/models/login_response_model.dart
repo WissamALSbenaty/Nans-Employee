@@ -9,8 +9,8 @@ part 'login_response_model.g.dart';
 class LoginResponseModel with _$LoginResponseModel{
 
   factory LoginResponseModel({
-    required String token,
-    required UserProfileModel user,
+   @JsonKey(name: 'accessToken') required String token,
+   @JsonKey(name: 'employee') required UserProfileModel user,
   })=_LoginResponseModel;
 
   factory LoginResponseModel.fromJson( Map<String,dynamic> data)=>_$LoginResponseModelFromJson(data);

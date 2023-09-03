@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_profile_model.dart';
 
@@ -22,12 +22,8 @@ UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) {
 mixin _$UserProfileModel {
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get fatherName => throw _privateConstructorUsedError;
-  String get motherName => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  GenderType get gender => throw _privateConstructorUsedError;
-  bool get accountConfirmation => throw _privateConstructorUsedError;
+  DepartmentModel get department => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,12 +40,10 @@ abstract class $UserProfileModelCopyWith<$Res> {
   $Res call(
       {String email,
       String name,
-      String fatherName,
-      String motherName,
       String phoneNumber,
-      String password,
-      GenderType gender,
-      bool accountConfirmation});
+      DepartmentModel department});
+
+  $DepartmentModelCopyWith<$Res> get department;
 }
 
 /// @nodoc
@@ -67,12 +61,8 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
   $Res call({
     Object? email = null,
     Object? name = null,
-    Object? fatherName = null,
-    Object? motherName = null,
     Object? phoneNumber = null,
-    Object? password = null,
-    Object? gender = null,
-    Object? accountConfirmation = null,
+    Object? department = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -83,31 +73,23 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      fatherName: null == fatherName
-          ? _value.fatherName
-          : fatherName // ignore: cast_nullable_to_non_nullable
-              as String,
-      motherName: null == motherName
-          ? _value.motherName
-          : motherName // ignore: cast_nullable_to_non_nullable
-              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
-      accountConfirmation: null == accountConfirmation
-          ? _value.accountConfirmation
-          : accountConfirmation // ignore: cast_nullable_to_non_nullable
-              as bool,
+      department: null == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as DepartmentModel,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DepartmentModelCopyWith<$Res> get department {
+    return $DepartmentModelCopyWith<$Res>(_value.department, (value) {
+      return _then(_value.copyWith(department: value) as $Val);
+    });
   }
 }
 
@@ -122,12 +104,11 @@ abstract class _$$_UserProfileModelCopyWith<$Res>
   $Res call(
       {String email,
       String name,
-      String fatherName,
-      String motherName,
       String phoneNumber,
-      String password,
-      GenderType gender,
-      bool accountConfirmation});
+      DepartmentModel department});
+
+  @override
+  $DepartmentModelCopyWith<$Res> get department;
 }
 
 /// @nodoc
@@ -143,12 +124,8 @@ class __$$_UserProfileModelCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? name = null,
-    Object? fatherName = null,
-    Object? motherName = null,
     Object? phoneNumber = null,
-    Object? password = null,
-    Object? gender = null,
-    Object? accountConfirmation = null,
+    Object? department = null,
   }) {
     return _then(_$_UserProfileModel(
       email: null == email
@@ -159,30 +136,14 @@ class __$$_UserProfileModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      fatherName: null == fatherName
-          ? _value.fatherName
-          : fatherName // ignore: cast_nullable_to_non_nullable
-              as String,
-      motherName: null == motherName
-          ? _value.motherName
-          : motherName // ignore: cast_nullable_to_non_nullable
-              as String,
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as GenderType,
-      accountConfirmation: null == accountConfirmation
-          ? _value.accountConfirmation
-          : accountConfirmation // ignore: cast_nullable_to_non_nullable
-              as bool,
+      department: null == department
+          ? _value.department
+          : department // ignore: cast_nullable_to_non_nullable
+              as DepartmentModel,
     ));
   }
 }
@@ -193,12 +154,8 @@ class _$_UserProfileModel implements _UserProfileModel {
   _$_UserProfileModel(
       {required this.email,
       required this.name,
-      required this.fatherName,
-      required this.motherName,
       required this.phoneNumber,
-      required this.password,
-      required this.gender,
-      required this.accountConfirmation});
+      required this.department});
 
   factory _$_UserProfileModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserProfileModelFromJson(json);
@@ -208,21 +165,13 @@ class _$_UserProfileModel implements _UserProfileModel {
   @override
   final String name;
   @override
-  final String fatherName;
-  @override
-  final String motherName;
-  @override
   final String phoneNumber;
   @override
-  final String password;
-  @override
-  final GenderType gender;
-  @override
-  final bool accountConfirmation;
+  final DepartmentModel department;
 
   @override
   String toString() {
-    return 'UserProfileModel(email: $email, name: $name, fatherName: $fatherName, motherName: $motherName, phoneNumber: $phoneNumber, password: $password, gender: $gender, accountConfirmation: $accountConfirmation)';
+    return 'UserProfileModel(email: $email, name: $name, phoneNumber: $phoneNumber, department: $department)';
   }
 
   @override
@@ -232,23 +181,16 @@ class _$_UserProfileModel implements _UserProfileModel {
             other is _$_UserProfileModel &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.fatherName, fatherName) ||
-                other.fatherName == fatherName) &&
-            (identical(other.motherName, motherName) ||
-                other.motherName == motherName) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.accountConfirmation, accountConfirmation) ||
-                other.accountConfirmation == accountConfirmation));
+            (identical(other.department, department) ||
+                other.department == department));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, name, fatherName,
-      motherName, phoneNumber, password, gender, accountConfirmation);
+  int get hashCode =>
+      Object.hash(runtimeType, email, name, phoneNumber, department);
 
   @JsonKey(ignore: true)
   @override
@@ -268,12 +210,8 @@ abstract class _UserProfileModel implements UserProfileModel {
   factory _UserProfileModel(
       {required final String email,
       required final String name,
-      required final String fatherName,
-      required final String motherName,
       required final String phoneNumber,
-      required final String password,
-      required final GenderType gender,
-      required final bool accountConfirmation}) = _$_UserProfileModel;
+      required final DepartmentModel department}) = _$_UserProfileModel;
 
   factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
       _$_UserProfileModel.fromJson;
@@ -283,17 +221,9 @@ abstract class _UserProfileModel implements UserProfileModel {
   @override
   String get name;
   @override
-  String get fatherName;
-  @override
-  String get motherName;
-  @override
   String get phoneNumber;
   @override
-  String get password;
-  @override
-  GenderType get gender;
-  @override
-  bool get accountConfirmation;
+  DepartmentModel get department;
   @override
   @JsonKey(ignore: true)
   _$$_UserProfileModelCopyWith<_$_UserProfileModel> get copyWith =>

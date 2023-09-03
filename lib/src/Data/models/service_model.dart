@@ -1,6 +1,5 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nans/src/Data/models/department_model.dart';
 
 part 'service_model.freezed.dart';
 part 'service_model.g.dart';
@@ -11,8 +10,6 @@ class ServiceModel with _$ServiceModel{
   factory ServiceModel({
     required String id,
     required String title,
-    required DepartmentModel department,
-    required double price,
               String? image,
   })=_ServiceModel;
 

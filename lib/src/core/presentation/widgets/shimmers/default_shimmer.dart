@@ -11,7 +11,7 @@ class DefaultShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.blue,
+      backgroundColor: AppStyle.blue,
       body: SingleChildScrollView(
       padding: EdgeInsets.all( 32.r),
         child: Column(

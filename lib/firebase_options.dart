@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDb1tXvZkZnlTqUmt-zPQ2wXMeE1CxsfL0',
-    appId: '1:1058221785825:android:d77d33b67d256b56156da0',
-    messagingSenderId: '1058221785825',
-    projectId: 'nans2023',
-    storageBucket: 'nans2023.appspot.com',
+    apiKey: 'AIzaSyAmo8wfBRAFJRuuVIQ2TCG28CyVlkKu6Es',
+    appId: '1:362165460109:android:b9933b054b6363e24316c4',
+    messagingSenderId: '362165460109',
+    projectId: 'nans-ac222',
+    storageBucket: 'nans-ac222.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBNgBNDA2nsIoVFNYqLq1HrvcmGMOkp0bY',
-    appId: '1:1058221785825:ios:ff2ef813dcb235fa156da0',
-    messagingSenderId: '1058221785825',
-    projectId: 'nans2023',
-    storageBucket: 'nans2023.appspot.com',
-    iosClientId: '1058221785825-id5c0afnp4atqjgmk6qulo0l7s8ud82v.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAZIyg9eiNFmyMgKoxeFCLqS2Ur4blghag',
+    appId: '1:362165460109:ios:00644d28a2abecc64316c4',
+    messagingSenderId: '362165460109',
+    projectId: 'nans-ac222',
+    storageBucket: 'nans-ac222.appspot.com',
     iosBundleId: 'com.example.neww',
   );
 }

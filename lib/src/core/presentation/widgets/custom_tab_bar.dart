@@ -24,11 +24,11 @@ class CustomTabBar extends StatelessWidget {
 
 
         indicatorSize: TabBarIndicatorSize.label,
-        indicatorColor: AppColors.yellow,
-        unselectedLabelColor: AppColors.blackColor.shade500,
-        labelColor: AppColors.yellow,
-        unselectedLabelStyle: AppStyle.textTheme.titleMedium,
-        labelStyle: AppStyle.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.bold),
+        indicatorColor: AppStyle.primary,
+        unselectedLabelColor: AppStyle.blackColor.shade500,
+        labelColor: AppStyle.primary,
+        unselectedLabelStyle: AppStyle.textTheme.bodySmall,
+        labelStyle: AppStyle.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),
         indicatorPadding: EdgeInsets.symmetric(horizontal:4.w ),
 
         tabs: [
@@ -37,7 +37,7 @@ class CustomTabBar extends StatelessWidget {
             Tab(
               iconMargin: EdgeInsets.zero,
               text: titles[i].translateWord,
-              height: 30.h,
+              height: 64.h,
             )
         ],
       ),

@@ -1,11 +1,11 @@
-import 'package:nans/src/core/controllers/base_store.dart';
+import 'package:nans/src/core/controllers/base_controller.dart';
 import 'package:nans/src/core/presentation/widgets/custom_empty_view.dart';
 import 'package:nans/src/core/presentation/widgets/shimmers/default_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class BaseDataLoader<T> extends StatelessWidget {
-  final BaseStoreController dataLoader;
+  final BaseController dataLoader;
   final Widget Function(T) childBuilder;
   final void Function() onFailLoading;
   final Widget? loadingShimmer;
@@ -18,7 +18,7 @@ class BaseDataLoader<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(dataLoader.isLazyStore && dataLoader.isStillLazy) {
+    if(dataLoader.isLazyController && dataLoader.isStillLazy) {
       onFailLoading();
     }
 

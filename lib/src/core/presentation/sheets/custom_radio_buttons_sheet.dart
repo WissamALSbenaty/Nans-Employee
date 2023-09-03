@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:nans/src/core/presentation/auto_router.dart';
 import 'package:nans/src/core/presentation/style.dart';
 import 'package:nans/src/core/presentation/widgets/custom_sized_box.dart';
 import 'package:nans/src/core/util/extentions.dart';
@@ -37,7 +37,7 @@ class CustomRadioButtonsSheet<T> extends StatelessWidget {
               GestureDetector(
                  onTap: (){
                   onSelectItem(item);
-                  AutoRouter.of(context).pop();
+                  appRouter.pop();
                   },
                 child: Row(
                     children: [
@@ -45,16 +45,16 @@ class CustomRadioButtonsSheet<T> extends StatelessWidget {
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                          groupValue: selectedItem,
                           value: item,
-                          activeColor: AppColors.yellow,
+                          activeColor: AppStyle.primary,
                           onChanged: (_) {
                             onSelectItem(item);
-                            AutoRouter.of(context).pop();
+                            appRouter.pop();
                           }),
 
                       Expanded(
                           child: Text(nameGetter(item),maxLines: 2
                             ,style: AppStyle.textTheme.bodyMedium!.copyWith(color:
-                            item==selectedItem?AppColors.yellow :AppColors.blackColor.shade600),)),
+                            item==selectedItem?AppStyle.primary :AppStyle.blackColor.shade600),)),
                     ]
                 ),
               ),
